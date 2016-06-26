@@ -1,0 +1,63 @@
+{
+    "name": "App\\Providers\\EventServiceProvider",
+    "line": 8,
+    "short_desc": "",
+    "long_desc": "",
+    "hint": null,
+    "tags": [],
+    "namespace": "App\\Providers",
+    "file": "C:\\Users\\Fernando\\Code\\StarterKit\\config\/..\/app\\Providers\\EventServiceProvider.php",
+    "relative_file": null,
+    "hash": "3355bad187b82d2ce0fd598997c6df3b5763bb33",
+    "parent": "Illuminate\\Foundation\\Support\\Providers\\EventServiceProvider",
+    "modifiers": "Stmt_Class",
+    "is_trait": false,
+    "is_interface": false,
+    "aliases": {
+        "DispatcherContract": "Illuminate\\Contracts\\Events\\Dispatcher",
+        "ServiceProvider": "Illuminate\\Foundation\\Support\\Providers\\EventServiceProvider"
+    },
+    "errors": [],
+    "interfaces": [],
+    "traits": [],
+    "properties": [],
+    "methods": {
+        "boot": {
+            "name": "boot",
+            "line": 27,
+            "short_desc": "Register any other events for your application.",
+            "long_desc": "",
+            "hint": [
+                [
+                    "void",
+                    false
+                ]
+            ],
+            "hint_desc": "",
+            "tags": [],
+            "modifiers": "1",
+            "is_by_ref": "",
+            "exceptions": [],
+            "errors": [],
+            "parameters": {
+                "events": {
+                    "name": "events",
+                    "line": 27,
+                    "short_desc": "",
+                    "long_desc": null,
+                    "hint": [
+                        [
+                            "\\Illuminate\\Contracts\\Events\\Dispatcher",
+                            false
+                        ]
+                    ],
+                    "tags": [],
+                    "modifiers": "Illuminate\\Contracts\\Events\\Dispatcher",
+                    "default": null,
+                    "is_by_ref": false
+                }
+            }
+        }
+    },
+    "constants": []
+}

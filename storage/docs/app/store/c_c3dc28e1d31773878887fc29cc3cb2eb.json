@@ -1,0 +1,25 @@
+{
+    "name": "App\\Http\\Middleware\\EncryptCookies",
+    "line": 7,
+    "short_desc": "",
+    "long_desc": "",
+    "hint": null,
+    "tags": [],
+    "namespace": "App\\Http\\Middleware",
+    "file": "C:\\Users\\Fernando\\Code\\StarterKit\\config\/..\/app\\Http\\Middleware\\EncryptCookies.php",
+    "relative_file": null,
+    "hash": "ccf0bae02c6e4528b6318408edf1dabe123415e8",
+    "parent": "Illuminate\\Cookie\\Middleware\\EncryptCookies",
+    "modifiers": "Stmt_Class",
+    "is_trait": false,
+    "is_interface": false,
+    "aliases": {
+        "BaseEncrypter": "Illuminate\\Cookie\\Middleware\\EncryptCookies"
+    },
+    "errors": [],
+    "interfaces": [],
+    "traits": [],
+    "properties": [],
+    "methods": [],
+    "constants": []
+}

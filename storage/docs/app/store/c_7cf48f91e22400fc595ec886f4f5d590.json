@@ -1,0 +1,25 @@
+{
+    "name": "App\\User",
+    "line": 7,
+    "short_desc": "",
+    "long_desc": "",
+    "hint": null,
+    "tags": [],
+    "namespace": "App",
+    "file": "C:\\Users\\Fernando\\Code\\StarterKit\\config\/..\/app\\User.php",
+    "relative_file": null,
+    "hash": "e892c3a64aa6ba6e436db9ff11a628c2c16fac19",
+    "parent": "Illuminate\\Foundation\\Auth\\User",
+    "modifiers": "Stmt_Class",
+    "is_trait": false,
+    "is_interface": false,
+    "aliases": {
+        "Authenticatable": "Illuminate\\Foundation\\Auth\\User"
+    },
+    "errors": [],
+    "interfaces": [],
+    "traits": [],
+    "properties": [],
+    "methods": [],
+    "constants": []
+}

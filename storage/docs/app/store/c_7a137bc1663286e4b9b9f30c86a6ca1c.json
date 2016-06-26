@@ -1,0 +1,25 @@
+{
+    "name": "App\\Http\\Requests\\Request",
+    "line": 7,
+    "short_desc": "",
+    "long_desc": "",
+    "hint": null,
+    "tags": [],
+    "namespace": "App\\Http\\Requests",
+    "file": "C:\\Users\\Fernando\\Code\\StarterKit\\config\/..\/app\\Http\\Requests\\Request.php",
+    "relative_file": null,
+    "hash": "4571b1869e210996f4e2185809655ab3c5b0d845",
+    "parent": "Illuminate\\Foundation\\Http\\FormRequest",
+    "modifiers": "Stmt_Class",
+    "is_trait": false,
+    "is_interface": false,
+    "aliases": {
+        "FormRequest": "Illuminate\\Foundation\\Http\\FormRequest"
+    },
+    "errors": [],
+    "interfaces": [],
+    "traits": [],
+    "properties": [],
+    "methods": [],
+    "constants": []
+}

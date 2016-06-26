@@ -1,0 +1,52 @@
+{
+    "name": "App\\Http\\Controllers\\Auth\\AuthController",
+    "line": 11,
+    "short_desc": "",
+    "long_desc": "",
+    "hint": null,
+    "tags": [],
+    "namespace": "App\\Http\\Controllers\\Auth",
+    "file": "C:\\Users\\Fernando\\Code\\StarterKit\\config\/..\/app\\Http\\Controllers\\Auth\\AuthController.php",
+    "relative_file": null,
+    "hash": "69492dcbae633d4741e4cb8bacf4d93b8466a16f",
+    "parent": "App\\Http\\Controllers\\Controller",
+    "modifiers": "Stmt_Class",
+    "is_trait": false,
+    "is_interface": false,
+    "aliases": {
+        "User": "App\\User",
+        "Validator": "Validator",
+        "Controller": "App\\Http\\Controllers\\Controller",
+        "ThrottlesLogins": "Illuminate\\Foundation\\Auth\\ThrottlesLogins",
+        "AuthenticatesAndRegistersUsers": "Illuminate\\Foundation\\Auth\\AuthenticatesAndRegistersUsers"
+    },
+    "errors": [],
+    "interfaces": [],
+    "traits": {
+        "Illuminate\\Foundation\\Auth\\AuthenticatesAndRegistersUsers": "Illuminate\\Foundation\\Auth\\AuthenticatesAndRegistersUsers",
+        "Illuminate\\Foundation\\Auth\\ThrottlesLogins": "Illuminate\\Foundation\\Auth\\ThrottlesLogins"
+    },
+    "properties": [],
+    "methods": {
+        "__construct": {
+            "name": "__construct",
+            "line": 63,
+            "short_desc": "Create a new authentication controller instance.",
+            "long_desc": "",
+            "hint": [
+                [
+                    "void",
+                    false
+                ]
+            ],
+            "hint_desc": "",
+            "tags": [],
+            "modifiers": "1",
+            "is_by_ref": "",
+            "exceptions": [],
+            "errors": [],
+            "parameters": []
+        }
+    },
+    "constants": []
+}

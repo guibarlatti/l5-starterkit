@@ -1,0 +1,63 @@
+{
+    "name": "App\\Providers\\AuthServiceProvider",
+    "line": 8,
+    "short_desc": "",
+    "long_desc": "",
+    "hint": null,
+    "tags": [],
+    "namespace": "App\\Providers",
+    "file": "C:\\Users\\Fernando\\Code\\StarterKit\\config\/..\/app\\Providers\\AuthServiceProvider.php",
+    "relative_file": null,
+    "hash": "458c343a1b8855fe7e61008f478ef563e478aa13",
+    "parent": "Illuminate\\Foundation\\Support\\Providers\\AuthServiceProvider",
+    "modifiers": "Stmt_Class",
+    "is_trait": false,
+    "is_interface": false,
+    "aliases": {
+        "GateContract": "Illuminate\\Contracts\\Auth\\Access\\Gate",
+        "ServiceProvider": "Illuminate\\Foundation\\Support\\Providers\\AuthServiceProvider"
+    },
+    "errors": [],
+    "interfaces": [],
+    "traits": [],
+    "properties": [],
+    "methods": {
+        "boot": {
+            "name": "boot",
+            "line": 25,
+            "short_desc": "Register any application authentication \/ authorization services.",
+            "long_desc": "",
+            "hint": [
+                [
+                    "void",
+                    false
+                ]
+            ],
+            "hint_desc": "",
+            "tags": [],
+            "modifiers": "1",
+            "is_by_ref": "",
+            "exceptions": [],
+            "errors": [],
+            "parameters": {
+                "gate": {
+                    "name": "gate",
+                    "line": 25,
+                    "short_desc": "",
+                    "long_desc": null,
+                    "hint": [
+                        [
+                            "\\Illuminate\\Contracts\\Auth\\Access\\Gate",
+                            false
+                        ]
+                    ],
+                    "tags": [],
+                    "modifiers": "Illuminate\\Contracts\\Auth\\Access\\Gate",
+                    "default": null,
+                    "is_by_ref": false
+                }
+            }
+        }
+    },
+    "constants": []
+}

@@ -1,0 +1,18 @@
+{
+  "name": "StarterKit REST API",
+  "version": "1.0.0",
+  "description": "Docs v1",
+  "title": "StarterKit API",
+  "url" : "http://starterkit.app",
+  "header": {
+    "title": "ApiHome",
+    "filename": "apidoc-header.md"
+  },
+  "footer": {
+    "filename": "apidoc-footer.md"
+  },
+  "template": {
+  	"withCompare": false,
+  	"withGenerator": false
+  }
+}

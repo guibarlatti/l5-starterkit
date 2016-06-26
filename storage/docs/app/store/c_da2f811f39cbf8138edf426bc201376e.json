@@ -1,0 +1,46 @@
+{
+    "name": "App\\Console\\Commands\\Inspire",
+    "line": 8,
+    "short_desc": "",
+    "long_desc": "",
+    "hint": null,
+    "tags": [],
+    "namespace": "App\\Console\\Commands",
+    "file": "C:\\Users\\Fernando\\Code\\StarterKit\\config\/..\/app\\Console\\Commands\\Inspire.php",
+    "relative_file": null,
+    "hash": "d52ce9da831ff9d5468a4bc9586db73cd907b5ba",
+    "parent": "Illuminate\\Console\\Command",
+    "modifiers": "Stmt_Class",
+    "is_trait": false,
+    "is_interface": false,
+    "aliases": {
+        "Command": "Illuminate\\Console\\Command",
+        "Inspiring": "Illuminate\\Foundation\\Inspiring"
+    },
+    "errors": [],
+    "interfaces": [],
+    "traits": [],
+    "properties": [],
+    "methods": {
+        "handle": {
+            "name": "handle",
+            "line": 29,
+            "short_desc": "Execute the console command.",
+            "long_desc": "",
+            "hint": [
+                [
+                    "mixed",
+                    false
+                ]
+            ],
+            "hint_desc": "",
+            "tags": [],
+            "modifiers": "1",
+            "is_by_ref": "",
+            "exceptions": [],
+            "errors": [],
+            "parameters": []
+        }
+    },
+    "constants": []
+}
