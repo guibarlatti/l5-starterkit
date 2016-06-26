@@ -1,12 +1,12 @@
 <?php
 
-use \Sami\Sami;
-use Symfony\Component\Finder\Finder ;
+use Sami\Sami;
+use Symfony\Component\Finder\Finder;
 
 $iterator = Finder::create()
     ->files()
     ->name('*.php')
-   ->exclude('vendor')
+    ->exclude('vendor')
     ->in(__DIR__ . '/../app');
 
 return new Sami($iterator, array(

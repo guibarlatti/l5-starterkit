@@ -3,7 +3,7 @@
   "version": "1.0.0",
   "description": "Docs v1",
   "title": "StarterKit API",
-  "url" : "http://starterkit.app",
+  "url": "http://starterkit.app",
   "header": {
     "title": "ApiHome",
     "filename": "apidoc-header.md"
@@ -12,7 +12,7 @@
     "filename": "apidoc-footer.md"
   },
   "template": {
-  	"withCompare": false,
-  	"withGenerator": false
+    "withCompare": false,
+    "withGenerator": false
   }
 }

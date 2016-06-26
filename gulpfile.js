@@ -17,11 +17,11 @@ gulp.task('apidocs', function (done) {
 
 gulp.task('sami-docs', function () {
 
-  var binPath = '.\\vendor\\bin\\sami.php.bat';
+    var binPath = '.\\vendor\\bin\\sami.php.bat';
 
-  if (process.platform == 'linux') {
-      binPath = './vendor/bin/sammi.php';
-  }
+    if (process.platform == 'linux') {
+        binPath = './vendor/bin/sammi.php';
+    }
     return run(binPath + ' update config/sami.php').exec();
 });
 

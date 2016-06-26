@@ -3,11 +3,11 @@
 namespace App\Exceptions;
 
 use Exception;
-use Illuminate\Validation\ValidationException;
 use Illuminate\Auth\Access\AuthorizationException;
 use Illuminate\Database\Eloquent\ModelNotFoundException;
-use Symfony\Component\HttpKernel\Exception\HttpException;
 use Illuminate\Foundation\Exceptions\Handler as ExceptionHandler;
+use Illuminate\Validation\ValidationException;
+use Symfony\Component\HttpKernel\Exception\HttpException;
 
 class Handler extends ExceptionHandler
 {
@@ -28,7 +28,8 @@ class Handler extends ExceptionHandler
      *
      * This is a great spot to send exceptions to Sentry, Bugsnag, etc.
      *
-     * @param  \Exception  $e
+     * @param  \Exception $e
+     *
      * @return void
      */
     public function report(Exception $e)
@@ -39,22 +40,19 @@ class Handler extends ExceptionHandler
     /**
      * Render an exception into an HTTP response.
      *
-     * @param  \Illuminate\Http\Request  $request
-     * @param  \Exception  $e
+     * @param  \Illuminate\Http\Request $request
+     * @param  \Exception               $e
+     *
      * @return \Illuminate\Http\Response
      */
     public function render($request, Exception $e)
     {
-        if (config('app.debug'))
-        {
+        if (config('app.debug')) {
             $whoops = new \Whoops\Run;
 
-            if ($request->ajax())
-            {
+            if ($request->ajax() || $request->wantsJson()) {
                 $whoops->pushHandler(new \Whoops\Handler\JsonResponseHandler);
-            }
-            else
-            {
+            } else {
                 $whoops->pushHandler(new \Whoops\Handler\PrettyPageHandler);
             }
 
