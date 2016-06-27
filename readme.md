@@ -1,27 +1,27 @@
-# Laravel PHP Framework
+# StarterKit
 
-[![Build Status](https://travis-ci.org/laravel/framework.svg)](https://travis-ci.org/laravel/framework)
-[![Total Downloads](https://poser.pugx.org/laravel/framework/d/total.svg)](https://packagist.org/packages/laravel/framework)
-[![Latest Stable Version](https://poser.pugx.org/laravel/framework/v/stable.svg)](https://packagist.org/packages/laravel/framework)
-[![Latest Unstable Version](https://poser.pugx.org/laravel/framework/v/unstable.svg)](https://packagist.org/packages/laravel/framework)
-[![License](https://poser.pugx.org/laravel/framework/license.svg)](https://packagist.org/packages/laravel/framework)
+## Instalação
+Pacotes do [composer](https://getcomposer.org/):  
+`$ composer install`
 
-Laravel is a web application framework with expressive, elegant syntax. We believe development must be an enjoyable, creative experience to be truly fulfilling. Laravel attempts to take the pain out of development by easing common tasks used in the majority of web projects, such as authentication, routing, sessions, queueing, and caching.
+Pacotes npm:  
+`$ npm install`
 
-Laravel is accessible, yet powerful, providing tools needed for large, robust applications. A superb inversion of control container, expressive migration system, and tightly integrated unit testing support give you the tools you need to build any application with which you are tasked.
+## Gulp tasks
+Gerar documentação de api usando [APIDOC](http://apidocjs.com/):  
+`$ gulp apidocs`
 
-## Official Documentation
+Gerar documentação geral do sistema com [sammi](https://github.com/FriendsOfPHP/Sami):  
+`$ gulp sami-docs`
 
-Documentation for the framework can be found on the [Laravel website](http://laravel.com/docs).
+Gerar as duas documentações simultaneamente:  
+`$ gulp docs`
 
-## Contributing
+Executar a bateria de testes unitários com [phpunit](https://phpunit.de/):  
+`$ gulp phpunit`
 
-Thank you for considering contributing to the Laravel framework! The contribution guide can be found in the [Laravel documentation](http://laravel.com/docs/contributions).
-
-## Security Vulnerabilities
-
-If you discover a security vulnerability within Laravel, please send an e-mail to Taylor Otwell at taylor@laravel.com. All security vulnerabilities will be promptly addressed.
-
-## License
-
-The Laravel framework is open-sourced software licensed under the [MIT license](http://opensource.org/licenses/MIT).
+## Git pre-commit Hook
+Ao fazer um commit um hook é disparado gerando a documentação e rodando a bareria de testes.
+  
+## Autenticação com JSON Web Tokens
+ver documentação na seção wiki do projeto: [tymondesigns/jwt-auth](https://github.com/tymondesigns/jwt-auth/wiki)
