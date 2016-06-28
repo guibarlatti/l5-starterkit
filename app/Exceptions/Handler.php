@@ -6,8 +6,10 @@ use Exception;
 use Illuminate\Auth\Access\AuthorizationException;
 use Illuminate\Database\Eloquent\ModelNotFoundException;
 use Illuminate\Foundation\Exceptions\Handler as ExceptionHandler;
-use Illuminate\Validation\ValidationException;
+use Illuminate\Foundation\Validation\ValidationException;
 use Symfony\Component\HttpKernel\Exception\HttpException;
+use Whoops\Handler\JsonResponseHandler;
+use Whoops\Handler\PrettyPageHandler;
 
 class Handler extends ExceptionHandler
 {
@@ -34,7 +36,7 @@ class Handler extends ExceptionHandler
      */
     public function report(Exception $e)
     {
-        parent::report($e);
+        return parent::report($e);
     }
 
     /**
@@ -49,19 +51,20 @@ class Handler extends ExceptionHandler
     {
         if (config('app.debug')) {
             $whoops = new \Whoops\Run;
-
-            if ($request->ajax() || $request->wantsJson() || $request->acceptsJson()) {
-                $whoops->pushHandler(new \Whoops\Handler\JsonResponseHandler);
+            if (
+                $request->isJson() ||
+                $request->wantsJson() ||
+                $request->ajax()
+            ) {
+                $whoops->pushHandler(new JsonResponseHandler);
             } else {
-                $whoops->pushHandler(new \Whoops\Handler\PrettyPageHandler);
+                $whoops->pushHandler(new PrettyPageHandler);
             }
-
             return response($whoops->handleException($e),
                 $e->getStatusCode(),
                 $e->getHeaders()
             );
         }
-
         return parent::render($request, $e);
     }
 }
