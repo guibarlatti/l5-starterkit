@@ -19,13 +19,16 @@
     "symfony/css-selector": "2.8.*|3.0.*",
     "symfony/dom-crawler": "2.8.*|3.0.*",
     "sami/sami": "dev-master",
-    "filp/whoops": "^1.1"
+    "filp/whoops": "^1.1",
+    "jeroen-g/laravel-packager": "^1.5",
+    "sofa/eloquence": "~5.2@dev"
   },
   "autoload": {
     "classmap": [
       "database"
     ],
     "psr-4": {
+      "Lfalmeida\\Lbase\\": "packages/Lfalmeida/Lbase/src",
       "App\\": "app/"
     }
   },

@@ -32,8 +32,8 @@ Route::group(['prefix' => 'api/v1'], function () {
     /**
      * Acessadas somente com Token
      */
-    Route::group(['middleware' => 'api'], function () {
+//    Route::group(['middleware' => 'api'], function () {
         Route::resource('users', 'Api\V1\UsersController');
-    });
+//    });
 
 });

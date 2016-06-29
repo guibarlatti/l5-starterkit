@@ -65,7 +65,7 @@ return [
     |
     */
 
-    'locale' => 'en',
+    'locale' => 'pt-br',
 
     /*
     |--------------------------------------------------------------------------
@@ -156,11 +156,14 @@ return [
         App\Providers\EventServiceProvider::class,
         App\Providers\RouteServiceProvider::class,
 
+        Lfalmeida\Lbase\Providers\LbaseServiceProvider::class,
+
         /**
          * Cumtom Service Providers
          */
         Tymon\JWTAuth\Providers\JWTAuthServiceProvider::class,
-
+        JeroenG\Packager\PackagerServiceProvider::class,
+        Sofa\Eloquence\ServiceProvider::class,
     ],
 
     /*
@@ -207,7 +210,7 @@ return [
         'Validator' => Illuminate\Support\Facades\Validator::class,
         'View' => Illuminate\Support\Facades\View::class,
         'JWTAuth' => Tymon\JWTAuth\Facades\JWTAuth::class,
-        'JWTFactory' => ymon\JWTAuth\Facades\JWTFactory::class,
+        'JWTFactory' => Tymon\JWTAuth\Facades\JWTFactory::class,
     ],
 
 ];
