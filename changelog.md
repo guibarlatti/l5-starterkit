@@ -1,3 +1,7 @@
+**2016-06-29**
+-  
+ 
+ 
 **2016-06-28**
  
 - Adicionada validação de Models usando [Eloquence](https://github.com/jarektkaczyk/eloquence)  

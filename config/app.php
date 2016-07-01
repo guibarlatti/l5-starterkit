@@ -164,6 +164,7 @@ return [
         Tymon\JWTAuth\Providers\JWTAuthServiceProvider::class,
         JeroenG\Packager\PackagerServiceProvider::class,
         Sofa\Eloquence\ServiceProvider::class,
+        Zizaco\Entrust\EntrustServiceProvider::class,
     ],
 
     /*
@@ -211,6 +212,7 @@ return [
         'View' => Illuminate\Support\Facades\View::class,
         'JWTAuth' => Tymon\JWTAuth\Facades\JWTAuth::class,
         'JWTFactory' => Tymon\JWTAuth\Facades\JWTFactory::class,
+        'Entrust' => Zizaco\Entrust\EntrustServiceProvider::class,
     ],
 
 ];

@@ -1,12 +1,17 @@
 <?php
 namespace Lfalmeida\Lbase\Models;
 
-use Illuminate\Foundation\Auth\User as Authenticatable;
+use Illuminate\Auth\Authenticatable;
+use Illuminate\Auth\Passwords\CanResetPassword;
+use Illuminate\Contracts\Auth\Access\Authorizable as AuthorizableContract;
+use Illuminate\Contracts\Auth\Authenticatable as AuthenticatableContract;
+use Illuminate\Database\Eloquent\Model;
 use Sofa\Eloquence\Contracts\CleansAttributes;
 use Sofa\Eloquence\Contracts\Validable as ValidableContract;
 use Sofa\Eloquence\Eloquence;
 use Sofa\Eloquence\Validable;
-
+use Zizaco\Entrust\Traits\EntrustUserTrait;
+ 
 /**
  * Class BaseModel
  *
@@ -16,12 +21,12 @@ use Sofa\Eloquence\Validable;
  * @package App\Models
  *
  */
-class BaseModel extends Authenticatable implements ValidableContract, CleansAttributes
+class BaseModel extends Model implements ValidableContract, CleansAttributes, AuthenticatableContract, AuthorizableContract
 {
     /**
      * Torna este model pesquisável e "validável"
      */
-    use Eloquence, Validable;
+    use Eloquence, Validable, Authenticatable, CanResetPassword, EntrustUserTrait;
 
     /**
      * Columas pesquisáveis via Eloquence trait
