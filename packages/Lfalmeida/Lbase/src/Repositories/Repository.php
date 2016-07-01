@@ -127,20 +127,27 @@ abstract class Repository implements RepositoryInterface
         $model->fill($data);
 
         try {
-            if ($model->save()) {
-                return $this->find($model->id);
-            }
-        } catch (QueryException $e) {
-            $errorCode = $e->errorInfo[1];
-            if ($errorCode == 1062) {
-                throw new ApiException("Erro ao cadastrar: Dados duplicados");
-            }
-        } catch (Exception $e) {
 
+            if (method_exists($model, 'isValid')) {
+                if ($model->isValid()) {
+                    if ($model->save()) {
+                        return $this->find($model->id);
+                    }
+                } else {
+                    $message = implode($model->getValidationErrors()->all(), ' | ');
+                    throw new Exception($message);
+                }
+            } else {
+                if ($model->save()) {
+                    return $this->find($model->id);
+                }
+            }
+
+        } catch (Exception $e) {
+            throw new ApiException($e->getMessage());
         }
 
         return false;
-
     }
 
     /**
@@ -159,6 +166,8 @@ abstract class Repository implements RepositoryInterface
         }
 
         $model->fill($data);
+
+        // TODO Implementar Validação no update
         $model->save();
 
         return $this->find($id);
@@ -221,8 +230,9 @@ abstract class Repository implements RepositoryInterface
     {
         $model = $this->app->make($this->model());
 
-        if (!$model instanceof Model)
+        if (!$model instanceof Model) {
             throw new RepositoryException("Class {$this->model()} must be an instance of Illuminate\\Database\\Eloquent\\Model");
+        }
 
         $this->model = $model->with($this->withRelationShips());
 

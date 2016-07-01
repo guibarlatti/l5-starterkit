@@ -163,9 +163,9 @@ abstract class ApiBaseController extends Controller
         try {
             return Response::apiResponse($this->repository->delete($id));
         } catch (\Illuminate\Database\QueryException $e) {
-            return Response::apiResponse(null, 'success', 'Este item não pode ser excluído. ', 400);
+            return Response::apiResponse($data = null, 400, $e->getMessage());
         } catch (\Exception $e) {
-            return Response::apiResponse(null, 'success', 'Não foi possível excluir o registro', 400);
+            return Response::apiResponse($data = null, 400, $e->getMessage());
         }
     }
 
