@@ -1,6 +1,7 @@
 <?php
 namespace Lfalmeida\Lbase\Models;
 
+use Illuminate\Support\Facades\Config;
 use Sofa\Eloquence\Contracts\Validable as ValidableContract;
 use Sofa\Eloquence\Eloquence;
 use Sofa\Eloquence\Validable;
@@ -36,6 +37,22 @@ class Role extends EntrustRole implements ValidableContract
         'displayName',
         'description',
     ];
+
+
+    /**
+     * Este método sobrescreve o da superclasse adaptando para o Laravel 5.2
+     *
+     * O problema que este método resolve é a sintaxe do acesso a propriedade da configuração que obtem o model de
+     * usuários, caso este problema seja corrigido pelo vendor, podemos excluir este método.
+     *
+     * Many-to-Many relations with the user model.
+     *
+     * @return \Illuminate\Database\Eloquent\Relations\BelongsToMany
+     */
+    public function users()
+    {
+        return $this->belongsToMany(Config::get('auth.providers.users.model'), Config::get('entrust.role_user_table'));
+    }
 
     /**
      * Converte a saída de snake_case para loweCamelCase

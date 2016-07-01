@@ -19,7 +19,7 @@ return [
     | the role if it is in a different namespace.
     |
     */
-    'role' => 'Lfalmeida\Lbase\Models\Role',
+    'role' => '\Lfalmeida\Lbase\Models\Role',
 
     /*
     |--------------------------------------------------------------------------
@@ -40,7 +40,7 @@ return [
     | Update the permission if it is in a different namespace.
     |
     */
-    'permission' => 'Lfalmeida\Lbase\Models\Permission',
+    'permission' => '\Lfalmeida\Lbase\Models\Permission',
 
     /*
     |--------------------------------------------------------------------------
