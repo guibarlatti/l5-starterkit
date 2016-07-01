@@ -11,22 +11,23 @@ use Sofa\Eloquence\Contracts\Validable as ValidableContract;
 use Sofa\Eloquence\Eloquence;
 use Sofa\Eloquence\Validable;
 use Zizaco\Entrust\Traits\EntrustUserTrait;
- 
+
 /**
  * Class BaseModel
  *
- * Base para todos os models da aplicação, mantendo a consistência e convenção de nomes de propriedades
- * e colunas do banco de dados
+ * Base para todos os models da aplicação
  *
  * @package App\Models
  *
  */
-class BaseModel extends Model implements ValidableContract, CleansAttributes, AuthenticatableContract, AuthorizableContract
+class BaseModel extends Model
+    implements ValidableContract, CleansAttributes, AuthenticatableContract, AuthorizableContract
 {
-    /**
-     * Torna este model pesquisável e "validável"
-     */
-    use Eloquence, Validable, Authenticatable, CanResetPassword, EntrustUserTrait;
+    use Eloquence,
+        Authenticatable,
+        CanResetPassword,
+        EntrustUserTrait,
+        Validable;
 
     /**
      * Columas pesquisáveis via Eloquence trait
@@ -76,5 +77,4 @@ class BaseModel extends Model implements ValidableContract, CleansAttributes, Au
         $key = snake_case($key);
         return parent::setAttribute($key, $value);
     }
-
 }

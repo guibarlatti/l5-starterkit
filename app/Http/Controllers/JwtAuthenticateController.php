@@ -2,34 +2,31 @@
 
 namespace App\Http\Controllers;
 
-use App\Models\Permission;
-use App\Models\Role;
+use App\Http\Requests;
 use App\Models\User;
 use Illuminate\Http\Request;
-
-use App\Http\Requests;
-use App\Http\Controllers\Controller;
 use Illuminate\Support\Facades\Auth;
-use JWTAuth;
+use Lfalmeida\Lbase\Models\Permission;
+use Lfalmeida\Lbase\Models\Role;
 use Tymon\JWTAuth\Exceptions\JWTException;
-use Log;
+use Tymon\JWTAuth\Facades\JWTAuth;
 
 class JwtAuthenticateController extends Controller
 {
-    
+
     public function index()
     {
-        return response()->json(['auth'=>Auth::user(), 'users'=>User::all()]);
+        return response()->json(['auth' => Auth::user(), 'users' => User::all()]);
     }
 
-    
+
     public function authenticate(Request $request)
     {
         $credentials = $request->only('email', 'password');
 
         try {
             // verify the credentials and create a token for the user
-            if (! $token = JWTAuth::attempt($credentials)) {
+            if (!$token = JWTAuth::attempt($credentials)) {
                 return response()->json(['error' => 'invalid_credentials'], 401);
             }
         } catch (JWTException $e) {
@@ -41,7 +38,8 @@ class JwtAuthenticateController extends Controller
         return response()->json(compact('token'));
     }
 
-    public function createRole(Request $request){
+    public function createRole(Request $request)
+    {
 
         $role = new Role();
         $role->name = $request->input('name');
@@ -51,7 +49,8 @@ class JwtAuthenticateController extends Controller
 
     }
 
-    public function createPermission(Request $request){
+    public function createPermission(Request $request)
+    {
 
         $viewUsers = new Permission();
         $viewUsers->name = $request->input('name');
@@ -61,7 +60,8 @@ class JwtAuthenticateController extends Controller
 
     }
 
-    public function assignRole(Request $request){
+    public function assignRole(Request $request)
+    {
         $user = User::where('email', '=', $request->input('email'))->first();
 
         $role = Role::where('name', '=', $request->input('role'))->first();
@@ -71,7 +71,8 @@ class JwtAuthenticateController extends Controller
         return response()->json("created");
     }
 
-    public function attachPermission(Request $request){
+    public function attachPermission(Request $request)
+    {
         $role = Role::where('name', '=', $request->input('role'))->first();
         $permission = Permission::where('name', '=', $request->input('name'))->first();
         $role->attachPermission($permission);
@@ -79,7 +80,8 @@ class JwtAuthenticateController extends Controller
         return response()->json("created");
     }
 
-    public function checkRoles(Request $request){
+    public function checkRoles(Request $request)
+    {
         $user = User::where('email', '=', $request->input('email'))->first();
         Log::info($user);
         return response()->json([
