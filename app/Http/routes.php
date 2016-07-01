@@ -23,26 +23,25 @@ Route::auth();
 Route::group(['prefix' => 'api/v1'], function () {
 
     /**
-     * Acesso permitido sem Token
+     * Acesso access rate de 3 hits por minuto
      */
     Route::group(['middleware' => 'throttle:3,1'], function () {
         Route::post('login', ['uses' => 'Api\V1\JwtAuthController@login']);
     });
+
+    Route::resource('roles', 'Api\V1\RolesController');
+    Route::resource('permissions', 'Api\V1\PermissionsController');
 
     /**
      * Acessadas somente com Token
      */
     Route::group(['middleware' => ['role:admin']], function () {
         Route::resource('users', 'Api\V1\UsersController');
+
     });
 
 });
 
-
-//
-//Route::get('/', function () {
-//    return view('welcome');
-//});
 //Route::post('role', 'JwtAuthenticateController@createRole');
 //Route::post('permission', 'JwtAuthenticateController@createPermission');
 //Route::post('assign-role', 'JwtAuthenticateController@assignRole');
@@ -51,4 +50,3 @@ Route::group(['prefix' => 'api/v1'], function () {
 //Route::group(['prefix' => 'api', 'middleware' => ['ability:admin,create-users']], function () {
 //    Route::get('users', 'JwtAuthenticateController@index');
 //});
-Route::post('authenticate', 'JwtAuthenticateController@authenticate');
