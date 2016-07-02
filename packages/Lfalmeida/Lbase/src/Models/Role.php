@@ -20,7 +20,7 @@ class Role extends EntrustRole implements ValidableContract
      * @var array
      */
     protected static $businessRules = [
-        'name' => ['required', 'unique:permissions'],
+        'name' => ['required', 'unique:roles'],
         'display_name' => 'required'
     ];
     /**

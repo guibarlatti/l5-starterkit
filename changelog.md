@@ -1,5 +1,11 @@
+**2016-07-01**
+- Criando endpoints Permissions e Roles
+
+**2016-06-30**
+- Trabalhando na implementação de controle de acesso via token
+
 **2016-06-29**
--  
+- Início da implementação do controle de acesso de acordo com permissões de usuário usando o pacote [Entrust](https://github.com/Zizaco/entrust) 
  
  
 **2016-06-28**

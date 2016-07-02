@@ -16,17 +16,7 @@ class JwtAuthenticateController extends Controller
     {
         return response()->json(['auth' => Auth::user(), 'users' => User::all()]);
     }
-
-    public function assignRole(Request $request)
-    {
-        $user = User::where('email', '=', $request->input('email'))->first();
-
-        $role = Role::where('name', '=', $request->input('role'))->first();
-        //$user->attachRole($request->input('role'));
-        $user->roles()->attach($role->id);
-
-        return response()->json("created");
-    }
+ 
 
     public function attachPermission(Request $request)
     {

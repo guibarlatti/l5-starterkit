@@ -23,30 +23,19 @@ class JwtAuthController extends Controller
      */
     public function login()
     {
-        // grab credentials from the request
         $credentials = Input::only('email', 'password');
 
         try {
-            // attempt to verify the credentials and create a token for the user
             if (!$token = JWTAuth::attempt($credentials)) {
-
-                return Response::apiResponse([
-                    'error' => 'invalidCredentials',
-                ], 401);
-
+                return Response::apiResponse([], 401, 'Credenciais Inválidas.');
             }
         } catch (JWTException $e) {
-            // something went wrong whilst attempting to encode the token
-            return Response::apiResponse([
-                'error' => 'invalidCredentials',
-            ], 500);
+            return Response::apiResponse([], 500, 'Não foi possível realizar a autenticação.');
         }
 
-        // all good so return the token
         return Response::apiResponse([
             'token' => $token,
-        ], 401);
-
+        ]);
     }
 
 }

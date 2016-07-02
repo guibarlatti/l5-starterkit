@@ -41,7 +41,7 @@ class TokenEntrustRole extends BaseMiddleware
         }
 
         if (!$user->hasRole(explode('|', $role))) {
-            return $this->respond('tymon.jwt.invalid', 'token_invalid', 401, 'Unauthorized');
+            return Response::apiResponse([], 401, 'Acesso não autorizado.');
         }
 
         $this->events->fire('tymon.jwt.valid', $user);

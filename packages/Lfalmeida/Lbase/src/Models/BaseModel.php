@@ -29,6 +29,8 @@ class BaseModel extends Model
         EntrustUserTrait,
         Validable;
 
+    public static $snakeAttributes = false;
+
     /**
      * Columas pesquisáveis via Eloquence trait
      *
@@ -75,6 +77,6 @@ class BaseModel extends Model
     public function setAttribute($key, $value)
     {
         $key = snake_case($key);
-        return parent::setAttribute($key, $value);
+        return parent::setAttribute($key, trim($value));
     }
 }

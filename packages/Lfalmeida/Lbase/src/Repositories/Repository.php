@@ -3,48 +3,45 @@
 namespace Lfalmeida\Lbase\Repositories;
 
 use App\Exceptions\ApiException;
-use Illuminate\Database\QueryException;
-use Mockery\CountValidator\Exception;
+use Illuminate\Container\Container as App;
+use Illuminate\Database\Eloquent\Model;
 use Lfalmeida\Lbase\Contracts\RepositoryInterface;
 use Lfalmeida\Lbase\Exceptions\RepositoryException;
-use Illuminate\Database\Eloquent\Model;
-use Illuminate\Container\Container as App;
+use Mockery\CountValidator\Exception;
 
 /**
  * Class Repository
+ *
  * @package Lfalmeida\Lbase\Repositories
  */
 abstract class Repository implements RepositoryInterface
 {
 
     /**
+     *
+     * @var Model $model
+     */
+    protected $model;
+    /**
+     * @var
+     */
+    protected $relationships;
+    /**
+     * @var string
+     */
+    protected $defaultOrderColumn = '';
+    /**
+     * @var string
+     */
+    protected $defaultOrderDirection = 'asc';
+    /**
      * @var App
      */
     private $app;
 
     /**
-     *
-     * @var Model $model
-     */
-    protected $model;
-
-    /**
-     * @var
-     */
-    protected $relationships;
-
-    /**
-     * @var string
-     */
-    protected $defaultOrderColumn = '';
-
-    /**
-     * @var string
-     */
-    protected $defaultOrderDirection = 'asc';
-
-    /**
      * Repository constructor.
+     *
      * @param App $app
      */
     public function __construct(App $app)
@@ -54,13 +51,20 @@ abstract class Repository implements RepositoryInterface
     }
 
     /**
-     * @param mixed $relationships
-     * @return Repository
+     * @return Model
+     * @throws RepositoryException
      */
-    public function setRelationships(array $relationships = [])
+    public function makeModel()
     {
-        $this->relationships = $relationships;
-        return $this;
+        $model = $this->app->make($this->model());
+
+        if (!$model instanceof Model) {
+            throw new RepositoryException("Class {$this->model()} must be an instance of Illuminate\\Database\\Eloquent\\Model");
+        }
+
+        $this->model = $model->with($this->withRelationShips());
+
+        return $model;
     }
 
     /**
@@ -73,6 +77,7 @@ abstract class Repository implements RepositoryInterface
     /**
      * Método de acesso utilizado para obter a lista de relações
      * que deve ser construida ao instanciar um model
+     *
      * @return mixed
      */
     protected function withRelationShips()
@@ -81,7 +86,19 @@ abstract class Repository implements RepositoryInterface
     }
 
     /**
+     * @param mixed $relationships
+     *
+     * @return Repository
+     */
+    public function setRelationships(array $relationships = [])
+    {
+        $this->relationships = $relationships;
+        return $this;
+    }
+
+    /**
      * @param array $columns
+     *
      * @return mixed
      */
     public function all($columns = array('*'))
@@ -92,7 +109,6 @@ abstract class Repository implements RepositoryInterface
         return $this->model->get($columns);
     }
 
-
     /**
      * @return mixed
      */
@@ -102,8 +118,9 @@ abstract class Repository implements RepositoryInterface
     }
 
     /**
-     * @param int $perPage
+     * @param int   $perPage
      * @param array $columns
+     *
      * @return mixed
      */
     public function paginate($perPage = 15, $columns = array('*'))
@@ -118,6 +135,7 @@ abstract class Repository implements RepositoryInterface
 
     /**
      * @param array $data
+     *
      * @return mixed
      * @throws ApiException
      */
@@ -151,9 +169,21 @@ abstract class Repository implements RepositoryInterface
     }
 
     /**
-     * @param $id
-     * @param array $data
+     * @param       $id
+     * @param array $columns
+     *
+     * @return mixed
+     */
+    public function find($id, $columns = array('*'))
+    {
+        return $this->model->find($id, $columns);
+    }
+
+    /**
+     * @param        $id
+     * @param array  $data
      * @param string $attribute
+     *
      * @return mixed
      * @throws RepositoryException
      */
@@ -176,6 +206,7 @@ abstract class Repository implements RepositoryInterface
 
     /**
      * @param $id
+     *
      * @return mixed
      * @throws RepositoryException
      */
@@ -191,19 +222,10 @@ abstract class Repository implements RepositoryInterface
     }
 
     /**
-     * @param $id
+     * @param       $attribute
+     * @param       $value
      * @param array $columns
-     * @return mixed
-     */
-    public function find($id, $columns = array('*'))
-    {
-        return $this->model->find($id, $columns);
-    }
-
-    /**
-     * @param $attribute
-     * @param $value
-     * @param array $columns
+     *
      * @return mixed
      */
     public function findBy($attribute, $value, $columns = array('*'))
@@ -213,6 +235,7 @@ abstract class Repository implements RepositoryInterface
 
     /**
      * @param array $params
+     *
      * @return mixed
      * @internal param int $perPage
      */
@@ -220,23 +243,6 @@ abstract class Repository implements RepositoryInterface
     {
         $perPage = isset($params['pageSize']) ? $params['pageSize'] : 15;
         return $this->model->search($params['search'])->paginate($perPage);
-    }
-
-    /**
-     * @return Model
-     * @throws RepositoryException
-     */
-    public function makeModel()
-    {
-        $model = $this->app->make($this->model());
-
-        if (!$model instanceof Model) {
-            throw new RepositoryException("Class {$this->model()} must be an instance of Illuminate\\Database\\Eloquent\\Model");
-        }
-
-        $this->model = $model->with($this->withRelationShips());
-
-        return $model;
     }
 
 }
