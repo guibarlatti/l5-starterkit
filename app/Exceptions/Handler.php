@@ -7,6 +7,7 @@ use Illuminate\Auth\Access\AuthorizationException;
 use Illuminate\Database\Eloquent\ModelNotFoundException;
 use Illuminate\Foundation\Exceptions\Handler as ExceptionHandler;
 use Illuminate\Foundation\Validation\ValidationException;
+use Illuminate\Support\Facades\Response;
 use Symfony\Component\HttpKernel\Exception\HttpException;
 use Whoops\Handler\JsonResponseHandler;
 use Whoops\Handler\PrettyPageHandler;
@@ -49,13 +50,6 @@ class Handler extends ExceptionHandler
      */
     public function render($request, Exception $e)
     {
-        if ($e instanceof \Tymon\JWTAuth\Exceptions\TokenExpiredException) {
-            return response()->json(['token_expired'], $e->getStatusCode());
-        } else {
-            if ($e instanceof \Tymon\JWTAuth\Exceptions\TokenInvalidException) {
-                return response()->json(['token_invalid'], $e->getStatusCode());
-            }
-        }
 
         if (config('app.debug')) {
             $whoops = new \Whoops\Run;
@@ -65,9 +59,15 @@ class Handler extends ExceptionHandler
                 $request->ajax()
             ) {
                 $whoops->pushHandler(new JsonResponseHandler);
+
+                if ($e instanceof \App\Exceptions\ValidationException) {
+                    return Response::apiResponse(null, 400, null, $e->getMessages());
+                }
+
             } else {
                 $whoops->pushHandler(new PrettyPageHandler);
             }
+
             return response($whoops->handleException($e),
                 $e->getStatusCode(),
                 $e->getHeaders()

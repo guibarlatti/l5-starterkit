@@ -3,11 +3,11 @@
 namespace Lfalmeida\Lbase\Repositories;
 
 use App\Exceptions\ApiException;
+use App\Exceptions\ValidationException;
 use Illuminate\Container\Container as App;
 use Illuminate\Database\Eloquent\Model;
 use Lfalmeida\Lbase\Contracts\RepositoryInterface;
 use Lfalmeida\Lbase\Exceptions\RepositoryException;
-use Mockery\CountValidator\Exception;
 
 /**
  * Class Repository
@@ -138,34 +138,28 @@ abstract class Repository implements RepositoryInterface
      *
      * @return mixed
      * @throws ApiException
+     * @throws ValidationException
      */
     public function create(array $data)
     {
         $model = $this->app->make($this->model());
         $model->fill($data);
 
-        try {
+        $wasSaved = $model->save();
 
-            if (method_exists($model, 'isValid')) {
-                if ($model->isValid()) {
-                    if ($model->save()) {
-                        return $this->find($model->id);
-                    }
-                } else {
-                    $message = implode($model->getValidationErrors()->all(), ' | ');
-                    throw new Exception($message);
-                }
-            } else {
-                if ($model->save()) {
-                    return $this->find($model->id);
-                }
-            }
-
-        } catch (Exception $e) {
-            throw new ApiException($e->getMessage());
+        if ($wasSaved) {
+            return $this->find($model->id);
         }
 
-        return false;
+        $errorMessage = "Não foi possível salvar.";
+        if (method_exists($model, 'isValid')) {
+            $exception = new ValidationException();
+            $exception->setMessages($model->getValidationErrors()->all());
+
+            throw $exception;
+        }
+        throw new ApiException($errorMessage);
+
     }
 
     /**
@@ -197,7 +191,6 @@ abstract class Repository implements RepositoryInterface
 
         $model->fill($data);
 
-        // TODO Implementar Validação no update
         $model->update();
 
         return $this->find($id);

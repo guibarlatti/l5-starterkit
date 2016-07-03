@@ -1,15 +1,17 @@
 <?php
 /**
- * Created by PhpStorm.
- * User: fernando
- * Date: 2/9/16
- * Time: 10:56 AM
+ * Short description
+ *
+ * Long description
+ *
+ * @author Fernando
+ *
  */
 
 namespace App\Exceptions;
 
 
-class ApiException extends \Exception
+class ValidationException extends \Exception
 {
     protected $messages = [];
 
