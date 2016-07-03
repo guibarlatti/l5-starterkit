@@ -8,7 +8,7 @@ use Illuminate\Container\Container as App;
 use Illuminate\Support\Facades\Input;
 use Response;
 
-class UserRolesController extends Controller
+class UserPermissionsController extends Controller
 {
 
     protected $repository;

@@ -23,14 +23,14 @@ Route::auth();
 Route::group(['prefix' => 'api/v1'], function () {
 
     /**
-     * Acesso access rate de 3 hits por minuto
+     * Access rate: 3 hits por minuto
      */
 //    Route::group(['middleware' => 'throttle:3,1'], function () {
     Route::post('login', ['uses' => 'Api\V1\JwtAuthController@login']);
 //    });
 
-    Route::resource('roles', 'Api\V1\RolesController', ['only' => ['index', 'store', 'destroy']]);
-    Route::resource('permissions', 'Api\V1\PermissionsController', ['only' => ['index', 'store', 'destroy']]);
+    Route::resource('roles', 'Api\V1\RolesController'); //, ['only' => ['index', 'store', 'destroy']]
+    Route::resource('permissions', 'Api\V1\PermissionsController');//, ['only' => ['index', 'store', 'destroy']]);
 
 
     /**

@@ -198,7 +198,7 @@ abstract class Repository implements RepositoryInterface
         $model->fill($data);
 
         // TODO Implementar Validação no update
-        $model->save();
+        $model->update();
 
         return $this->find($id);
 

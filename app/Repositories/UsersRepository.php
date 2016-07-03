@@ -2,6 +2,7 @@
 
 namespace App\Repositories;
 
+use Illuminate\Support\Facades\App;
 use Illuminate\Support\Facades\Response;
 use Lfalmeida\Lbase\Models\Role;
 use Lfalmeida\Lbase\Repositories\Repository as BaseRepository;
@@ -37,17 +38,19 @@ class UsersRepository extends BaseRepository
     {
         return 'App\Models\User';
     }
-    
+
     /**
-     * @param $userId
-     * @param $roles
+     * Atribui Roles para um usuário
+     *
+     * @param $userId int Identificador do usuário que receberá o cargo
+     * @param $roles mixed Pode ser um id de cargo ou um array de id's de cargo
      *
      * @return mixed
      */
-    public function attachRoles($userId, $roles)
+    public function attach($userId, $roles)
     {
         try {
-            $user = $this->detachRoles($userId, $roles);
+            $user = $this->detach($userId, $roles);
             $user->roles()->attach($this->processRolesParam($roles));
         } catch (Exception $e) {
             throw $e;
@@ -56,13 +59,15 @@ class UsersRepository extends BaseRepository
     }
 
     /**
-     * @param $userId
-     * @param $roles
+     * Remove um ou mais cargos de um usuário.
      *
-     * @return \Illuminate\Database\Eloquent\Collection|\Illuminate\Database\Eloquent\Model|null|static|static[]
+     * @param $userId int Identificador do usuário que receberá o cargo
+     * @param $roles mixed Pode ser um id de cargo ou um array de id's de cargo
+     *
+     * @return \App\Models\User
      * @throws \Exception
      */
-    public function detachRoles($userId, $roles)
+    public function detach($userId, $roles)
     {
         $user = $this->model->with('roles')->find($userId);
 
@@ -71,6 +76,7 @@ class UsersRepository extends BaseRepository
         }
 
         try {
+            $roles = !is_array($roles) ? explode(',', $roles) : $roles;
             $rolesToAttach = $this->processRolesParam($roles);
         } catch (Exception $e) {
             throw $e;
@@ -95,26 +101,44 @@ class UsersRepository extends BaseRepository
             $roleIds = $roles;
             foreach ($roleIds as $roleId) {
 
-                if (!is_numeric($roleId)) {
-                    throw new \Exception(sprintf('Informe o id numérico do cargo.', $roleId));
+                if (!$roleId) {
+                    continue;
                 }
 
-                $role = Role::find($roleId);
+                $role = $this->getRoleById($roleId);
 
-                if (!$role) {
-                    throw new \Exception(sprintf('Cargo id %s não encontrado.', $role));
-                }
                 $rolesToAttach[] = $role->id;
             }
         } elseif (is_numeric($roles)) {
-            $role = Role::find($roles);
-            if (!$role) {
-                throw new \Exception(sprintf('Cargo id %s não encontrado.', $roles));
-            }
+            $role = $this->getRoleById($roles);
             $rolesToAttach[] = $role->id;
         }
 
         return $rolesToAttach;
+    }
+
+    /**
+     * Recebe um id de cargo e retorna um objeto cargo.
+     * No caso do cargo não ser encontrado lança uma exceção
+     * 
+     * @param $roleId
+     *
+     * @return mixed
+     * @throws \Exception
+     */
+    private function getRoleById($roleId)
+    {
+        if (!is_numeric($roleId)) {
+            throw new \Exception(sprintf('Informe o id numérico do cargo.', $roleId));
+        }
+
+        $role = Role::find($roleId);
+
+        if (!$role) {
+            throw new \Exception(sprintf('Cargo id %s não encontrado.', $role));
+        }
+
+        return $role;
     }
 
 
