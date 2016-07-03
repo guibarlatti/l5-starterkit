@@ -61,7 +61,7 @@ class Handler extends ExceptionHandler
                 $whoops->pushHandler(new JsonResponseHandler);
 
                 if ($e instanceof \App\Exceptions\ValidationException) {
-                    return Response::apiResponse(null, 400, null, $e->getMessages());
+                    return Response::apiResponse(['errors' => $e->getMessages(), 'httpCode' => 400]);
                 }
 
             } else {

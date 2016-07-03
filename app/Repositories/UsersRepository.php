@@ -72,7 +72,7 @@ class UsersRepository extends BaseRepository
         $user = $this->model->with('roles')->find($userId);
 
         if (!$user) {
-            return Response::apiResponse($data = null, 404, 'Usuário não encontrado.');
+            throw new Exception('Usuário não encontrado.');
         }
 
         try {
@@ -120,7 +120,7 @@ class UsersRepository extends BaseRepository
     /**
      * Recebe um id de cargo e retorna um objeto cargo.
      * No caso do cargo não ser encontrado lança uma exceção
-     * 
+     *
      * @param $roleId
      *
      * @return mixed

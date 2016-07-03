@@ -6,7 +6,7 @@ use App\Models\User;
 use App\Repositories\UsersRepository as Repository;
 use Illuminate\Container\Container as App;
 use Illuminate\Support\Facades\Input;
-use Response;
+use Illuminate\Support\Facades\Response;
 
 class UserPermissionsController extends Controller
 {
@@ -28,26 +28,36 @@ class UserPermissionsController extends Controller
         $user = User::with('roles')->find($userId);
 
         if (!$user) {
-            return Response::apiResponse($data = null, 404, 'Usuário não encontrado.');
+            return Response::apiResponse([
+                'httpCode' => 404,
+                'message' => 'Usuário não encontrado.'
+            ]);
         }
 
         $roles = isset($user->roles) ? $user->roles : [];
 
-        return Response::apiResponse($roles);
+        return Response::apiResponse([
+            'data' => $roles
+        ]);
+
     }
 
     /**
      * @param $userId
      *
      * @return mixed
-     * 
-     * 
+     *
+     *
      */
     public function store($userId)
     {
         $roles = Input::get('roles');
         $updatedUser = $this->repository->attach($userId, $roles);
-        return Response::apiResponse($updatedUser);
+
+        return Response::apiResponse([
+            'data' => $updatedUser
+        ]);
+
     }
 
 
@@ -63,9 +73,18 @@ class UserPermissionsController extends Controller
     public function destroy($userId, $roles)
     {
         try {
-            return Response::apiResponse($this->repository->detach($userId, $roles));
+
+            $detachWasSuccessful = $this->repository->detach($userId, $roles);
+
+            return Response::apiResponse([
+                'data' => $detachWasSuccessful
+            ]);
+
         } catch (\Exception $e) {
-            return Response::apiResponse($data = null, 400, $e->getMessage());
+            return Response::apiResponse([
+                'httpCode' => 400,
+                'message' => $e->getMessage()
+            ]);
         }
     }
 }

@@ -19,36 +19,37 @@ $defaultOptions = [
 ];
 
 Response::macro('apiResponse',
-    function ($data = [], $httpCode = 200, $overrideMessage = null, $errors = null) use (
+    function ($options) use (
         $statusMessagesMap,
         $defaultOptions
     ) {
+        $options = array_merge($defaultOptions, $options);
 
-        $status = $statusMessagesMap[$httpCode]['status'];
-        $message = $overrideMessage ? $overrideMessage : $statusMessagesMap[$httpCode]['message'];
-        $response = ['status' => $status, 'data' => $data, 'message' => $message];
+        $status = $statusMessagesMap[$options['httpCode']]['status'];
+        $message = $options['message'] ? $options['message'] : $statusMessagesMap[$options['httpCode']]['message'];
+        $response = ['status' => $status, 'data' => $options['data'], 'message' => $message];
 
-        if ($errors) {
-            $response['errors'] = $errors;
+        if ($options['errors']) {
+            $response['errors'] = $options['errors'];
         }
 
         /**
          * Retornando objetos customizados para paginação
          */
-        if (is_object($data) && is_subclass_of($data, 'Illuminate\Contracts\Pagination\Paginator')) {
-            $results = $data->toArray()['data'];
+        if (is_object($options['data']) && is_subclass_of($options['data'], 'Illuminate\Contracts\Pagination\Paginator')) {
+            $results = $options['data']->toArray()['data'];
             $response = [
                 'status' => $status,
                 'data' => $results,
                 'paging' => [
-                    'total' => $data->total(),
-                    'perPage' => $data->perPage(),
-                    'currentPage' => $data->currentPage(),
-                    'lastPage' => $data->lastPage(),
-                    'from' => $data->firstItem(),
-                    'to' => $data->lastItem(),
-                    'previous' => $data->previousPageUrl(),
-                    'next' => $data->nextPageUrl()
+                    'total' => $options['data']->total(),
+                    'perPage' => $options['data']->perPage(),
+                    'currentPage' => $options['data']->currentPage(),
+                    'lastPage' => $options['data']->lastPage(),
+                    'from' => $options['data']->firstItem(),
+                    'to' => $options['data']->lastItem(),
+                    'previous' => $options['data']->previousPageUrl(),
+                    'next' => $options['data']->nextPageUrl()
                 ],
                 'message' => $message
             ];
@@ -58,6 +59,6 @@ Response::macro('apiResponse',
             unset($response['data']);
         }
 
-        return Response::json($response, $httpCode);
+        return Response::json($response, $options['httpCode']);
 
     });

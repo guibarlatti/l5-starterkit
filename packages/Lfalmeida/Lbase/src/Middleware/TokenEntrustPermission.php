@@ -24,28 +24,39 @@ class TokenEntrustPermission extends BaseMiddleware
         $token = JWTAuth::getToken();
 
         if (!$token) {
-            return Response::apiResponse([], 400, 'Token não encontrado ou inválido.');
+            return Response::apiResponse([
+                'httpCode' => 400,
+                'message' => 'Token não encontrado ou inválido.'
+            ]);
         }
 
         try {
             $user = $this->auth->authenticate($token);
         } catch (TokenExpiredException $e) {
-            return Response::apiResponse([], 400, 'O token de acesso expirou.');
+            return Response::apiResponse([
+                'httpCode' => 400,
+                'message' => 'O token de acesso expirou.'
+            ]);
         } catch (JWTException $e) {
-            return Response::apiResponse([], 400, 'Token inválido.');
+            return Response::apiResponse([
+                'httpCode' => 400,
+                'message' => 'Token inválido.'
+            ]);
         }
 
         if (!$user) {
-            return Response::apiResponse([], 404, 'Usuário não encontrado.');
+            return Response::apiResponse([
+                'httpCode' => 404,
+                'message' => 'Usuário não encontrado.'
+            ]);
         }
 
-
-        if (!$user->hasRole(explode('|', $permission))) {           
-            return $this->respond('tymon.jwt.invalid', $permission, 401, 'Unauthorized');
+        if (!$user->hasRole(explode('|', $permission))) {
+            return Response::apiResponse([
+                'httpCode' => 401,
+                'message' => 'Acesso não autorizado.'
+            ]);
         }
-
-
-
 
         $this->events->fire('tymon.jwt.valid', $user);
 
