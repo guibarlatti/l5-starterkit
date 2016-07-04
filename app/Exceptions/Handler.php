@@ -54,6 +54,7 @@ class Handler extends ExceptionHandler
         $whoops = new \Whoops\Run;
 
         if ($request->isJson() || $request->wantsJson() || $request->ajax()) {
+
             $whoops->pushHandler(new JsonResponseHandler);
 
             if ($e instanceof \App\Exceptions\ValidationException) {

@@ -28,8 +28,9 @@ class JwtAuthController extends Controller
         try {
             if (!$token = JWTAuth::attempt($credentials)) {
                 return Response::apiResponse([
-                    'message' => 'Credenciais Inválidas.',
-                    'httpCode' => 401
+                    'message' => 'Credenciais Inválidas. ',
+                    'httpCode' => 401,
+                    'errors' => $credentials
                 ]);
             }
         } catch (JWTException $e) {

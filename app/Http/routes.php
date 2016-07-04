@@ -1,12 +1,15 @@
 <?php
 
+/**
+ * Rotas do Admin Backend
+ */
 Route::group(['domain' => 'admin.' . env('APP_DOMAIN')], function () {
 
     Route::group(['middleware' => ['role:admin']], function () {
         Route::get('/', 'Back\BackController@index');
     });
 
-    Route::group(['middleware' => ['throttle:3,1']], function () {
+    Route::group(['middleware' => ['throttle:15,1']], function () {
         Route::post('/login', 'Auth\JwtAuthController@login');
         Route::post('/login/setToken/{token}', 'Auth\JwtAuthController@setToken');
     });
@@ -63,7 +66,7 @@ $apiRoutes = function () {
 /**
  * API V1 routes
  */
-Route::group(['prefix' => 'api/v1'], $apiRoutes);
+Route::group(['prefix' => 'api/v1', 'middleware' => ['cors']], $apiRoutes);
 /**
  * API V1 subdomain routes
  */
