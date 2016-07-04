@@ -55,7 +55,7 @@ Response::macro('apiResponse',
             ];
         }
 
-        if ($status == 'error') {
+        if ($status == 'error' || empty($options['data'])) {
             unset($response['data']);
         }
 

@@ -36,7 +36,7 @@ class TokenEntrustRole extends BaseMiddleware
         } catch (TokenExpiredException $e) {
             return Response::apiResponse([
                 'httpCode' => 400,
-                'message' => 'O token de acesso expirou.'
+                'message' => 'O token expirou.'
             ]);
         } catch (JWTException $e) {
             return Response::apiResponse([

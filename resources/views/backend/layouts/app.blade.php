@@ -52,11 +52,20 @@
                 dataType: 'json',
                 data: f.serialize(),
                 success: function (r) {
+                    var token = r.data.token;
                     var setToken = $.ajax({
-                        url: 'setToken',
+                        url: 'login/setToken',
                         method: f.attr('method'),
                         dataType: 'json',
-                        data: r.data.token
+                        data: {"token": token},
+                        success: function (resp) {
+                            console.log(resp);
+                            window.localStorage.setItem('token', token);
+                            window.location = '/';
+                        },
+                        fail: function (err) {
+                            console.log(err);
+                        }
                     });
                 },
                 fail: function (r) {

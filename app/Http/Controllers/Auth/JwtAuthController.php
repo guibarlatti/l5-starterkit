@@ -4,6 +4,7 @@ namespace App\Http\Controllers\Auth;
 use App\Http\Controllers\Controller;
 use Illuminate\Foundation\Auth\AuthenticatesAndRegistersUsers;
 use Illuminate\Foundation\Auth\ThrottlesLogins;
+use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Input;
 use Illuminate\Support\Facades\Response;
 use Tymon\JWTAuth\Exceptions\JWTException;
@@ -26,11 +27,11 @@ class JwtAuthController extends Controller
         $credentials = Input::only('email', 'password');
 
         try {
-            if (!$token = JWTAuth::attempt($credentials)) {
+            $token = JWTAuth::attempt($credentials);
+            if (!$token) {
                 return Response::apiResponse([
                     'message' => 'Credenciais Inválidas. ',
-                    'httpCode' => 401,
-                    'errors' => $credentials
+                    'httpCode' => 401
                 ]);
             }
         } catch (JWTException $e) {
@@ -48,15 +49,20 @@ class JwtAuthController extends Controller
     }
 
     /**
-     * @param $token
-     *
      * @return mixed
      */
-    public function setToken($token)
+    public function setToken()
     {
-        JWTAuth::setToken($token);
+        $token = Input::get('token');
 
-        $user = JWTAuth::parseToken()->authenticate();
+        if (!$token) {
+            return Response::apiResponse([
+                'httpCode' => 401,
+                'message' => 'Token não encontrado ou inválido.'
+            ]);
+        }
+
+        $user = JWTAuth::setToken($token)->authenticate();
 
         if ($user) {
             Auth::login($user);

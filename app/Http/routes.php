@@ -9,9 +9,9 @@ Route::group(['domain' => 'admin.' . env('APP_DOMAIN')], function () {
         Route::get('/', 'Back\BackController@index');
     });
 
-    Route::group(['middleware' => ['throttle:15,1']], function () {
+    Route::group(['middleware' => ['throttle:3,1']], function () {
         Route::post('/login', 'Auth\JwtAuthController@login');
-        Route::post('/login/setToken/{token}', 'Auth\JwtAuthController@setToken');
+        Route::post('/login/setToken', 'Auth\JwtAuthController@setToken');
     });
 
     Route::get('/login', 'Auth\JwtAuthController@showLogin');
