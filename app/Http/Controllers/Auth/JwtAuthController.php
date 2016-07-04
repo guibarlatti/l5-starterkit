@@ -1,5 +1,5 @@
 <?php
-namespace App\Http\Controllers\Api\V1;
+namespace App\Http\Controllers\Auth;
 
 use App\Http\Controllers\Controller;
 use Illuminate\Foundation\Auth\AuthenticatesAndRegistersUsers;
@@ -12,7 +12,7 @@ use Tymon\JWTAuth\Facades\JWTAuth;
 /**
  * Class JwtAuthController
  *
- * @package App\Http\Controllers\Api\V1
+ * @package App\Http\Controllers
  */
 class JwtAuthController extends Controller
 {
@@ -44,6 +44,42 @@ class JwtAuthController extends Controller
                 'token' => $token
             ],
         ]);
+    }
+
+    /**
+     * @param $token
+     *
+     * @return mixed
+     */
+    public function setToken($token)
+    {
+        JWTAuth::setToken($token);
+
+        $user = JWTAuth::parseToken()->authenticate();
+
+        if ($user) {
+            Auth::login($user);
+            return Response::apiResponse([
+                'message' => 'User logged in.'
+            ]);
+        }
+
+        return Response::apiResponse([
+            'httpCode' => 401
+        ]);
+
+    }
+
+
+    public function showLogin()
+    {
+        return view('backend.login');
+    }
+
+
+    public function logout()
+    {
+        return view('backend.home');
     }
 
 }

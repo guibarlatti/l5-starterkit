@@ -1,5 +1,22 @@
 <?php
 
+Route::group(['domain' => 'admin.' . env('APP_DOMAIN')], function () {
+
+    Route::group(['middleware' => ['role:admin']], function () {
+        Route::get('/', 'Back\BackController@index');
+    });
+
+    Route::group(['middleware' => ['throttle:3,1']], function () {
+        Route::post('/login', 'Auth\JwtAuthController@login');
+        Route::post('/login/setToken/{token}', 'Auth\JwtAuthController@setToken');
+    });
+
+    Route::get('/login', 'Auth\JwtAuthController@showLogin');
+    Route::get('/logout', 'Auth\JwtAuthController@logout');
+
+
+});
+
 /**
  * Home
  */
@@ -10,45 +27,47 @@ Route::get('/', function () {
 /**
  * Área restrita (exemplo)
  */
-Route::get('/home', 'HomeController@index');
+Route::get('/home', 'Front\FrontController@index');
 
 /**
- * Autenticação
+ * Rotas de Autenticação
  */
 Route::auth();
 
-/**
- * API V1
- */
-Route::group(['prefix' => 'api/v1'], function () {
 
+$apiRoutes = function () {
     /**
      * Access rate: 3 hits por minuto
      */
-//    Route::group(['middleware' => 'throttle:3,1'], function () {
-    Route::post('login', ['uses' => 'Api\V1\JwtAuthController@login']);
-//    });
-
-    Route::resource('roles', 'Api\V1\RolesController'); //, ['only' => ['index', 'store', 'destroy']]
-    Route::resource('permissions', 'Api\V1\PermissionsController');//, ['only' => ['index', 'store', 'destroy']]);
-
+    Route::group(['middleware' => 'throttle:3,1'], function () {
+        Route::post('login', ['uses' => 'Auth\JwtAuthController@login']);
+    });
 
     /**
      * Acessadas somente com Token
      */
-//    Route::group(['middleware' => ['role:admin']], function () {
-    Route::resource('users', 'Api\V1\UsersController');
-    Route::resource('users.roles', 'Api\V1\UserRolesController');
-    Route::resource('users.permissions', 'Api\V1\UserPermissionsController');
-//    });
+    Route::group(['middleware' => ['token.role:admin'], 'namespace' => 'Api\V1'], function () {
+        Route::resource('users', 'UsersController');
+        Route::resource('roles', 'RolesController');
+        Route::resource('users.roles', 'UserRolesController', [
+            'only' => ['index', 'store', 'destroy']
+        ]);
+        Route::resource('permissions', 'PermissionsController');
+        Route::resource('users.permissions', 'UserPermissionsController', [
+            'only' => ['index', 'store', 'destroy']
+        ]);
+    });
 
+};
+
+/**
+ * API V1 routes
+ */
+Route::group(['prefix' => 'api/v1'], $apiRoutes);
+/**
+ * API V1 subdomain routes
+ */
+Route::group(['domain' => 'api.' . env('APP_DOMAIN'), 'middleware' => ['role:admin']], function () use ($apiRoutes) {
+    Route::group(['prefix' => 'v1'], $apiRoutes);
 });
 
-//Route::post('role', 'JwtAuthenticateController@createRole');
-//Route::post('permission', 'JwtAuthenticateController@createPermission');
-//Route::post('assign-role', 'JwtAuthenticateController@assignRole');
-//Route::post('attach-permission', 'JwtAuthenticateController@attachPermission');
-//Route::post('check', 'JwtAuthenticateController@checkRoles');
-//Route::group(['prefix' => 'api', 'middleware' => ['ability:admin,create-users']], function () {
-//    Route::get('users', 'JwtAuthenticateController@index');
-//});

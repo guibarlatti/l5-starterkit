@@ -34,7 +34,7 @@ class Kernel extends HttpKernel
 
         'api' => [
             'throttle:60,1',
-            'jwt.auth' => \Tymon\JWTAuth\Middleware\GetUserFromToken::class,
+//            'jwt.auth' => \Tymon\JWTAuth\Middleware\GetUserFromToken::class,
         ],
         
     ];
@@ -54,8 +54,11 @@ class Kernel extends HttpKernel
         'throttle' => \Illuminate\Routing\Middleware\ThrottleRequests::class,
         'jwt.auth' => \Tymon\JWTAuth\Middleware\GetUserFromToken::class,
         'jwt.refresh' => \Tymon\JWTAuth\Middleware\RefreshToken::class,
-        'ability' => \Lfalmeida\Lbase\Middleware\TokenEntrustAbility::class,
-        'role' => \Lfalmeida\Lbase\Middleware\TokenEntrustRole::class,
-        'premission' => \Lfalmeida\Lbase\Middleware\TokenEntrustPermission::class,
+        'role' => \Zizaco\Entrust\Middleware\EntrustRole::class,
+        'permission' => \Zizaco\Entrust\Middleware\EntrustPermission::class,
+        'ability' => \Zizaco\Entrust\Middleware\EntrustAbility::class,
+        'token.ability' => \Lfalmeida\Lbase\Middleware\TokenEntrustAbility::class,
+        'token.role' => \Lfalmeida\Lbase\Middleware\TokenEntrustRole::class,
+        'token.premission' => \Lfalmeida\Lbase\Middleware\TokenEntrustPermission::class,
     ];
 }

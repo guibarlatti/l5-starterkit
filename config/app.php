@@ -165,6 +165,7 @@ return [
         JeroenG\Packager\PackagerServiceProvider::class,
         Sofa\Eloquence\ServiceProvider::class,
         Zizaco\Entrust\EntrustServiceProvider::class,
+        Barryvdh\Cors\ServiceProvider::class,
     ],
 
     /*

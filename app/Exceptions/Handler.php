@@ -51,21 +51,17 @@ class Handler extends ExceptionHandler
     public function render($request, Exception $e)
     {
 
-        if (config('app.debug')) {
-            $whoops = new \Whoops\Run;
-            if (
-                $request->isJson() ||
-                $request->wantsJson() ||
-                $request->ajax()
-            ) {
-                $whoops->pushHandler(new JsonResponseHandler);
+        $whoops = new \Whoops\Run;
 
-                if ($e instanceof \App\Exceptions\ValidationException) {
-                    return Response::apiResponse(['errors' => $e->getMessages(), 'httpCode' => 400]);
-                }
+        if ($request->isJson() || $request->wantsJson() || $request->ajax()) {
+            $whoops->pushHandler(new JsonResponseHandler);
 
-            } else {
-                $whoops->pushHandler(new PrettyPageHandler);
+            if ($e instanceof \App\Exceptions\ValidationException) {
+                return Response::apiResponse([
+                    'message' => 'Os dados fornecidos são inválidos para esta operação.',
+                    'errors' => $e->getMessages(),
+                    'httpCode' => 400
+                ]);
             }
 
             return response($whoops->handleException($e),
@@ -73,6 +69,20 @@ class Handler extends ExceptionHandler
                 $e->getHeaders()
             );
         }
+
+        if ($e instanceof HttpException && $e->getStatusCode() == 403) {
+            return redirect('/login');
+        }
+
+        if (config('app.debug')) {
+            $whoops->pushHandler(new PrettyPageHandler);
+
+            return response($whoops->handleException($e),
+                $e->getStatusCode(),
+                $e->getHeaders()
+            );
+        }
+
         return parent::render($request, $e);
     }
 }

@@ -41,6 +41,11 @@ class AuthController extends Controller
         $this->middleware($this->guestMiddleware(), ['except' => 'logout']);
     }
 
+
+    public function authenticated($request, $user) {
+       return $request->user();
+    }
+
     /**
      * Get a validator for an incoming registration request.
      *
