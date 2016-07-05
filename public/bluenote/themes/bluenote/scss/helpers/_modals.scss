@@ -1,0 +1,115 @@
+/*------------------------------------
+    Modal
+--------------------------------------*/
+.modal-backdrop {
+  background-color: #000;
+  opacity: .2 !important;
+
+}
+
+.modal-content {
+  box-shadow: none;
+  border-color: #f5f5f5;
+  padding: 0;
+}
+
+.transitions-enabled {
+  .modal .modal-dialog {
+    /*! adjust transition time */
+    opacity: 0;
+    -webkit-transform: scale(0.7) !important;
+    -moz-transform: scale(0.7) !important;
+    -ms-transform: scale(0.7) !important;
+    transform: scale(0.7) !important;
+    @include transition(all 0.3s ease-out !important);
+  }
+
+  .modal.in .modal-dialog {
+    -webkit-transform: scale(1) !important;
+    -moz-transform: scale(1) !important;
+    -ms-transform: scale(1) !important;
+    transform: scale(1) !important;
+    opacity: 1 !important;
+  }
+
+  .modal.fade .modal-dialog {
+    -webkit-transform: translate(0, 0);
+    -ms-transform: translate(0, 0);
+    transform: translate(0, 0);
+  }
+}
+
+.innerView, .popover {
+  .hidden-on-modal {
+    display: none;
+  }
+  .visible-on-modal {
+    display: block;
+  }
+  .panel {
+    border: 0 !important;
+  }
+
+  .on-fullsize-center {
+    margin: auto;
+  }
+}
+
+.modal-large {
+  .modal-dialog {
+    width: 94%;
+  }
+}
+
+.modal-medium {
+  .modal-dialog {
+    width: 60%;
+  }
+}
+
+.modal-intermediate {
+  .modal-dialog {
+    width: 75%;
+  }
+}
+
+.full-screen-modal {
+
+  .close {
+    position: absolute;
+    font-weight: normal;
+    top: 20px;
+    right: 40px;
+    font-size: 60px;
+    color: #444;
+  }
+
+  .modal-dialog {
+    width: 100%;
+    height: 100%;
+    padding: 0;
+    margin: 0;
+  }
+
+  .modal-content {
+    height: 100%;
+    border-radius: 0;
+    overflow: auto;
+    padding: 50px;
+    background: rgba(255, 255, 255, .98);
+    .panel-body {
+      background: 0;
+      border: 0;
+    }
+  }
+}
+
+.modal-body {
+  max-height: calc(100vh - 210px);
+  overflow-y: auto;
+}
+
+body.modal-open {
+  position: fixed;
+  overflow: hidden;
+}

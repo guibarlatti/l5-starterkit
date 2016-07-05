@@ -1,0 +1,58 @@
+<div class="panel panel-default" id="jobAssignment">
+    <div class="panel-heading">
+        <div class="row">
+            <div class="col-xs-10">
+                <h3 class="panel-title">
+                    <i class="<%= app.utils.getIconRoute('jobOpportunities') %>"></i>
+
+                </h3>
+            </div>
+            <div class="col-xs-2 text-right">
+                <a href="#" class="toggle-panel-size" data-target="#jobAssignment">
+                    <i class="<%= app.config.icons.expand%>"></i>
+                </a>
+            </div>
+        </div>
+    </div>
+    <div class="panel-body">
+
+        <h4 class="text-primary">Deseja realmente registrar a efetivação deste candidato?</h4>
+
+        <hr>
+
+        <table class="table table-bordered table-striped">
+            <tr>
+                <th class="">Candidato</th>
+                <td> <%= recruit.name %></td>
+            </tr>
+            <tr>
+                <th class="">Empresa</th>
+                <td> <%= company.tradingName %></td>
+            </tr>
+            <tr>
+                <th class="">Vaga</th>
+                <td> <%= role %></td>
+            </tr>
+        </table>
+
+        <ul class="list-unstyled">
+
+        </ul>
+
+        <hr>
+
+        <div class="form-group">
+            <div class="col-lg-12 text-center">
+                <button type="submit" class="btn btn-success" id="confirmAssignment"><i class="fa fa-floppy-o"></i> Confirmar Efetivação
+                </button>
+                <a href="#jobOpportunities" class="btn btn-warning dismiss hide-popovers"
+                   data-dismiss="modal"><i
+                        class="fa fa-undo"></i> Cancelar</a>
+            </div>
+        </div>
+
+    </div>
+</div>
+
+
+

@@ -1,0 +1,48 @@
+<td><%= id %></td>
+<td><%= name %></td>
+<td class="text-center"><%= age %></td>
+<td class="text-center"><%= admissionDate %></td>
+<td class="text-center">
+
+    <%
+        var className = '';
+        switch(occurrences.length) {
+            case 0:
+                className = 'success';
+                break;
+            case 1:
+                className = 'default';
+                break;
+            case 2:
+                className = 'warning';
+                break;
+            default:
+                className = 'danger';
+        }
+    %>
+    <span class="label label-<%= className %>">
+        <%= occurrences.length %>
+    </span>
+</td>
+<td class="text-right">
+
+    <a href="#recruits/register/<%= id %>"
+       class="showModalCadastro btn btn-xs btn-info"
+       data-id="<%= id %>"
+       data-toggle="tooltip"
+       data-placement="left"
+       title="Alterar">
+        <i class="ion-wrench"></i>
+    </a>
+
+    <a href="javascript:void(0)"
+       class="btn btn-xs btn-danger confirmDelete"
+       data-toggle="tooltip"
+       data-placement="left"
+       title="Excluir"
+       data-id="<%= id %>">
+        <i class="fa fa-trash-o"></i>
+    </a>
+
+</td>
+

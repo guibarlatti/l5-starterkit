@@ -1,0 +1,194 @@
+<form id="formCadastro" class="form-horizontal" autocomplete="off">
+    <div class="panel panel-default" id="cadastro-admin">
+        <div class="panel-heading hidden-on-modal">
+            <div class="row">
+                <div class="col-xs-10">
+                    <h3 class="panel-title"><i class="<%= app.utils.getIconRoute('jobOpportunities') %>"></i>
+                        <% if (typeof id != 'undefined') { %>
+                        <span>Alterar Cadastro de Vaga</span>
+                        <% } else { %>
+                        <span>Cadastrar Vaga</span>
+                        <% }%>
+                    </h3>
+                </div>
+                <div class="col-xs-2 text-right">
+                    <a href="#" class="toggle-panel-size" data-target="#cadastro-admin">
+                        <i class="<%= app.config.icons.expand%>"></i>
+                    </a>
+                </div>
+            </div>
+        </div>
+        <div class="panel-body on-fullsize-center">
+
+
+            <!-- desabilitando autofill para user e senha -->
+            <input type="text" style="display:none">
+            <input type="password" style="display:none">
+            <!--  -->
+
+            <div class="row">
+
+                <div class="col-md-6">
+
+                    <div class="form-group">
+                        <label class="col-md-3 control-label required"
+                               for="companyId">Empresa</label>
+                        <div class="col-md-8">
+                            <select name="companyId" class="chosen-select" id="companyId"
+                                    data-placeholder="Selecione a Empresa">
+                                <option></option>
+                            </select>
+                        </div>
+                    </div>
+
+                    <div class="form-group">
+                        <label class="col-md-3 control-label required" for="role">
+                            Função</label>
+                        <div class="col-md-8">
+                            <input class="form-control" id="role" name="role" type="text"
+                                   placeholder="Função">
+                        </div>
+                    </div>
+
+                    <div class="form-group">
+                        <label class="col-md-3 control-label required"
+                               for="amount">Qtde. Vagas</label>
+                        <div class="col-md-8">
+                            <input class="form-control" id="amount" name="amount" type="number"
+                                   placeholder="Quantidade de vagas disponíveis">
+                        </div>
+                    </div>
+
+                    <div class="form-group">
+                        <label class="col-md-3 control-label" for="salary">Salário</label>
+                        <div class="col-md-8">
+                            <input class="form-control money" id="salary" name="salary" type="text"
+                                   placeholder="Salário">
+                        </div>
+                    </div>
+
+                    <div class="form-group">
+                        <label class="col-md-3 control-label required"
+                               for="shiftWork">Turno</label>
+                        <div class="col-md-8">
+                            <select name="shiftWork" class="chosen-select" id="shiftWork"
+                                    data-placeholder="Selecione o turno">
+                                <option></option>
+                                <option value="0">Matutino</option>
+                                <option value="1">Vespertino</option>
+                                <option value="2">Noturno</option>
+                                <option value="4">Período Integral</option>
+                            </select>
+                        </div>
+                    </div>
+
+                    <div class="form-group">
+                        <label class="col-md-3 control-label required"
+                               for="skills">Habilidades</label>
+                        <div class="col-md-8">
+                            <select name="skills" multiple class="chosen-select" id="skills"
+                                    data-placeholder="Informe a habilidade">
+                                <option></option>
+                            </select>
+                        </div>
+                    </div>
+
+                    <div class="form-group">
+                        <label class="col-md-3 control-label required"
+                               for="gender">Sexo</label>
+                        <div class="col-md-8">
+                            <select name="gender" class="chosen-select" id="gender"
+                                    data-placeholder="Selecione">
+                                <option></option>
+                                <option value="M">Masculino</option>
+                                <option value="F">Feminino</option>
+                                <option value="I" selected>Indiferente</option>
+                            </select>
+                        </div>
+                    </div>
+
+                    <div class="form-group">
+
+                        <div class="col-md-8 col-md-offset-3">
+                            <div class="row">
+                                <div class="col-md-6">
+                                    <label class="col-md-12 required"  style="font-weight: normal;padding-left: 0"
+                                           for="minAge">Idade
+                                        Mínima.</label>
+                                    <input class="form-control col-md-6 "
+                                           id="minAge" name="minAge" type="number"
+                                           min="16" max="100"
+                                           value="16"
+                                           placeholder="">
+
+                                </div>
+                                <div class="col-md-6">
+                                    <label class="col-md-12 required" style="font-weight: normal;padding-left: 0"
+                                           for="maxAge">Idade
+                                        Máxima.</label>
+                                    <input class="form-control col-md-6"
+                                           id="maxAge" name="maxAge" type="number"
+                                           min="16" max="100"
+                                           value="100"
+                                           placeholder="">
+                                </div>
+
+                            </div>
+
+                        </div>
+                    </div>
+
+                </div>
+
+                <div class="col-md-6">
+
+                    <div class="form-group ">
+                        <label class="col-md-3 required control-label"
+                               for="educationalLevel">Escolaridade</label>
+                        <div class="col-md-8">
+                            <select name="educationalLevel" class="chosen-select" id="educationalLevel"
+                                    data-placeholder="Escolaridade">
+                                <option></option>
+                                <option value="3">Ensino Fundamental Completo</option>
+                                <option value="4">Ensino Medio Incompleto</option>
+                                <option value="5">Ensino Medio Completo</option>
+                                <option value="6">Ensino Superior Incompleto</option>
+                            </select>
+                        </div>
+                    </div>
+
+                    <label class="col-md-12 control-label required" for="description"
+                           style="text-align: left;margin-bottom: 10px">Descrição da Vaga</label>
+                    <div class="col-md-12">
+                        <textarea name="description" id="description" style="width: 100%;" rows="11"
+                                  data-placeholder="Descrição">
+                        </textarea>
+                    </div>
+
+                </div>
+                <div class="clearfix"></div>
+                <hr/>
+
+                <div class="col-md-6">
+
+                    <div class="form-group">
+                        <div class="col-md-offset-3 col-md-9">
+                            <button type="submit" class="btn btn-success"><i class="fa fa-floppy-o"></i> Salvar</button>
+                            <a href="#jobOpportunities" class="btn btn-warning dismiss hide-popovers"
+                               data-dismiss="modal"><i
+                                    class="fa fa-undo"></i> Cancelar</a>
+                        </div>
+                    </div>
+
+                </div>
+                <div class="col-md-6">
+                   <p class="legend-required"><span>*</span> campos obrigatórios.</p>
+                </div>
+
+
+            </div>
+
+
+        </div>
+    </div>
+</form>

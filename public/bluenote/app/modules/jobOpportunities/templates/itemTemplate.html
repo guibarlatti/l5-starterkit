@@ -1,0 +1,60 @@
+<td><%= id %></td>
+<td><%= role %></td>
+<td><%= company.tradingName %></td>
+<td>
+    <span class=""
+          data-toggle="popover"
+          data-trigger="hover"
+          title="Mais informações"
+          data-placement="left"
+          data-html="true"
+          data-content="<dl class='dl-horizontal'>
+                        <dt>Total de Vagas</dt>
+                        <dd><%= amountVacancies %></dd>
+                        <dt>Idade mínima</dt>
+                        <dd><%= minAge %></dd>
+                        <dt>Idade mánima</dt>
+                        <dd><%= maxAge %></dd>
+                        <dt>Salário</dt>
+                        <dd><%= salary %></dd>
+                        </dl>"
+          style="margin-bottom: 15px;">
+        <i class="fa fa-info-circle"></i>
+    </span>
+</td>
+<!--<td class="text-center"><%= amountVacancies %></td>-->
+<!--<td class="text-center"><%= minAge %></td>-->
+<!--<td class="text-center"><%= maxAge %></td>-->
+
+<td class="text-right">
+    <% if (window.localStorage.getItem('acl') < 3) { %>
+    <a href="#jobOpportunities/register/<%= id %>"
+       class="showModalFindCandidates btn btn-xs btn-default"
+       data-id="<%= id %>"
+       data-toggle="tooltip"
+       data-placement="left"
+    <% if(amountVacancies) {print('disabled')} %>
+    title="Buscar candidatos compatíveis com esta vaga">
+    <i class="fa fa-search"></i> Candidatos
+    </a>
+    <% } %>
+
+    <a href="#jobOpportunities/register/<%= id %>"
+       class="showModalCadastro btn btn-xs btn-info"
+       data-id="<%= id %>"
+       data-toggle="tooltip"
+       data-placement="left"
+       title="Alterar">
+        <i class="ion-wrench"></i>
+    </a>
+
+    <a href="javascript:void(0)"
+       class="btn btn-xs btn-danger confirmDelete"
+       data-toggle="tooltip"
+       data-placement="left"
+       title="Excluir"
+       data-id="<%= id %>">
+        <i class="fa fa-trash-o"></i>
+    </a>
+
+</td>

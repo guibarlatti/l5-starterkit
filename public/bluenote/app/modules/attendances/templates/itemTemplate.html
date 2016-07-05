@@ -1,0 +1,51 @@
+ <td><%= id %></td>
+ <td class="text-center"><%= gradeClass %></td>
+ <td><%= referenceDate %></td>
+ <td><%= employee.name %></td>
+ <td class="text-center">
+     <% if(status) {  %>
+        <span class="label label-default">Realizada</span>
+     <% } else { %>
+        <span class="label label-info">Em aberto</span>
+     <% }  %>
+ </td>
+
+<td class="text-right">
+
+    <% if (localStorage.getItem('acl') == 0 ||
+        (localStorage.getItem('uid') == employee.id) ) { %>
+        <% if (status == 0) { %>
+        <a href="#attendances/call/<%= id %>"
+           class="showAttendance btn btn-xs btn-info"
+           data-id="<%= id %>">
+            <i class="fa fa-calendar"></i> Fazer Chamada
+        </a>
+        <% } else { %>
+        <a href="#attendances/call/<%= id %>"
+           class="showAttendance btn btn-xs btn-default"
+           data-id="<%= id %>">
+            <i class="fa fa-eye"></i> Ver Chamada
+        </a>
+        <% } %>
+    <% } %>
+    <!--
+    <a href="#attendances/register/<%= id %>"
+       class="showModalCadastro btn btn-xs btn-info"
+       data-id="<%= id %>"
+       data-toggle="tooltip"
+       data-placement="left"
+       title="Alterar">
+        <i class="ion-wrench"></i>
+    </a>
+
+    <a href="javascript:void(0)"
+       class="btn btn-xs btn-danger confirmDelete"
+       data-toggle="tooltip"
+       data-placement="left"
+       title="Excluir"
+       data-id="<%= id %>">
+        <i class="fa fa-trash-o"></i>
+    </a>
+    -->
+</td>
+

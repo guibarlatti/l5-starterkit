@@ -1,0 +1,50 @@
+//noinspection CssUnknownTarget
+// @import url(https://fonts.googleapis.com/css?family=Lato:100,300,400);
+@import "compass/css3";
+// Import Bootstrap for Sass
+@import "helpers/variables";
+// Import Bootstrap Compass integration
+
+h1 {
+  font-family: "Open Sans", Helvetica, sans-serif;
+  font-weight: 300;
+  margin-bottom: 40px;
+  font-size: 60px;
+}
+
+.login-form {
+  width: 500px;
+  padding: 40px 30px;
+  margin: auto;
+  position: absolute;
+  left: 0;
+  right: 0;
+  top: 40%;
+  @include translateY(-50%);
+  form {
+    //background: #eee;
+    @include border-radius(4px);
+    padding: 40px 30px;
+  }
+}
+
+.form-group {
+  position: relative;
+  margin-bottom: 15px;
+}
+
+.form-control {
+  &:focus {
+    & + .fa {
+      color: $brand-info;
+    }
+  }
+}
+
+.form-group .fa {
+  position: absolute;
+  right: 15px;
+  top: 17px;
+  color: #999;
+}
+

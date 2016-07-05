@@ -1,0 +1,137 @@
+<form id="formCadastro" class="form-horizontal" autocomplete="off">
+    <div class="panel panel-default" id="cadastro-admin">
+        <div class="panel-heading hidden-on-modal">
+            <div class="row">
+                <div class="col-xs-10">
+                    <h3 class="panel-title"><i class="<%= app.utils.getIconRoute('employees') %>"></i>
+                        <% if (typeof id != 'undefined') { %>
+                        <span>Alterar Cadastro de  Colaborador</span>
+                        <% } else { %>
+                        <span>Cadastrar Colaborador</span>
+                        <% }%>
+                    </h3>
+                </div>
+                <div class="col-xs-2 text-right">
+                    <a href="#" class="toggle-panel-size" data-target="#cadastro-admin">
+                        <i class="<%= app.config.icons.expand%>"></i>
+                    </a>
+                </div>
+            </div>
+        </div>
+        <div class="panel-body on-fullsize-center" style="max-width: 700px">
+
+
+            <div class="form-group">
+                <label class="col-md-3 control-label required" for="name">Nome
+                </label>
+                <div class="col-md-8 col-md-7">
+                    <input class="form-control alpha-only" id="name" name="name" type="text" autofocus=""
+                           placeholder="Nome" maxlength="64">
+                </div>
+            </div>
+
+
+            <div class="form-group">
+                <label class="col-md-3 control-label required" for="cpf">CPF</label>
+                <div class="col-md-8 col-md-7">
+                    <input class="form-control cpf" id="cpf" name="cpf" type="text"
+                           placeholder="CPF">
+                </div>
+            </div>
+
+            <div class="form-group">
+                <label class="col-md-3 control-label required" for="username">
+                    Usuário
+                </label>
+                <div class="col-md-8 col-md-7">
+                    <input class="form-control" id="username" name="username" type="text"
+                           placeholder="Usuário" maxlength="32" value="">
+                </div>
+            </div>
+
+            <div class="row <%= typeof id == 'undefined' ? 'hidden' : '' %>">
+                <div class="col-md-8 col-md-7 col-md-offset-3">
+                    <a href="javascript:void(0)"
+                       class="btn btn-xs btn-info showPassordBox"
+                       data-toggle="popover"
+                       data-trigger="hover"
+                       title="Alterar senha"
+                       data-placement="top"
+                       data-content="Clique para informar uma nova senha."
+                        style="margin-bottom: 15px;">
+                        <i class="fa fa-info-circle"></i> alterar senha?
+                    </a>
+                </div>
+
+            </div>
+
+            <div id="passwordBox" class="<%= typeof id != 'undefined' ? 'hidden' : '' %>">
+                <div class="form-group">
+                    <label class="col-md-3 control-label required" for="password">
+                        Senha</label>
+                    <div class="col-md-8 col-md-7">
+                        <input class="form-control" id="password" name="password" type="password"
+                               placeholder="Senha" maxlength="16" value="">
+                    </div>
+                        <span class="help-block <%= typeof id == 'undefined' ? 'hidden' : '' %>">
+                            <a href="javascript:void(0)"
+                               class="text-muted hidePasswordBox"
+                               data-toggle="popover"
+                               data-trigger="hover"
+                               title="Cancelar Edição de senha"
+                               data-placement="left"
+                               data-content="Clique para cancelar a alteração de senha. Será mantida a senha atual.">
+                                <i class="fa fa-close"></i>
+                            </a>
+                        </span>
+                </div>
+            </div>
+
+            <div class="form-group">
+                <label class="col-md-3 control-label required" for="role">Cargo
+                </label>
+                <div class="col-md-8 col-md-7">
+                    <select name="role" class="chosen-select" id="role" data-placeholder="Cargo">
+                        <option></option>
+                    </select>
+                </div>
+            </div>
+
+            <div class="form-group">
+                <label class="col-md-3 control-label required" for="accessLevel">
+                    Permissão</label>
+                <div class="col-md-8 col-md-7">
+                    <select name="accessLevel" class="chosen-select" id="accessLevel" data-placeholder="Acesso">
+                        <option></option>
+                        <option value="0">Acesso Total</option>
+                        <option value="1">Acesso Administrativo</option>
+                    </select>
+                </div>
+                <span id="helpBlock" class="help-block">
+                    <a href="javascript:void(0)" class="text-muted" data-toggle="popover" data-trigger="hover"
+                       title="Permissão de acesso"
+                       data-placement="left"
+                       data-content="Define qual grupo de ações o usuário poderá realizar no sistema.">
+                        <i class="fa fa-info-circle"></i>
+                    </a>
+                </span>
+            </div>
+
+            <div class="col-md-11">
+                <p class="legend-required"><span>*</span> campos obrigatórios.</p>
+            </div>
+
+            <div class="clearfix"></div>
+            <hr/>
+            <div class="form-group">
+                <div class="col-md-offset-3 col-md-9">
+                    <button type="submit" class="btn btn-success"><i class="fa fa-floppy-o"></i> Salvar</button>
+                    <a href="#employees" class="btn btn-warning dismiss hide-popovers" data-dismiss="modal"><i
+                            class="fa fa-undo"></i> Cancelar</a>
+                </div>
+            </div>
+
+
+        </div>
+    </div>
+</form>

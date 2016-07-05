@@ -1,0 +1,26 @@
+
+<td><%= name %></td>
+<td><%= age %> anos</td>
+
+
+<td class="text-right">
+
+    <a href="javascript:void(0)"
+       class="showModalAssign btn btn-xs btn-primary"
+       data-id="<%= id %>"
+       data-toggle="tooltip"
+       data-placement="top"
+       title="Efetivar candidato nesta vaga">
+        <i class="fa fa-check"></i> Efetivar candidato
+    </a>
+
+    <a href="#employees/editar/<%= id %>"
+       class="showModalCadastro btn btn-xs btn-info"
+       data-id="<%= id %>"
+       data-toggle="tooltip"
+       data-placement="left"
+       title="Alterar">
+        <i class="ion-wrench"></i>
+    </a>
+
+</td>

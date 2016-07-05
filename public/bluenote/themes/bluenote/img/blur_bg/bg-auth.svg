@@ -1,0 +1,24 @@
+<svg width="750" height="1334" viewBox="0 0 750 1334" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+    <title>
+        Launchscreen
+    </title>
+    <desc>
+        Created with Sketch.
+    </desc>
+    <defs>
+        <linearGradient x1="0%" y1="0%" y2="100%" id="a">
+            <stop stop-color="#8D00FF" offset="0%"/>
+            <stop stop-color="#00FF06" offset="100%"/>
+        </linearGradient>
+        <radialGradient fx="50%" fy="50%" r="57.43%" id="c">
+            <stop stop-color="#0ff" offset="0%"/>
+            <stop stop-color="#0ff" stop-opacity="0" offset="100%"/>
+        </radialGradient>
+        <path id="b" d="M0 0h750v1334H0z"/>
+    </defs>
+    <g fill="none" fill-rule="evenodd">
+        <use fill="url(#a)" xlink:href="#b"/>
+        <use fill-opacity=".64" fill="url(#c)" xlink:href="#b"/>
+        <use xlink:href="#b"/>
+    </g>
+</svg>

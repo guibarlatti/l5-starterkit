@@ -1,0 +1,320 @@
+//noinspection CssUnknownTarget
+@import "helpers/fonts";
+@import "components/fa/font-awesome";
+@import "components/toastr/toastr";
+@import "compass/css3";
+@import "helpers/variables";
+@import "bootstrap";
+@import "helpers/panels";
+@import "helpers/lockScreen";
+@import "helpers/modals";
+@import "helpers/material_loading";
+@import "layout/sidebar";
+@import "components/chosen";
+@import "components/bootstrap-switch";
+@import "components/daterangepicker";
+@import "helpers/infobox";
+html {
+
+  &, body {
+    height: 100%;
+    margin: 0;
+    padding: 0;
+    border: none;
+    -webkit-user-select: none;
+  }
+
+  body {
+    background: #f1f2f7;
+    font-family: 'Open Sans', Helvetica, sans-serif;
+  }
+}
+
+.form-control {
+  font-size: 13px;
+}
+
+.form-control:focus {
+  //border-color: $brand-info;
+  box-shadow: none !important;
+}
+
+#appLoading {
+  display: none;
+  position: fixed;
+  top: 45%;
+  width: 100%;
+  margin: auto;
+  font-size: 1.5em;
+  text-align: center;
+  font-family: "Helvetica Neue", Helvetica, Arial, sans-serif;
+}
+
+#requirejs-loading-panel {
+  background: $breadcrumb-bg;
+  color: #b3b3be;;
+  font-family: Arial, sans-serif;
+  padding: 5px;
+}
+
+.appLoading #appLoading {
+  display: block;
+}
+
+.appLoading.transitions-enabled {
+  .main-content {
+    opacity: 0;
+    padding-top: 130px;
+  }
+  .sidebar-menu {
+    left: -$sidebar-width;
+  }
+  .horizontal-menu {
+    top: -60px;
+  }
+  .sidebar-menu-inner, .navbar-brand {
+    opacity: 0;
+  }
+}
+
+.transitions-enabled .main-content.content-loading {
+  opacity: 0;
+  padding-top: 130px;
+}
+
+.popover {
+  max-width: 100%;
+}
+
+/*------------------------------------
+    Menu horizontal do topo
+--------------------------------------*/
+
+.navbar-brand {
+  width: $sidebar-width;
+  // background: $horizontal-menu-bg;
+  height: $horizontal-menu-height;
+  opacity: 1;
+  font-family: "Lato", Helvetica, sans-serif;
+  font-weight: 300;
+  font-size: 26px;
+  margin-left: 10px;
+  padding-top: 30px;
+  @include transition(all .5s 1.5s ease);
+  a:hover, a:focus {
+    text-decoration: none;
+  }
+
+}
+
+.horizontal-menu {
+  position: relative;
+  height: $horizontal-menu-height;
+  //   background: $horizontal-menu-bg;
+  background: none;
+  border-bottom: 1px solid transparent;
+  margin: 0;
+  padding: 0;
+  z-index: 101;
+  min-height: 0;
+  @include transition(all 0.3s ease-in-out);
+}
+
+#user-nav {
+  margin-right: 15px;
+  li > a {
+    color: #b3b3be;
+  }
+}
+
+.navbar-fixed-top {
+  position: fixed;
+  left: 0;
+  right: 0;
+  top: 0;
+}
+
+.navbar-nav > li {
+  margin-left: 5px;
+}
+
+.navbar-nav > li > a {
+  padding: 10px 20px;
+}
+
+li.dropdown.open > a {
+  background: #fff !important;
+  border-left-color: #ddd !important;
+  border-right-color: #ddd !important;
+  border-bottom-color: #fff !important;
+  z-index: 15;
+}
+
+.horizontal-menu li > a {
+  .badge, .label {
+    font-size: 9px;
+    position: absolute;
+    top: 10px;
+    right: 10px;
+    padding: 4px;
+    min-width: 18px;
+    font-weight: 400;
+    line-height: 1;
+  }
+}
+
+/*------------------------------------
+    Container
+--------------------------------------*/
+.app-container {
+  display: table;
+  width: 100%;
+  height: 100%;
+  vertical-align: top;
+  border-collapse: collapse;
+  border-spacing: 0;
+  table-layout: fixed;
+  //   margin-top: $horizontal-menu-height;
+}
+
+/*------------------------------------
+    main content
+--------------------------------------*/
+.main-content {
+  background: $main-content-bg;
+  display: table-cell;
+  z-index: 1;
+  padding: 20px $main-content-padding 0;
+  vertical-align: top;
+  word-break: break-all;
+  width: 100%;
+  @include transition(opacity .5s 1s ease-out, padding-top .5s .5s ease-out);
+  margin-top: 0;
+}
+
+.sidebar-menu {
+  h2 {
+    opacity: 1;
+    font-family: "Open Sans", Helvetica, sans-serif;
+    //font-weight: 300;
+    font-size: 24px;
+    margin: 10px 0 0 30px;
+    padding-top: 2px;
+
+    a:hover, a:focus {
+      text-decoration: none;
+    }
+  }
+}
+
+#toolbar-fixed {
+
+  border-bottom: 1px solid #ecf4fa;
+
+  padding: 5px 15px;
+  li > a {
+    color: #777;
+    //padding: 5px 10px;
+  }
+  li:first-child {
+    margin-left: 2px
+  }
+  .logout:hover {
+    color: $brand-danger;
+  }
+}
+
+#full-backdrop {
+  display: none;
+  background: rgba(0, 0, 0, .2);
+  width: 100%;
+  height: 100%;
+  position: absolute;
+  top: 0;
+  left: 0;
+  z-index: 1;
+}
+
+.frame-wrapper {
+  position: relative;
+  padding-bottom: 56.25%; /* 16:9 */
+  padding-top: 25px;
+  height: 0;
+}
+
+.frame-wrapper iframe {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+}
+
+.popover {
+  max-width: 400px;
+}
+
+.tooltip-wide .tooltip {
+  min-width: 180px;
+}
+
+#ajaxProcess {
+  position: absolute;
+  bottom: 20px;
+  width: 100%;
+}
+
+.context-delete li a {
+  color: $brand-danger;
+  &:hover {
+    background: $brand-danger;
+    color: #fff;
+  }
+}
+
+label.required:after {
+  content: "*";
+  color: #d9534f;
+  font-weight: normal;
+  font-size: 12px;
+}
+
+.legend-required {
+  font-size: 12px;
+  text-align: right;
+  span {
+    color: #d9534f;
+  }
+}
+
+.error, select.error ~ div a.chosen-single {
+  border-left: 4px solid #d9534f !important;
+}
+
+textarea {
+  padding: 10px;
+  resize: none;
+}
+
+.pagination > li > a,
+.pagination > li > span {
+  background: none;
+  border: none;
+  color: #a8a9ab
+}
+
+.pagination > li > a:hover,
+.pagination > li > a:focus,
+.pagination > li > span:hover,
+.pagination > li > span:focus,
+.pagination > li.active > a,
+.pagination > li.active > span {
+  background: none;
+  border: none;
+  color: $brand-info;
+  font-weight: bold;
+}
+
+*:focus {
+  outline: none;
+}

@@ -1,0 +1,140 @@
+<form id="formCadastro" class="form-horizontal" autocomplete="off">
+    <div class="panel panel-default" id="cadastro-admin">
+        <div class="panel-heading hidden-on-modal">
+            <div class="row">
+                <div class="col-xs-10">
+                    <h3 class="panel-title"><i class="<%= app.utils.getIconRoute('companies') %>"></i>
+
+                        <span>Alterar Cadastro de Empresa</span>
+
+                    </h3>
+                </div>
+                <div class="col-xs-2 text-right">
+                    <a href="#" class="toggle-panel-size" data-target="#cadastro-admin">
+                        <i class="<%= app.config.icons.expand%>"></i>
+                    </a>
+                </div>
+            </div>
+        </div>
+        <div class="panel-body on-fullsize-center" style="max-width: 600px">
+
+
+            <!-- desabilitando autofill para user e senha -->
+            <input type="text" style="display:none">
+            <input type="password" style="display:none">
+            <!--  -->
+
+            <div class="row">
+                <div class="form-group">
+                    <label class="col-lg-4 control-label required" for="companyName">Razão Social</label>
+                    <div class="col-lg-7">
+                        <input class="form-control" id="companyName" name="companyName" type="text" autofocus=""
+                               placeholder="Razão Social" maxlength="64">
+                    </div>
+                </div>
+
+                <div class="form-group">
+                    <label class="col-lg-4 control-label required" for="cnpj">CNPJ</label>
+                    <div class="col-lg-7">
+                        <input class="form-control cnpj" id="cnpj" name="cnpj" type="text"
+                               placeholder="CNPJ">
+                    </div>
+                </div>
+
+                <div class="form-group">
+                    <label class="col-lg-4 control-label required" for="tradingName">Nome Fantasia</label>
+                    <div class="col-lg-7">
+                        <input class="form-control" id="tradingName" name="tradingName" type="text"
+                               placeholder="Nome Fantasia" maxlength="64">
+                    </div>
+                </div>
+
+                <div class="form-group">
+                    <label class="col-lg-4 control-label required" for="responsible">Responsável</label>
+                    <div class="col-lg-7">
+                        <input class="form-control alpha-only" id="responsible" name="responsible" type="text"
+                               placeholder="Responsável" maxlength="64">
+                    </div>
+                </div>
+
+                <div class="form-group">
+                    <label class="col-lg-4 control-label required" for="email">Email</label>
+                    <div class="col-lg-7">
+                        <input class="form-control" id="email" name="email" type="email"
+                               placeholder="Email" maxlength="64">
+                    </div>
+                </div>
+
+                <div class="row <%= typeof id != 'undefined' ? 'hidden' : '' %>">
+                    <div class="col-lg-8 col-md-7 col-lg-offset-4">
+                        <a href="javascript:void(0)"
+                           class="btn btn-xs btn-info showPassordBox"
+                           data-toggle="popover"
+                           data-trigger="hover"
+                           title="Alterar senha"
+                           data-placement="top"
+                           data-content="Clique para informar uma nova senha."
+                           style="margin-bottom: 15px;">
+                            <i class="fa fa-info-circle"></i> alterar senha?
+                        </a>
+                    </div>
+
+                </div>
+
+                <div id="passwordBox" class="<%= typeof id == 'undefined' ? 'hidden' : '' %>">
+                    <div class="form-group">
+                        <label class="col-lg-4 control-label required" for="password">Senha</label>
+                        <div class="col-lg-7 col-md-7">
+                            <input class="form-control" id="password" name="password" type="password"
+                                   placeholder="Senha" maxlength="64">
+                        </div>
+                        <span class="help-block <%= typeof id != 'undefined' ? 'hidden' : '' %>">
+                            <a href="javascript:void(0)"
+                               class="text-muted hidePasswordBox"
+                               data-toggle="popover"
+                               data-trigger="hover"
+                               title="Cancelar Edição de senha"
+                               data-placement="left"
+                               data-content="Clique para cancelar a alteração de senha. Será mantida a senha atual.">
+                                <i class="fa fa-close"></i>
+                            </a>
+                        </span>
+                    </div>
+                </div>
+
+
+                <div class="form-group">
+                    <label class="col-lg-4 control-label required" for="address">Endereço</label>
+                    <div class="col-lg-7">
+                        <input class="form-control" id="address" name="address" type="text"
+                               placeholder="Endereço" maxlength="128">
+                    </div>
+                </div>
+
+                <div class="form-group">
+                    <label class="col-lg-4 control-label required" for="phone">Telefone</label>
+                    <div class="col-lg-7">
+                        <input class="form-control phone" id="phone" name="phone" type="text"
+                               placeholder="Telefone">
+                    </div>
+                </div>
+
+                <div class="form-group">
+                    <div class="col-lg-11">
+                        <p class="legend-required"><span>*</span> campos obrigatórios.</p>
+                    </div>
+                </div>
+                <hr/>
+                <div class="form-group">
+                    <div class="col-lg-offset-4 col-lg-7">
+                        <button type="submit" class="btn btn-success"><i class="fa fa-floppy-o"></i> Salvar</button>
+                        <a href="#" class="btn btn-warning dismiss hide-popovers" data-dismiss="modal"><i
+                                class="fa fa-undo"></i> Cancelar</a>
+                    </div>
+                </div>
+            </div>
+
+
+        </div>
+    </div>
+</form>

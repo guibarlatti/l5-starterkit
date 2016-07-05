@@ -1,0 +1,13 @@
+ <td><%= id %></td>
+ <td><%= name %></td>
+
+
+<td style="width: 150px" class="text-center">
+
+    <% console.log(getStatus()); if (getStatus() == 0) { %>
+    <input class="switch" data-on-text="presente" data-off-text="ausente" type="checkbox" data-on-color="success" data-off-color="danger" <% (present) ? print('checked') : print('') %> data-size="mini" />
+    <% } else { %>
+        <span class="label  label-<% (present) ? print('success') : print('danger') %>"> <% (present) ? print('presente') : print('ausente') %> </span>
+    <% } %>
+</td>
+

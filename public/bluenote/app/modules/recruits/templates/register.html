@@ -1,0 +1,282 @@
+<form id="formCadastro" class="form-horizontal" autocomplete="off">
+    <div class="panel panel-default" id="cadastro-admin">
+        <div class="panel-heading hidden-on-modal">
+            <div class="row">
+                <div class="col-xs-10">
+                    <h3 class="panel-title"><i class="<%= app.utils.getIconRoute('recruits') %>"></i>
+                        <% if (typeof id != 'undefined') { %>
+                        <span>Alterar Cadastro de  Jovem Aprendiz</span>
+                        <% } else { %>
+                        <span>Cadastrar Jovem Aprendiz</span>
+                        <% }%>
+                    </h3>
+                </div>
+                <div class="col-xs-2 text-right">
+                    <a href="#" class="toggle-panel-size" data-target="#cadastro-admin">
+                        <i class="<%= app.config.icons.expand%>"></i>
+                    </a>
+                </div>
+            </div>
+        </div>
+        <div class="panel-body on-fullsize-center">
+
+            <ul class="nav nav-tabs">
+                <li class="active"><a href="#cadastro" data-toggle="tab">Dados Cadastrais</a></li>
+                <li><a href="#schoolInfo" data-toggle="tab">Dados Escolares e Profissionais</a></li>
+                <li class="<%= typeof id == 'undefined' ? 'hidden' : '' %>"><a href="#ocorrencias" data-toggle="tab">Ocorrências</a>
+                </li>
+
+            </ul>
+            <div id="myTabContent" class="tab-content" style="padding-top: 15px;">
+
+                <div class="tab-pane fade active in" id="cadastro">
+                    <div class="container-fluid">
+                        <div class="row">
+                            <div class="col-md-5">
+                                <div class="form-group">
+                                    <label class="col-md-4 control-label required"
+                                           for="name">Nome</label>
+                                    <div class="col-md-8">
+                                        <input class="form-control alpha-only"  id="name" name="name" type="text"
+                                               autofocus=""
+                                               maxlength="64"
+                                               placeholder="Nome">
+                                    </div>
+                                </div>
+
+                                <div class="form-group">
+                                    <label class="col-md-4 control-label"
+                                           for="cpf">CPF</label>
+                                    <div class="col-md-8">
+                                        <input class="form-control cpf" id="cpf" name="cpf" type="text"
+                                               placeholder="CPF">
+                                    </div>
+                                </div>
+
+                                <div class="form-group">
+                                    <label class="col-md-4 control-label" for="rg">
+                                        RG</label>
+                                    <div class="col-md-8">
+                                        <input class="form-control" id="rg" name="rg" type="text"
+                                               maxlength="16"
+                                               placeholder="RG">
+                                    </div>
+                                </div>
+
+                                <div class="form-group">
+                                    <label class="col-md-4 control-label required"
+                                           for="birthDate">Nascimento</label>
+                                    <div class="col-md-8">
+                                        <input class="form-control input-date" id="birthDate" name="birthDate"
+                                               type="text"
+                                               placeholder="Data de Nascimento">
+                                    </div>
+                                </div>
+                                <div class="form-group">
+                                    <label class="col-md-4 control-label">Sexo
+                                    </label>
+                                    <div class="col-md-8">
+                                        <div class="radio">
+                                            <label>
+                                                <input type="radio" name="gender" id="genderMale" value="M" checked="">
+                                                Masculino
+                                            </label>
+                                        </div>
+                                        <div class="radio">
+                                            <label>
+                                                <input type="radio" name="gender" id="genderFemale" value="F">
+                                                Feminino
+                                            </label>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <div class="col-md-6">
+
+
+                                <div class="form-group">
+                                    <label class="col-md-4 control-label required"
+                                           for="admissionDate">Data de Admissão</label>
+                                    <div class="col-md-8">
+                                        <input class="form-control input-date" id="admissionDate" name="admissionDate"
+                                               type="text"
+                                               placeholder="Data de Admissão">
+                                    </div>
+                                </div>
+
+                                <div class="form-group">
+                                    <label class="col-md-4 control-label required"
+                                           for="address">Endereço</label>
+                                    <div class="col-md-8">
+                                        <input class="form-control" id="address" name="address" type="text"
+                                               maxlength="92"
+                                               placeholder="Endereço">
+                                    </div>
+                                </div>
+
+
+                                <div class="form-group">
+                                    <label class="col-md-4 control-label"
+                                           for="email">Email</label>
+                                    <div class="col-md-8">
+                                        <input class="form-control" id="email" name="email" type="text"
+                                               maxlength="64"
+                                               placeholder="Email">
+                                    </div>
+                                </div>
+
+                                <div class="form-group">
+                                    <label class="col-md-4 control-label"
+                                           for="pis">PIS</label>
+                                    <div class="col-md-8">
+                                        <input class="form-control pis" id="pis" name="pis" type="text"
+                                               placeholder="PIS">
+                                    </div>
+                                </div>
+
+                            </div>
+
+                        </div>
+                    </div>
+                </div>
+
+                <div class="tab-pane fade" id="schoolInfo">
+                    <div class="container-fluid">
+                        <div class="col-md-5" style="padding-top: 28px">
+
+                            <div class="form-group">
+                                <label class="col-md-5 control-label required"
+                                       for="contractualSituation">Situação
+                                    Contratual</label>
+                                <div class="col-md-7">
+                                    <select name="contractualSituation" class="chosen-select" id="contractualSituation"
+                                            data-placeholder="Situação Contratual">
+                                        <option></option>
+                                        <option value="0">Aguardando vaga de emprego</option>
+                                        <option value="1">Efetivado</option>
+
+                                    </select>
+                                </div>
+                            </div>
+
+                            <div class="form-group">
+                                <label class="col-md-5 control-label required"
+                                       for="educationalLevel">Escolaridade</label>
+                                <div class="col-md-7">
+                                    <select name="educationalLevel" class="chosen-select" id="educationalLevel"
+                                            data-placeholder="Escolaridade">
+                                        <option></option>
+                                        <!--<option value="0">Analfabeto</option>-->
+                                        <!--<option value="1">Alfabetizado</option>-->
+                                        <option value="2">Ensino Fundamental Incompleto</option>
+                                        <option value="3">Ensino Fundamental Completo</option>
+                                        <option value="4">Ensino Medio Incompleto</option>
+                                        <option value="5">Ensino Medio Completo</option>
+                                        <option value="6">Ensino Superior Incompleto</option>
+                                        <!--<option value="7">Ensino Superior Completo</option>-->
+                                        <!--<option value="8">Acima Ensino Superior Completo</option>-->
+                                    </select>
+                                </div>
+                            </div>
+
+                            <div class="form-group">
+                                <label class="col-md-5 control-label required"
+                                       for="schoolTurn">Turno Escolar</label>
+                                <div class="col-md-7">
+                                    <select name="schoolTurn" class="chosen-select" id="schoolTurn"
+                                            data-placeholder="Selecione o turno">
+                                        <option></option>
+                                        <option value="0">Matutino</option>
+                                        <option value="1">Vespertino</option>
+                                        <option value="2">Noturno</option>
+                                    </select>
+                                </div>
+                            </div>
+
+                            <div class="form-group">
+                                <label class="col-md-5 control-label" for="school">
+                                    Escola/Faculdade</label>
+                                <div class="col-md-7">
+                                    <input class="form-control alpha-only" id="school" name="school" type="text"
+                                           maxlength="64"
+                                           placeholder="Escola">
+                                </div>
+                            </div>
+
+
+
+                        </div>
+                        <div class="col-md-6">
+                            <div class="form-group">
+                                <label class="col-md-6 control-label" style="text-align: left"
+                                       for="skills">Habilidades</label>
+                                <div class="col-md-6 text-right">
+                                    <a href="javascript:void(0)" class="showModalAddSkill btn btn-xs btn-info"><i
+                                            class="fa fa-plus"></i> cadastrar habilidade</a>
+                                </div>
+                                <div class="col-md-12">
+                                    <select name="skills" multiple class="chosen-select" id="skills"
+                                            data-placeholder="Informe a habilidade">
+                                        <option></option>
+                                    </select>
+                                </div>
+                            </div>
+                            <div class="form-group">
+                                <label class="col-md-12 control-label text-left"
+                                       style="text-align: left"
+                                       for="professionalExperience">Experiência
+                                    Profissional</label>
+                                <div class="col-md-12">
+                                <textarea class="form-control" id="professionalExperience" rows="6"
+                                          name="professionalExperience"
+                                          placeholder="Experiência Profissional"></textarea>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+
+                <div class="tab-pane fade" id="ocorrencias">
+                    <div class="toolbar">
+                        <div class="row">
+                            <div class="col-md-2">
+                                <a href="#" class="btn btn-xs btn-info showModalOcorrencia"><i class="fa fa-plus"></i>
+                                    Adicionar Ocorrência</a>
+                            </div>
+                        </div>
+                        <hr>
+                        <table class="table table-striped table-condensed table-responsive" id="occurrencesTable"
+                               style="">
+                            <thead>
+                            <tr>
+                                <th>Data da Ocorrência</th>
+                                <th>Descrição</th>
+                                <th class="text-center"></th>
+                            </tr>
+                            </thead>
+                            <tbody class="itemsTable"></tbody>
+                        </table>
+                    </div>
+                </div>
+            </div>
+
+            <hr/>
+
+
+            <div class="row">
+                <div class="col-md-5 col-md-offset-2">
+                    <div class="form-group">
+                        <button type="submit" class="btn btn-success"><i class="fa fa-floppy-o"></i> Salvar</button>
+                        <a href="#recruits" class="btn btn-warning dismiss hide-popovers"
+                           data-dismiss="modal"><i
+                                class="fa fa-undo"></i> Cancelar</a>
+                    </div>
+                </div>
+            </div>
+
+
+        </div>
+    </div>
+</form>

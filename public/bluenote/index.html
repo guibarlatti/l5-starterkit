@@ -1,0 +1,87 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+
+    <meta http-equiv="Cache-Control" content="no-cache, no-store, must-revalidate" />
+    <meta http-equiv="Pragma" content="no-cache" />
+    <meta http-equiv="Expires" content="0" />
+
+    <title> BlueNote </title>
+
+    <link href="app/lib/summernote/dist/summernote.css" rel="stylesheet" type="text/css" />
+    <link href="app/lib/summernote/dist/summernote-bs3.css" rel="stylesheet" type="text/css" />
+    <link href="app/lib/ionicons/css/ionicons.min.css" rel="stylesheet" type="text/css" />
+
+    <link href="themes/bluenote/css/bluenote.css" rel="stylesheet" type="text/css" />
+
+    <script type="text/javascript">
+
+      if (window && window.require) {
+        // Load native UI library
+        var gui = require('nw.gui');
+        // Get the current window
+        var win = gui.Window.get();
+
+          window.requireNode = window.require;
+          window.require = undefined;
+       }
+    </script>
+
+    <!-- HTML5 shim and Respond.js IE8 support of HTML5 elements and media queries -->
+    <!--[if lt IE 9]> <script src="https://oss.maxcdn.com/html5shiv/3.7.2/html5shiv.min.js"></script> <script src="https://oss.maxcdn.com/respond/1.4.2/respond.min.js"></script> <![endif]-->
+</head>
+
+<body class="appLoading transitions-disabled ">
+
+    <nav class="navbar horizontal-menu navbar-fixed-top">
+        <div class="navbar-brand">
+         bluenote
+        </div>
+
+        <div id="notifications-area"></div>
+
+        <ul class="nav navbar-nav navbar-right" id="user-nav">
+            <li class="dropdown">
+                <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">
+                  <i class="ion-ios-person-outline fa fa-2x" ></i>
+                  <span class="ion-chevron-down"></span>
+                </a>
+                <ul class="dropdown-menu" role="menu">
+                    <li><a href="#"><i class="ion-log-out"></i> Sair</a></li>
+                </ul>
+            </li>
+        </ul>
+
+    </nav>
+
+    <div class="app-container">
+
+        <div class="sidebar-menu fixed">
+            <div class="sidebar-menu-inner" id="main-nav"></div>
+        </div>
+
+        <div class="main-content" id="main"></div>
+
+    </div>
+
+     <div id="appLoading">
+         <!-- <i class="fa fa-cog fa-spin"></i> carregando... -->
+         <img src="themes/bluenote/img/spinner.gif" alt="loading..." />
+     </div>
+
+    <div id="requirejs-loading-panel" style="position: absolute;bottom: 0; right: 0;z-index: 10000;">
+        <span id="requirejs-loading-module-name"></span><span id="requirejs-loading-status"></span>
+    </div>
+
+    <div id="dialog"></div>
+    <div id="modal-area"></div>
+    <div id="lockScreen"></div>
+
+
+      <script data-main="app/main" src="app/lib/requirejs/require.js"></script>
+
+</body>
+</html>

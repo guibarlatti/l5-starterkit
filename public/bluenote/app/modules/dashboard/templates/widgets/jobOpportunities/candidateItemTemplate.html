@@ -1,0 +1,25 @@
+<td><%= role %></td>
+<td>
+<span class=""
+      data-toggle="popover"
+      data-trigger="hover"
+      title="Detalhes da vaga"
+      data-placement="left"
+      data-html="true"
+      data-content="<dl class='dl-horizontal'>
+                    <dt>Função</dt>
+                    <dd><%= role %></dd>
+                    <dt>Vagas Disponíveis</dt>
+                    <dd><%= amountVacancies %></dd>
+                    <dt>Idade mínima</dt>
+                    <dd><%= minAge %> anos</dd>
+                    <dt>Idade mánima</dt>
+                    <dd><%= maxAge %> anos</dd>
+                    <dt>Salário</dt>
+                    <dd>R$ <%= salary %></dd>
+                    </dl>"
+      style="margin-bottom: 15px;">
+    <i class="fa fa-info-circle"></i>
+</span>
+</td>
+

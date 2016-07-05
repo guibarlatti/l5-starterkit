@@ -1,0 +1,46 @@
+<div class="panel panel-default">
+    <div class="panel-heading bg-gray-light">
+        <div class="row">
+            <div class="col-xs-7">
+                <h3 class="panel-title"><i class="<%= app.utils.getIconRoute('recruits') %>"></i> Aprendizes
+                </h3>
+            </div>
+            <div class="col-xs-5">
+
+            </div>
+        </div>
+    </div>
+    <div class="panel-body">
+
+        <form class="form-horizontal">
+            <div class="form-group">
+                <label class="col-sm-4 control-label text-right" for="gradeClass">Turma</label>
+                <div class="col-sm-5">
+                    <select class="form-control gradeClass" id="gradeClass">
+                        <option value="" >A e B</option>
+                        <option value="A">A</option>
+                        <option value="B">B</option>
+                    </select>
+                </div>
+            </div>
+            <div class="form-group">
+                <label class="col-sm-4 control-label">&nbsp;</label>
+                <div class="col-sm-8">
+
+                </div>
+            </div>
+            <hr>
+            <div class="form-group text-right">
+                <div class="col-sm-12">
+                    <a href="javascript:void(0)" class="btn btn-success showModal"
+                       data-type="RecruitsReport"
+                       data-name="fullList"><i class="fa fa-cogs"></i> Gerar Relatório</a>
+                </div>
+            </div>
+        </form>
+
+    </div>
+</div>
+
+
+

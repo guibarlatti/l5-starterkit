@@ -1,0 +1,25 @@
+/*jslint browser: true, devel: true, nomen: true*/
+/*global $, jQuery, define, app, _, require, Backbone*/
+
+define([], function () {
+
+    'use strict';
+
+    return {
+
+        management: function () {
+            var model = new Backbone.Model();
+            require(['modules/roles/views/management'], function (View) {
+                app.mainRegion.show(new View({model: model}));
+            });
+        },
+
+        register: function () {
+            var model = new Backbone.Model();
+            require(['modules/roles/views/register'], function (View) {
+                app.mainRegion.show(new View({model: model}));
+            });
+        }
+
+    };
+});

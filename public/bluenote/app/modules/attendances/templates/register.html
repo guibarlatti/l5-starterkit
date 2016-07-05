@@ -1,0 +1,75 @@
+<form id="formCadastro" class="form-horizontal" autocomplete="off">
+    <div class="panel panel-default" id="cadastro-admin">
+        <div class="panel-heading hidden-on-modal">
+            <div class="row">
+                <div class="col-xs-10">
+                    <h3 class="panel-title"><i class="<%= app.utils.getIconRoute('attendances') %>"></i>
+                        <% if (typeof id != 'undefined') { %>
+                        <span>Alterar Cadastro de Chamada</span>
+                        <% } else { %>
+                        <span>Cadastrar Chamada</span>
+                        <% }%>
+                    </h3>
+                </div>
+                <div class="col-xs-2 text-right">
+                    <a href="#" class="toggle-panel-size" data-target="#cadastro-admin">
+                        <i class="<%= app.config.icons.expand%>"></i>
+                    </a>
+                </div>
+            </div>
+        </div>
+        <div class="panel-body on-fullsize-center" style="max-width: 600px">
+
+
+            <!-- desabilitando autofill para user e senha -->
+            <input type="text" style="display:none">
+            <input type="password" style="display:none">
+            <!--  -->
+
+            <div class="row">
+
+                <div class="form-group">
+                    <label class="col-lg-4 control-label" for="responsible">Responsável</label>
+                    <div class="col-lg-7">
+                        <input disabled class="form-control alpha-only" id="responsible"
+                               name="responsible" type="text" value="<%= localStorage.getItem('name') %>"
+                               placeholder="Responsável" maxlength="64">
+                    </div>
+                </div>
+
+                <div class="form-group">
+                    <label class="col-lg-4 control-label required" for="reference_date">Data</label>
+                    <div class="col-lg-7">
+                        <input class="form-control input-date" id="reference_date" name="reference_date" type="text"
+                               placeholder="Data" maxlength="64">
+                    </div>
+                </div>
+
+                <div class="form-group">
+                    <label class="col-lg-4 control-label required" for="gradeClass">Turma</label>
+                    <div class="col-lg-7">
+                        <select name="contractualSituation" class="chosen-select" id="gradeClass"
+                                data-placeholder="Selecione a turma">
+                            <option></option>
+                            <option value="A">Turma A  (de 16-21 anos)</option>
+                            <option value="B">Turma B  (acima de 21 anos)</option>
+
+                        </select>
+                    </div>
+                </div>
+
+
+                <hr/>
+                <div class="form-group">
+                    <div class="col-lg-offset-4 col-lg-7">
+                        <button type="submit" class="btn btn-success"><i class="fa fa-floppy-o"></i> Salvar</button>
+                        <a href="#attendances" class="btn btn-warning dismiss hide-popovers" data-dismiss="modal"><i
+                                class="fa fa-undo"></i> Cancelar</a>
+                    </div>
+                </div>
+            </div>
+
+
+        </div>
+    </div>
+</form>

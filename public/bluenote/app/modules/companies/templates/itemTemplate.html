@@ -1,0 +1,24 @@
+ <td><%= id %></td>
+<td><%= tradingName %></td>
+<td class="text-right">
+
+    <a href="#companies/register/<%= id %>"
+       class="showModalCadastro btn btn-xs btn-info"
+       data-id="<%= id %>"
+       data-toggle="tooltip"
+       data-placement="left"
+       title="Alterar">
+        <i class="ion-wrench"></i>
+    </a>
+
+    <a href="javascript:void(0)"
+       class="btn btn-xs btn-danger confirmDelete"
+       data-toggle="tooltip"
+       data-placement="left"
+       title="Excluir"
+       data-id="<%= id %>">
+        <i class="fa fa-trash-o"></i>
+    </a>
+
+</td>
+

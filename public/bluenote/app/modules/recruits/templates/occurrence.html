@@ -1,0 +1,77 @@
+<form id="formCadastro" class="form-horizontal" autocomplete="off">
+    <div class="panel panel-default" id="cadastro-admin">
+        <div class="panel-heading hidden-on-modal">
+            <div class="row">
+                <div class="col-xs-10">
+                    <h3 class="panel-title"><i class="<%= app.utils.getIconRoute('recruits') %>"></i>
+                        <% if (typeof id != 'undefined') { %>
+                        <span>Alterar Cadastro de  Jovem Aprendiz</span>
+                        <% } else { %>
+                        <span>Cadastrar Jovem Aprendiz</span>
+                        <% }%>
+                    </h3>
+                </div>
+                <div class="col-xs-2 text-right">
+                    <a href="#" class="toggle-panel-size" data-target="#cadastro-admin">
+                        <i class="<%= app.config.icons.expand%>"></i>
+                    </a>
+                </div>
+            </div>
+        </div>
+        <div class="panel-body on-fullsize-center">
+
+            <div class="container-fluid">
+                <div class="row">
+                    <div class="col-md-5">
+                        <div class="form-group">
+                            <label class="control-label" for="date">Data da Ocorrência</label>
+                            <input class="form-control date" id="date" name="date" type="text"
+                                   placeholder="Data da Ocorrência">
+                        </div>
+                    </div>
+                    <div class="col-md-6 col-md-offset-1">
+                        <div class="form-group">
+                            <label class="control-label" for="severity">Severidade</label>
+                            <select name="severity" class="chosen-select" id="severity"
+                                    data-placeholder="Severidade">
+                                <option value="0" selected>Leve</option>
+                                <option value="1">Grave</option>
+                                <option value="2">Gravíssima</option>
+                            </select>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="row">
+                    <div class="col-md-12">
+                        <div class="form-group">
+                            <label class="control-label" for="date">Descrição</label>
+                            <textarea class="form-control" id="description" name="description" rows="6"
+                                   placeholder="Descrição"></textarea>
+                        </div>
+                    </div>
+
+                </div>
+
+            </div>
+
+            <hr/>
+
+            <div class="row">
+                <div class="col-lg-12">
+                    <div class="form-group">
+                        <div class="col-lg-7">
+                            <button type="submit" class="btn btn-success"><i class="fa fa-floppy-o"></i> Salvar
+                            </button>
+                            <a href="#recruits" class="btn btn-warning dismiss hide-popovers"
+                               data-dismiss="modal"><i
+                                    class="fa fa-undo"></i> Cancelar</a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+
+        </div>
+    </div>
+</form>

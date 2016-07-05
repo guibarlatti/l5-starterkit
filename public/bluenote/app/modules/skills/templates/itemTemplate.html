@@ -1,0 +1,25 @@
+<td><%= id %></td>
+<td><%= name %></td>
+<td><%= description %></td>
+<td class="text-right">
+
+    <a href="#skills/editar/<%= id %>"
+       class="showModalCadastro btn btn-xs btn-info"
+       data-id="<%= id %>"
+       data-toggle="tooltip"
+       data-placement="left"
+       title="Alterar">
+        <i class="ion-wrench"></i>
+    </a>
+
+    <a href="javascript:void(0)"
+       class="btn btn-xs btn-danger confirmDelete"
+       data-toggle="tooltip"
+       data-placement="left"
+       title="Excluir"
+       data-id="<%= id %>">
+        <i class="fa fa-trash-o"></i>
+    </a>
+
+</td>
+

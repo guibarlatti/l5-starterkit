@@ -1,0 +1,86 @@
+<div class="panel panel-default" id="test-panel">
+    <div class="panel-heading">
+        <div class="row">
+            <div class="col-xs-10">
+                <h3 class="panel-title">Modals</h3>
+            </div>
+            <div class="col-xs-2 text-right">
+                <a href="#" class="toggle-panel-size"  data-target="#test-panel">
+                    <i class="<%= app.config.icons.expand %>"></i>
+                </a>
+            </div>
+        </div>
+    </div>
+    <div class="panel-body">
+        <!-- tabs -->
+        <div class="tabbable">
+            <ul class="nav nav-tabs">
+                <li class="active"><a href="#one" data-toggle="tab">Dialog Simples</a></li>
+                <li><a href="#two" data-toggle="tab">Dialog Confirm</a></li>
+                <li><a href="#twee" data-toggle="tab">Modal</a></li>
+            </ul>
+            <div class="tab-content">
+                <div class="tab-pane active" id="one">
+                    <br/>
+                    <p><a href="#" class="showDialog btn btn-default">Mostrar Diálogo</a></p>
+
+                    <p>
+                        O objeto global <code>app</code> pode ser utilizado para exibir um  diálogo
+                        que recebe um objeto com os dados para exibição e dois callbacks.
+                    </p>
+<pre><code>
+    app.commands.execute("app:dialog:confirm", {<br>
+    icon: 'info-sign',<br>
+    title: 'Título do diálogo',<br>
+    message: 'Mensagem Importante para o usuário!',<br>
+    confirmYes: function() {console.log('yes');},<br>
+    confirmNo: function() {console.log('no');},<br>
+    });
+</code></pre>
+                </div>
+                <div class="tab-pane" id="two">
+                    <br />
+                    <p><a href="#" class="showConfirm btn btn-default">Mostrar Diálogo</a></p>
+
+                    <p>
+                        O objeto global <code>app</code> pode ser utilizado para exibir um  diálogo
+                        que recebe um objeto com os dados para exibição e dois callbacks.
+                    </p>
+
+
+<pre><code>
+    app.commands.execute("app:dialog:confirm", {<br>
+    icon: 'info-sign',<br>
+    title: 'Título do diálogo',<br>
+    message: 'Mensagem Importante para o usuário!',<br>
+    confirmYes: function() {console.log('yes');},<br>
+    confirmNo: function() {console.log('no');},<br>
+    });
+</code></pre>
+                </div>
+                <div class="tab-pane" id="twee">
+                    <br/>
+                    <p><a href="#" class="showModal btn btn-default">Abrir Modal</a></p>
+
+                    <p>
+                        O objeto global <code>app</code> pode ser utilizado para exibir um  diálogo
+                        que recebe um objeto com os dados para exibição e dois callbacks.
+                    </p>
+
+
+<pre><code>
+    app.commands.execute("app:dialog:confirm", {<br>
+    icon: 'info-sign',<br>
+    title: 'Título do diálogo',<br>
+    message: 'Mensagem Importante para o usuário!',<br>
+    confirmYes: function() {console.log('yes');},<br>
+    confirmNo: function() {console.log('no');},<br>
+    });
+</code></pre>
+                </div>
+            </div>
+        </div>
+        <!-- /tabs -->
+
+    </div>
+</div>

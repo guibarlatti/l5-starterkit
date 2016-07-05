@@ -1,0 +1,52 @@
+<form id="formCadastro" class="form-horizontal" autocomplete="off">
+    <div class="panel panel-default" id="cadastro-admin">
+        <div class="panel-heading hidden-on-modal">
+            <div class="row">
+                <div class="col-xs-10">
+                    <h3 class="panel-title"><i class="<%= app.utils.getIconRoute('roles') %>"></i>
+                        <% if (typeof id != 'undefined') { %>
+                        <span>Alterar Cargo</span>
+                        <% } else { %>
+                        <span>Cadastrar Cargo</span>
+                        <% }%>
+                    </h3>
+                </div>
+                <div class="col-xs-2 text-right">
+                    <a href="#" class="toggle-panel-size" data-target="#cadastro-admin">
+                        <i class="<%= app.config.icons.expand%>"></i>
+                    </a>
+                </div>
+            </div>
+        </div>
+        <div class="panel-body on-fullsize-center" style="max-width: 500px;">
+
+            <!-- desabilitando autofill para user e senha -->
+            <input type="text" style="display:none">
+            <input type="password" style="display:none">
+            <!--  -->
+
+            <div class="form-group">
+                <label class="col-lg-4 control-label required" for="name">Nome do cargo</label>
+                <div class="col-lg-8">
+                    <input class="form-control alpha-only" id="name" name="name" type="text" autofocus=""
+                           maxlength="32"
+                           placeholder="Nome">
+                </div>
+            </div>
+
+
+            <p class="legend-required"><span>*</span> campo obrigatório.</p>
+
+            <hr/>
+            <div class="form-group">
+                <div class="col-lg-offset-4 col-lg-8">
+                    <button type="submit" class="btn btn-success"><i class="fa fa-floppy-o"></i> Salvar</button>
+                    <a href="#roles" class="btn btn-warning dismiss hide-popovers" data-dismiss="modal"><i
+                            class="fa fa-undo"></i> Cancelar</a>
+                </div>
+            </div>
+
+
+        </div>
+    </div>
+</form>

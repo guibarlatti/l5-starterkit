@@ -1,0 +1,65 @@
+<div class="panel panel-default" id="logs-panel">
+    <div class="panel-heading">
+        <div class="row">
+            <div class="col-xs-10">
+                <h3 class="panel-title"><i class="<%= app.utils.getIconRoute('attendances') %>"></i> Realizar
+                    Chamada</h3>
+            </div>
+            <div class="col-xs-2 text-right">
+                <a href="#" class="toggle-panel-size" data-target="#logs-panel">
+                    <i class="<%= app.config.icons.expand%>"></i>
+                </a>
+            </div>
+        </div>
+    </div>
+    <div class="panel-body">
+
+        <div class="row">
+            <div class="table-wrapper col-lg-7">
+
+                <table class="table table-hover table-striped table-condensed" id="table" style="">
+                    <thead>
+                    <tr>
+                        <th>#id</th>
+                        <th>Nome</th>
+                        <th class="text-right"></th>
+                    </tr>
+                    </thead>
+                    <tbody class="itemsTable"></tbody>
+                </table>
+            </div>
+            <div class="col-lg-5">
+
+                <table class="table table-hover table-striped table-condensed " style="margin-top: 30px">
+                    <tr>
+                        <th>Turma: <strong id="gradeClass"></strong></th>
+                    </tr>
+                    <tr>
+                        <th>Data de referência: <strong id="referenceDate"></strong></th>
+                    </tr>
+                    <tr>
+                        <th>Responsável: <strong id="responsible"></strong></th>
+                    </tr>
+                </table>
+            </div>
+        </div>
+
+        <hr>
+        <form id="attendanceForm" class="form-group" style="display: none">
+            <div class="col-lg-offset-1 col-lg-7">
+                <button type="submit" class="btn btn-success"><i class="fa fa-floppy-o"></i> Salvar</button>
+                <a href="#attendances" class="btn btn-warning dismiss hide-popovers" data-dismiss="modal"><i
+                        class="fa fa-undo"></i> Cancelar</a>
+            </div>
+        </form>
+
+        <div class="col-lg-offset-1 col-lg-7" id="checkOnly" style="display: none">
+            <a href="#attendances" class="btn btn-info dismiss hide-popovers" data-dismiss="modal">
+                <i class="fa fa-check"></i> OK</a>
+        </div>
+
+    </div>
+</div>
+
+
+
