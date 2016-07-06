@@ -29,14 +29,20 @@ define([
 
         activateMenu: function (e) {
 
-
         },
 
         onRender: function () {
+            var currentRoute = window.location.hash.substr(1);
+
+            if(this.model.get('route') == currentRoute) {
+                this.$el.addClass('active');
+            }
+
+            this.$el.attr('data-route', this.model.get('route'));
+
             if (this.model.get('childRoutes')) {
                 this.$el.addClass('panel panel-default dropdown');
             }
-
         }
 
     });

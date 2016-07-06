@@ -59,7 +59,7 @@ class Handler extends ExceptionHandler
 
             if ($e instanceof \App\Exceptions\ValidationException) {
                 return Response::apiResponse([
-                    'message' => 'Os dados fornecidos são inválidos para esta operação.',
+                    'message' => 'Os dados inválidos.',
                     'errors' => $e->getMessages(),
                     'httpCode' => 400
                 ]);

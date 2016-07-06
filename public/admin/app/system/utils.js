@@ -117,21 +117,28 @@ define(['toastr', 'idleTimer'], function (toastr) {
     }
 
     function setupMenu() {
-        $(function() {
+        $(function () {
 
-            $(".navbar-expand-toggle").click(function() {
+            $(".navbar-expand-toggle").click(function () {
                 $(".app-container").toggleClass("expanded");
                 return $(".navbar-expand-toggle").toggleClass("fa-rotate-90");
             });
 
-            $(".navbar-right-expand-toggle").click(function() {
+            $(".navbar-right-expand-toggle").click(function () {
                 $(".navbar-right").toggleClass("expanded");
                 return $(".navbar-right-expand-toggle").toggleClass("fa-rotate-90");
             });
 
-            $(".side-menu .nav .dropdown").on('show.bs.collapse', function() {
+            $(".side-menu .nav .dropdown").on('show.bs.collapse', function () {
                 return $(".side-menu .nav .dropdown .collapse").collapse('hide');
             });
+
+            $(window).on('hashchange', function () {
+                var hash = window.location.hash.substr(1);
+                $('#app-routes-collection').find('.active').removeClass('active');
+                $('[data-route="' + hash + '"]').addClass('active');
+            });
+
         });
     }
 

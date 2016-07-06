@@ -11,14 +11,10 @@ define([
     return Marionette.ItemView.extend({
         template: Template,
         initialize: function () {
-            this.listenTo(this.model, 'change', function (e) {
-                console.log(e);
-            });
         },
         onRender: function () {
             this.setupValidation();
             this.stickit();
-
         },
         setupValidation: function () {
             this.form = this.$('#register-role');
