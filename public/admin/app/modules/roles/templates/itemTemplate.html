@@ -1,0 +1,18 @@
+<td><%= id %></td>
+<td><%= name %></td>
+
+<td class="text-right">
+
+    <a href="#roles/editar/<%= id %>"
+       class="showModalCadastro btn btn-xs btn-info"
+       data-id="<%= id %>"
+       data-toggle="tooltip"
+       data-placement="bottom"
+       title="Alterar">
+        <i class="fa fa-edit"></i>
+    </a>
+
+    <a href="javascript:void(0)" class="btn btn-xs btn-danger confirmDelete"
+       data-id="<%= id %>"><i class="fa fa-trash-o"></i></a>
+</td>
+

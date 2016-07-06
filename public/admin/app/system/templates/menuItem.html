@@ -1,24 +1,30 @@
-<% if (typeof nestedItems != 'undefined') { %>
-<a href="#<%= route %>">
-    <% if (typeof iconClass != 'undefined') { %>
-        <span class="icon <%= iconClass %>"></span><span class="title"><%= title %></span>
-    <% } %>
+<% if (typeof childRoutes != 'undefined') { %>
+
+<a data-toggle="collapse" href="#submenu-<%= route %>">
+    <span class="icon fa fa-tachometer"></span><span class="title"><%= title %></span>
 </a>
-<ul class="nav nav-stacked nav-pills sub-nav collapse" id="submenu-<%= order %>">
-    <% _.each(nestedItems, function(item){ %>
-    <li><a href="#<%= item.route %>">
-        <% if (typeof item.iconClass != 'undefined') { %>
-        <span class="<%= item.iconClass %>"></span>
-        <% } %>
-        <span><%= item.title %></span>
-    </a>
-    </li>
-    <% });%>
-</ul>
+
+<!-- Dropdown level 1 -->
+<div id="submenu-<%= route %>" class="panel-collapse collapse">
+    <div class="panel-body">
+        <ul class="nav navbar-nav">
+            <% _.each(childRoutes, function(item){ %>
+            <li><a href="#<%= item.route %>">
+                <% if (typeof item.iconClass != 'undefined') { %>
+                <span class="<%= item.iconClass %>"></span>
+                <% } %>
+                <span><%= item.title %></span>
+            </a>
+            </li>
+            <% });%>
+        </ul>
+    </div>
+</div>
+
+
 <% } else { %>
-<a href="#">
+<a href="#<%= route %>">
     <span class="icon fa fa-tachometer"></span><span class="title"><%= title %></span>
 </a>
 
 <% } %>
-

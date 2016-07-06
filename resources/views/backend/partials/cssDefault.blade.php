@@ -10,6 +10,7 @@
 <link rel="stylesheet" type="text/css" href="{{asset('admin/dist/lib/css/jquery.dataTables.min.css')}}">
 <link rel="stylesheet" type="text/css" href="{{asset('admin/dist/lib/css/dataTables.bootstrap.css')}}">
 <link rel="stylesheet" type="text/css" href="{{asset('admin/dist/lib/css/select2.min.css')}}">
+<link rel="stylesheet" type="text/css" href="{{asset('admin/app/lib/toastr/toastr.min.css')}}">
 <!-- CSS App -->
 <link rel="stylesheet" type="text/css" href="{{asset('admin/dist/css/style.css')}}">
 <link rel="stylesheet" type="text/css" href="{{asset('admin/dist/css/themes/flat-blue.css')}}">

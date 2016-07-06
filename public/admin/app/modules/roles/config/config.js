@@ -9,6 +9,7 @@ define([], function () {
             errorPlacement: function (error, element) {
             },
             onfocusout: false,
+            debug: true,
             rules: {
                 'name': {
                     required: true

@@ -1,4 +1,4 @@
-<div class="side-menu sidebar-inverse">
+<div class="side-menu">
     <nav class="navbar navbar-default" role="navigation">
         <div class="side-menu-container">
             <div class="navbar-header">
@@ -17,19 +17,19 @@
                         {{--<span class="icon fa fa-tachometer"></span><span class="title">Dashboard</span>--}}
                     {{--</a>--}}
                 {{--</li>--}}
-                {{--<li class="panel panel-default dropdown">--}}
-                    {{--<a data-toggle="collapse" href="#dropdown-element">--}}
-                        {{--<i class="icon fa fa-desktop"></i><span class="title">UI Kits</span>--}}
-                    {{--</a>--}}
-                    {{--<!-- Dropdown level 1 -->--}}
-                    {{--<div id="dropdown-element" class="panel-collapse collapse">--}}
-                        {{--<div class="panel-body">--}}
-                            {{--<ul class="nav navbar-nav">--}}
-                                {{--<li><a href="ui-kits/theming.html">Theming</a></li>--}}
-                            {{--</ul>--}}
-                        {{--</div>--}}
+            {{--<li class="panel panel-default dropdown">--}}
+                {{--<a data-toggle="collapse" href="#dropdown-element">--}}
+                    {{--<i class="icon fa fa-desktop"></i><span class="title">UI Kits</span>--}}
+                {{--</a>--}}
+                {{--<!-- Dropdown level 1 -->--}}
+                {{--<div id="dropdown-element" class="panel-collapse collapse">--}}
+                    {{--<div class="panel-body">--}}
+                        {{--<ul class="nav navbar-nav">--}}
+                            {{--<li><a href="ui-kits/theming.html">Theming</a></li>--}}
+                        {{--</ul>--}}
                     {{--</div>--}}
-                {{--</li>--}}
+                {{--</div>--}}
+            {{--</li>--}}
             {{--</ul>--}}
         </div>
         <!-- /.navbar-collapse -->

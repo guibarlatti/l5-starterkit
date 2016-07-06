@@ -37,7 +37,14 @@ define([
                 route: '',
                 iconClass: 'fa fa-star',
                 order: 0,
-                accessLevel: 1
+                accessLevel: 1,
+                childRoutes: [{
+                    title: 'Dashboard',
+                    route: '',
+                    iconClass: 'fa fa-star',
+                    order: 0,
+                    accessLevel: 1
+                }]
             }
         ];
 

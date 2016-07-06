@@ -8,7 +8,7 @@
     <% _.each(nestedItems, function(item){ %>
     <li><a href="#<%= item.route %>">
         <% if (typeof item.iconClass != 'undefined') { %>
-        <i class="<%= item.iconClass %>"></i>
+        <span class="<%= item.iconClass %>"></span>
         <% } %>
         <span><%= item.title %></span>
     </a>
@@ -16,9 +16,9 @@
     <% });%>
 </ul>
 <% } else { %>
-    <a href="#<%= route %>">
-        <% if (typeof iconClass != 'undefined') { %>
-        <i class="<%= iconClass %>"></i>
-        <% } %>
-        <span><%= title %> </span></a>
+<a href="#<%= route %>">
+    <% if (typeof iconClass != 'undefined') { %>
+    <i class="<%= iconClass %>"></i>
+    <% } %>
+    <span><%= title %> </span></a>
 <% } %>

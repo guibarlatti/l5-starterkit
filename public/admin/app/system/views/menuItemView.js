@@ -2,25 +2,25 @@
 /*global $, jQuery, define, app, _, require*/
 
 define([
-	'marionette',
-	'tpl!system/templates/menuItem.html',
+    'marionette',
+    'tpl!system/templates/menuItem.html',
     'system/models/menuRoute'
 
 ], function (Marionette, htmlTemplate, MenuRoute) {
-	'use strict';
+    'use strict';
 
-	return Marionette.ItemView.extend({
-		template: htmlTemplate,
+    return Marionette.ItemView.extend({
+        template: htmlTemplate,
         tagName: 'li',
         model: MenuRoute,
 
-		ui: {
-			link: 'a'
-		},
+        ui: {
+            link: 'a'
+        },
 
-		events: {
-			'click a': 'activateMenu'
-		},
+        events: {
+            'click a': 'activateMenu'
+        },
         modelEvents: {
             // "change:active": function () {
             //     this.render();
@@ -28,13 +28,16 @@ define([
         },
 
         activateMenu: function (e) {
-         
 
-		},
+
+        },
 
         onRender: function () {
+            if (this.model.get('childRoutes')) {
+                this.$el.addClass('panel panel-default dropdown');
+            }
 
         }
 
-	});
+    });
 });

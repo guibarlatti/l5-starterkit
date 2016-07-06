@@ -70,7 +70,7 @@ Route::group(['prefix' => 'api/v1', 'middleware' => ['cors']], $apiRoutes);
 /**
  * API V1 subdomain routes
  */
-Route::group(['domain' => 'api.' . env('APP_DOMAIN'), 'middleware' => ['role:admin']], function () use ($apiRoutes) {
+Route::group(['domain' => 'api.' . env('APP_DOMAIN'), 'middleware' => ['cors']], function () use ($apiRoutes) {
     Route::group(['prefix' => 'v1'], $apiRoutes);
 });
 

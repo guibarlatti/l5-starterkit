@@ -3,11 +3,82 @@
         <div class="card">
             <div class="card-header">
                 <div class="card-title">
-                    <div class="title">Dashboard</div>
+                    <div class="title"><i class="<%= app.utils.getIconRoute('roles') %>"></i> Gerenciamento de
+                        Cargos
+                    </div>
                 </div>
             </div>
-            <div class="card-body text-center">
-                <strong>management</strong>
+            <div class="card-body">
+
+                <div class="row">
+                    <div class="col-md-4">
+                        <a href="#roles/register" class="btn btn-success"><i class="fa fa-plus"></i>
+                            Cadastrar Cargo</a>
+                    </div>
+                    <div class="col-md-8 text-right">
+                        <form action="#" class="formSearch" autocomplete="off">
+                            <label class="search" for="search-box">
+                                <input name="search-box" id="search-box" class="search-box" type="search"
+                                       autocomplete="off"
+                                       placeholder="Busca"/>
+                            </label>
+                        </form>
+                    </div>
+                </div>
+
+                <hr>
+                <div class="table-wrapper">
+                    <table class="table table-hover table-striped table-condensed " id="table" style="">
+                        <thead>
+                        <tr>
+                            <th>#id</th>
+                            <th>Nome</th>
+                            <th class="text-center"></th>
+                        </tr>
+                        </thead>
+                        <tbody class="itemsTable"></tbody>
+                    </table>
+                </div>
+
+
+                <hr>
+                <div class="row">
+                    <div class="col-xs-3">
+                        <div class="toolbar">
+                            <form action="#" class="formPageJump">
+                                <label class="control-label" for="pageJump">pág.</label>
+                                <input type="number" name="pageJump" maxlength="4" id="pageJump"
+                                       class="pageJump"
+                                       style="width: 50px; text-align: center"
+                                       data-toggle="tooltip"
+                                       data-placement="top"
+                                       title="Informe o número da página para navegação direta."
+                                       min="1">
+                                <input type="submit" style="display: none">
+                            </form>
+                        </div>
+                    </div>
+
+                    <div class="col-xs-6 text-center">
+                        <ul class="pagination">
+                            <li class="prevContainer"><a href="#" class="prevPage"> <i
+                                    class="ion-chevron-left"></i> </a></li>
+                            <li class="nextContainer"><a href="#" class="nextPage"> <i
+                                    class="ion-chevron-right"></i></a></li>
+                        </ul>
+                    </div>
+
+                    <div class="col-xs-3 text-right">
+                        <div style="color:#999;padding-top:18px;line-height: 16px">
+                            <small>pág. <span class="currentPage"></span> de</small>
+                            <small class="pagesCount"><span class="totalPages"></span></small>
+                            <br>
+                            <small><span class="totalItems"></span> <span>registros no total</span></small>
+                        </div>
+                    </div>
+                </div>
+
+
             </div>
         </div>
     </div>

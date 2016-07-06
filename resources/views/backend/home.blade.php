@@ -16,9 +16,8 @@
         @include('backend.partials.menuLeft')
         @include('backend.partials.content')
     </div>
-
+    <div id="dialog"></div>
     @include('backend.partials.footer')
-
     @include('backend.partials.jsDefault')
 </div>
 </body>

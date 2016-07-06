@@ -24,8 +24,8 @@ define([
                 registerModel.set('id', id);
             }
 
-            require(['modules/roles/views/register'], function (RegisterView) {
-                app.mainRegion.show(new RegisterView({model: registerModel}));
+            require(['modules/roles/views/register'], function (View) {
+                app.mainRegion.show(new View({model: registerModel}));
             });
 
 

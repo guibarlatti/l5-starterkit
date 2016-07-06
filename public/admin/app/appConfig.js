@@ -44,8 +44,8 @@ define([],
 
             getEndPoint: function (endpointName) {
                 var ep = this.endpointsMap[endpointName] || endpointName,
-                    rootURL = typeof env !== 'undefined' ? env.urlRoot : ['//', window.location.hostname, '/'].join('');
-                return [rootURL, '/api/', ep].join('');
+                    apiRoot = typeof env !== 'undefined' ? env.apiRoot : ['//', window.location.hostname, '/'].join('');
+                return [apiRoot, ep].join('/');
             },
 
             endpointsMap: {},

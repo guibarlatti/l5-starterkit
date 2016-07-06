@@ -14,5 +14,9 @@
 {{--<script type="text/javascript" src="{{asset('admin/dist/js/app.js')}}"></script>--}}
 {{--<script type="text/javascript" src="{{asset('admin/dist/js/index.js')}}"></script>--}}
 
-
+<script>
+    var env = {
+        apiRoot: 'http://api.{{ env("APP_DOMAIN") }}/v1'
+    };
+</script>
 <script data-main="admin/app/main" src="{{asset('admin/app/lib/requirejs/require.js')}}"></script>

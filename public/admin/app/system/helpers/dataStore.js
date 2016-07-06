@@ -45,7 +45,16 @@ define(['jquery'],
             }
 
             $.ajaxSetup({
-                cache: options.cache
+                cache: options.cache,
+                error: function (x, status, error) {
+                    if (x.status == 403) {
+                        alert("Sorry, your session has expired. Please login again to continue");
+                        window.location.href = "/Account/Login";
+                    }
+                    else {
+                        alert("An error occurred: " + status + "nError: " + error);
+                    }
+                }
             });
 
             ajax = $.ajax(options);
@@ -55,59 +64,32 @@ define(['jquery'],
         };
 
 
-        var ajaxErrorHandler = function (request, type, errorThrown) {
+        var ajaxErrorHandler = function (xhr, errorType, exception) {
+            var responseText;
+            var message;
 
-            var message = '';
-
-            switch (type) {
-                case 'timeout':
-                    message = "Timeout - O servidor demorou muito para responder.";
-                    break;
-                case 'parsererror':
-                    message = "O servidor retornou uma resposta em um formato inválido.";
-                    break;
-                default:
-                    message = request.responseJSON.message;
-            }
-console.log(request);
-            message += "\n";
-
-            if (request.status === 401) {
-                window.localStorage.setItem('token', '');
-                $('.app-container, #modal-area').empty();
-                $('.modal-backdrop').remove();
-                var msg = '<h4 class="text-center" style="color:#E74C3C">' +
-                    'Você tentou realizar uma operação não permitida!</h4>' +
-                    '<p>Faça login novamente e se o problema persistir,' +
-                    ' entre em contato com o administrador do sitema.</p>';
-
-                app.commands.execute("app:dialog:simple", {
-                    icon: 'info-sign',
-                    title: 'Acesso não permitido!',
-                    message: msg,
-                    confirmYes: function () {
-                        console.log('logout');
-                        window.location = '/logout';
-                    },
-                    confirmNo: function () {
-                    }
-                });
-
-                setTimeout(function () {
-                    window.location = '/logout';
-                }, 10000);
-            } else if(request.status == 500) {
+            try {
+                responseText = $.parseJSON(xhr.responseText);
+                message = '<strong>' + responseText.message + '</strong>';
+                if (responseText.hasOwnProperty('errors')) {
+                    message += '<ul>';
+                    $.each(responseText.errors, function(index, value){
+                        message += '<li>' + value + '</li>'
+                    });
+                    message += '</ul>';
+                }
                 app.utils.notify({
-                    text:  request.responseJSON.error.message,
-                    type: 'error'
-                });
-            } else {
-                app.utils.notify({
-                    text: message,
-                    type: 'error'
+                    type: 'error',
+                    text: message
                 });
 
+            } catch (e) {
+                app.utils.notify({
+                    type: 'error',
+                    text: xhr.responseText
+                });
             }
+
 
         };
 

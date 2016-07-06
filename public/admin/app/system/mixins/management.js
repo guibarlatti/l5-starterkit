@@ -53,7 +53,7 @@ define(['backbone.paginator', 'jquery'], function () {
                 },
                 parseRecords: function (resp) {
                     app.vent.trigger('pagination:change', resp.data);
-                    return resp.data.data;
+                    return resp.data;
                 },
                 parseState: function (resp, queryParams, state, options) {
                     return {
@@ -323,7 +323,7 @@ define(['backbone.paginator', 'jquery'], function () {
             });
 
             request.done(function (r) {
-                this.itemsCollection.reset(r.data.data);
+                this.itemsCollection.reset(r.data);
 
                 this.itemsCollection.state.totalPages = r.data.last_page;
                 this.itemsCollection.state.currentPage = r.data.current_page;
@@ -341,7 +341,7 @@ define(['backbone.paginator', 'jquery'], function () {
                 });
                 this.stickit();
 
-                if (r.data.data.length == 0) {
+                if (r.data.length == 0) {
                     app.utils.notify({
                         type: 'info',
                         text: 'Nenhum item encontrado.'
