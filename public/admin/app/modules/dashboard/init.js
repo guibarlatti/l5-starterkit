@@ -35,13 +35,13 @@ define([
             {
                 title: 'Dashboard',
                 route: '',
-                iconClass: 'fa fa-star',
+                iconClass: 'fa fa-dashboard',
                 order: 0,
                 accessLevel: 1,
                 childRoutes: [{
                     title: 'Dashboard',
                     route: '',
-                    iconClass: 'fa fa-star',
+                    iconClass: 'fa fa-dashboard',
                     order: 0,
                     accessLevel: 1
                 }]

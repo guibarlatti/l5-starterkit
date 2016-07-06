@@ -1,6 +1,6 @@
 <% if (typeof childRoutes != 'undefined') { %>
 <a data-toggle="collapse" href="#submenu-<%= route %>">
-    <span class="icon fa fa-tachometer"></span><span class="title"><%= title %></span>
+    <span class="icon <%= iconClass %>"></span><span class="title"><%= title %></span>
 </a>
 <!-- Dropdown level 1 -->
 <div id="submenu-<%= route %>" class="panel-collapse collapse">
@@ -20,6 +20,6 @@
 </div>
 <% } else { %>
 <a href="#<%= route %>">
-    <span class="icon fa fa-tachometer"></span><span class="title"><%= title %></span>
+    <span class="icon <%= iconClass %>"></span><span class="title"><%= title %></span>
 </a>
 <% } %>

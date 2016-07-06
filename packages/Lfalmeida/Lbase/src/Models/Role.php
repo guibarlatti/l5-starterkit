@@ -7,7 +7,11 @@ use Sofa\Eloquence\Eloquence;
 use Sofa\Eloquence\Validable;
 use Zizaco\Entrust\EntrustRole;
 
-
+/**
+ * Class Role
+ *
+ * @package Lfalmeida\Lbase\Models
+ */
 class Role extends EntrustRole implements ValidableContract
 {
 
@@ -22,6 +26,7 @@ class Role extends EntrustRole implements ValidableContract
     protected static $businessRules = [
         'name' => ['required', 'unique:roles']
     ];
+    protected $searchableColumns = ['name', 'display_name', 'description'];
     /**
      * @var array
      */
@@ -36,7 +41,6 @@ class Role extends EntrustRole implements ValidableContract
         'displayName',
         'description',
     ];
-
 
     /**
      * Este método sobrescreve o da superclasse adaptando para o Laravel 5.2

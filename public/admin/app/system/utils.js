@@ -113,6 +113,7 @@ define(['toastr', 'idleTimer'], function (toastr) {
             selector: '[data-toggle="popover"]',
             trigger: "hover"
         });
+
         setupMenu();
     }
 
@@ -139,6 +140,12 @@ define(['toastr', 'idleTimer'], function (toastr) {
                 $('[data-route="' + hash + '"]').addClass('active');
             });
 
+            var ajaxProcess = $('.app-busy');
+            $(document).ajaxStart(function () {
+                ajaxProcess.show();
+            }).ajaxStop(function () {
+                ajaxProcess.hide();
+            });
         });
     }
 

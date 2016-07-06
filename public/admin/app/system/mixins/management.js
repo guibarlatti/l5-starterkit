@@ -14,8 +14,9 @@ define(['backbone.paginator', 'jquery'], function () {
             }
 
             this.listenTo(app.vent, 'pagination:change', function (r) {
-                this.model.set(r);
+                this.model.set(r.paging);
                 this.stickit();
+                console.log(this.model.toJSON());
             });
 
             this.listenTo(app.vent, this.eventRefreshList, function () {
@@ -27,12 +28,14 @@ define(['backbone.paginator', 'jquery'], function () {
                 this.itemsCollection.getPage(this.itemsCollection.state.currentPage);
             });
 
+            this.listenTo(this.model, 'chage', function () {
+                console.log(this.model.toJSON());
+            });
+
         },
 
         onRender: function () {
-
             this.setItemsPerPage();
-
             this.initPagination(this.endpoint, this.itemsPerPage);
         },
 
@@ -52,14 +55,16 @@ define(['backbone.paginator', 'jquery'], function () {
                     pageSize: 'pageSize'
                 },
                 parseRecords: function (resp) {
-                    app.vent.trigger('pagination:change', resp.data);
+                    console.log(resp);
+                    app.vent.trigger('pagination:change', resp);
                     return resp.data;
                 },
                 parseState: function (resp, queryParams, state, options) {
+
                     return {
-                        totalRecords: resp.data.total,
-                        totalPages: resp.data.last_page,
-                        lastPage: resp.data.last_page
+                        totalRecords: resp.paging.total,
+                        totalPages: resp.paging.lastPage,
+                        lastPage: resp.paging.lastPage
                     };
                 }
             });
@@ -85,14 +90,15 @@ define(['backbone.paginator', 'jquery'], function () {
                     el: this.$('.itemsTable')
                 });
 
-
             this.itemsCollection.getFirstPage().done(function () {
                 listView.render();
                 this.renderControls(this.itemsCollection.state.currentPage, this.itemsCollection.state.totalPages);
             }.bind(this));
+
         },
 
         renderControls: function (currentPage, numPages) {
+
             var pagingControls = '',
                 container = this.$('.pagination'),
                 itemsToShow = (currentPage + 2);
@@ -146,16 +152,16 @@ define(['backbone.paginator', 'jquery'], function () {
                 page = $el.val();
             }
 
-            if (this.model.get('current_page', page) == page) {
+            if (this.model.get('currentPage', page) == page) {
                 return true;
             }
 
             this.itemsCollection.getPage(parseInt(page)).done(function (r) {
-                this.itemsCollection.state.totalPages = r.data.last_page;
-                this.itemsCollection.state.currentPage = r.data.current_page;
+                this.itemsCollection.state.totalPages = r.paging.lastPage;
+                this.itemsCollection.state.currentPage = r.paging.currentPage;
                 this.itemsCollection.state.firstPage = 1;
-                this.itemsCollection.state.lastPage = r.data.last_page;
-                this.renderControls(r.data.current_page, r.data.last_page);
+                this.itemsCollection.state.lastPage = r.paging.lastPage;
+                this.renderControls(r.paging.currentPage, r.paging.lastPage);
             }.bind(this));
 
         },
@@ -168,11 +174,11 @@ define(['backbone.paginator', 'jquery'], function () {
             }
 
             this.itemsCollection.getPreviousPage().done(function (r) {
-                this.itemsCollection.state.totalPages = r.data.last_page;
-                this.itemsCollection.state.currentPage = r.data.current_page;
+                this.itemsCollection.state.totalPages = r.paging.lastPage;
+                this.itemsCollection.state.currentPage = r.paging.currentPage;
                 this.itemsCollection.state.firstPage = 1;
-                this.itemsCollection.state.lastPage = r.data.last_page;
-                this.renderControls(r.data.current_page, r.data.last_page);
+                this.itemsCollection.state.lastPage = r.paging.lastPage;
+                this.renderControls(r.paging.currentPage, r.paging.lastPage);
             }.bind(this));
 
         },
@@ -187,11 +193,11 @@ define(['backbone.paginator', 'jquery'], function () {
             }
 
             this.itemsCollection.getNextPage().done(function (r) {
-                this.itemsCollection.state.totalPages = r.data.last_page;
-                this.itemsCollection.state.currentPage = r.data.current_page;
+                this.itemsCollection.state.totalPages = r.paging.lastPage;
+                this.itemsCollection.state.currentPage = r.paging.currentPage;
                 this.itemsCollection.state.firstPage = 1;
-                this.itemsCollection.state.lastPage = r.data.last_page;
-                this.renderControls(r.data.current_page, r.data.last_page);
+                this.itemsCollection.state.lastPage = r.paging.lastPage;
+                this.renderControls(r.paging.currentPage, r.paging.lastPage);
             }.bind(this));
 
         },
@@ -220,7 +226,6 @@ define(['backbone.paginator', 'jquery'], function () {
             }, 300);
             $(this).data('timer', wait);
         },
-
 
         confirmDelete: function (e) {
 
@@ -295,7 +300,7 @@ define(['backbone.paginator', 'jquery'], function () {
 
         pageJumpFormSubmit: function (e) {
             e.preventDefault();
-            var lastPage = this.model.get('last_page');
+            var lastPage = this.model.get('lastPage');
             var requestedPage = $('.pageJump').val();
 
             if (requestedPage == '') return false;
@@ -325,19 +330,19 @@ define(['backbone.paginator', 'jquery'], function () {
             request.done(function (r) {
                 this.itemsCollection.reset(r.data);
 
-                this.itemsCollection.state.totalPages = r.data.last_page;
-                this.itemsCollection.state.currentPage = r.data.current_page;
+                this.itemsCollection.state.totalPages = r.paging.lastPage;
+                this.itemsCollection.state.currentPage = r.paging.currentPage;
                 this.itemsCollection.state.firstPage = 1;
-                this.itemsCollection.state.lastPage = r.data.last_page;
+                this.itemsCollection.state.lastPage = r.paging.lastPage;
 
                 this.itemsCollection.queryParams.search = this.model.get('search');
 
-                this.renderControls(r.data.current_page, r.data.last_page);
+                this.renderControls(r.paging.currentPage, r.paging.lastPage);
 
                 this.model.set({
-                    last_page: r.data.last_page,
-                    total: r.data.total,
-                    current_page: r.data.current_page,
+                    lastPage: r.paging.lastPage,
+                    total: r.paging.total,
+                    currentPage: r.paging.currentPage,
                 });
                 this.stickit();
 
@@ -352,15 +357,14 @@ define(['backbone.paginator', 'jquery'], function () {
 
         },
 
-        setItemsPerPage: function() {
-            var itemsPerPageAuto =  parseInt((($(window).height() - 300) / 36));
+        setItemsPerPage: function () {
+            var itemsPerPageAuto = parseInt((($(window).height() - 300) / 36));
             if (!this.itemsPerPage || this.itemsPerPage == 'auto') {
                 this.itemsPerPage = itemsPerPageAuto;
-                console.log('alterando resultados por página para: ' + itemsPerPageAuto);
             }
 
             this.$('.table-wrapper').css({
-                'min-height': ($(window).height() - 330) ,
+                'min-height': ($(window).height() - 330),
             });
         },
 
@@ -375,20 +379,18 @@ define(['backbone.paginator', 'jquery'], function () {
             'change .pageJump': 'pageJump',
             'submit .formPageJump': 'pageJumpFormSubmit',
             'submit .formSearch': 'searchFormSubmit'
-
-
         },
 
         bindings: {
             '.search-box': 'search',
             '.pagination, .pagesCount': {
-                observe: 'last_page',
+                observe: 'lastPage',
                 visible: function (val) {
                     return val > 0
                 }
             },
             '.totalPages': {
-                observe: 'last_page',
+                observe: 'lastPage',
                 visible: function (val) {
                     return val > 0
                 },
@@ -401,12 +403,12 @@ define(['backbone.paginator', 'jquery'], function () {
                 },
                 updateView: true
             },
-            '.currentPage': 'current_page',
+            '.currentPage': 'currentPage',
             '.pageJump': {
 
                 attributes: [{
                     name: 'max',
-                    observe: 'last_page',
+                    observe: 'lastPage',
                     onGet: function (val) {
                         return val;
                     }

@@ -4,6 +4,13 @@
             <button type="button" class="navbar-expand-toggle">
                 <i class="fa fa-bars icon"></i>
             </button>
+            <ul class="nav navbar-nav">
+                <li>
+                    <div style="min-width: 50px;margin-top: 5px">
+                        <img class="app-busy" src="{{asset('admin/dist/img/loader-blue.gif')}}"/>
+                    </div>
+                </li>
+            </ul>
             <ol class="breadcrumb navbar-breadcrumb">
                 <li class="active"></li>
             </ol>

@@ -1731,3 +1731,45 @@ body.login-page .login-footer {
 input.form-control.error {
     border-left: 4px solid #FA2A00;
 }
+
+
+
+
+
+
+.search input {
+    outline: none
+}
+
+.search input::-webkit-search-decoration, .search input::-webkit-search-cancel-button {
+    display: none
+}
+
+.search input[type=search] {
+    -webkit-appearance: textfield;
+    -webkit-box-sizing: content-box;
+    background: #f5f5f5 url("data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABIAAAATCAYAAACdkl3yAAAAGXRFWHRTb2Z0d2FyZQBBZG9iZSBJbWFnZVJlYWR5ccllPAAAAvRJREFUeNqUVE9Ik2EYf/fv29z//4vPqWnbUKcijaWHYCIEXrzEQA8SeZkE6+AONoKEGIG3Ljukp1FUt7ROghR4CTILjRoeuuRSdIaubbi26dbvGU6+dAN74eH7tvd5f8/v/f2e5xOVy2VWXTabjQmXSCRiEonEI5PJbkul0mv47SiVSmtHR0crxWIxenx8vHWaWw8IAJxcLp/WaDRhlUolMRgMGURhd3dXk8lkuGw2m0bcyefzLwhDymosgDCtVvtEp9ONd3R07IfD4Y/t7e0/sJVC8EtLS5ej0ejVRCLx/ODggMvlcjFGaNWwWq0VVq2trYN9fX3liYmJZKFQmMEe73K5mMPhYACk3F6APBseHs57vd5sc3OzUXyWDbRgTU1N98CoHAwGX0Kf+3a7fTuVSrF0Os3AgOHgGv67Ozo6+kGtVqtQ/NY5IBxkYrH4OsD2u7q6HjU2NpYg7Ok+MYcurKWlJTUwMBDhOK6Em9ysCQR3lNDpl9PpTMKhWjIyXJnxPL+M/GJDQwN/Dogsh8i5vb09Daxm9RbtQS81hObg5h9xrQSI/ROa8GDVTcD1nAXAONV2u93r54DoKkNDQ69AuazX659CfHUt1tCmE8+HxN7v98fEZxMQgUgkcsPj8STQiL2oGkdj+mGA+oTJJYVCETIajZ+wrwwEAm9hyPI/nd3W1hbAwVlUYWCT9vl8W4uLi1egFzUdw0j8BkMdLCfX0qFQaAX9NgmHv0qFICaTadZisTBUpCtqNzY2Ps/NzX2bn5/vjMfj5sPDQwmYbPf09CRHRkbeg9FjAH6n9qgwqoJQZ1M1uiIq59CQM/39/VHUGUS4EUrEPmId8Q5MCgRCGCIgdpvN5i80GgQCLYhRbmpq6jXmbBJdvHPyFajskatkCAEI20OysLBg2tzcHEOigpKFIKi4Q41XPUjv9IRWTKhtBSgWi2UhGL+6uuqkNgLIGyHIRVfVNS2qTmOGdBDwwf+CnP2wUU9JMdUF4ZBedP0VYACy1Fw50QDW/AAAAABJRU5ErkJggg==") no-repeat 9px center;
+    border: solid 1px #dedede;
+    font-weight: normal;
+    padding: 5px 10px 5px 38px;
+    width: 55px;
+    -webkit-border-radius: 10em;
+    -moz-border-radius: 10em;
+    border-radius: 10em;
+    -webkit-transition: all .5s;
+    -moz-transition: all .5s;
+    transition: all .5s
+}
+
+.search input[type=search]:focus, .search input[type=search].active {
+    width: 300px;
+    max-width: 100%
+}
+
+.search input:-moz-placeholder {
+    color: #999
+}
+
+.search input::-webkit-input-placeholder {
+    color: #999
+}
