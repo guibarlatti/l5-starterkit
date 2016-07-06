@@ -12,7 +12,7 @@
     "laravel/framework": "5.2.*",
     "tymon/jwt-auth": "0.5.*",
     "zizaco/entrust": "dev-laravel-5",
-    "barryvdh/laravel-cors": "^0.8.0"
+    "neomerx/cors-illuminate": "^2.0"
   },
   "require-dev": {
     "fzaninotto/faker": "~1.4",

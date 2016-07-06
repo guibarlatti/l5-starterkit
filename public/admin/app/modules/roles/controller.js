@@ -14,8 +14,13 @@ define([], function () {
             });
         },
 
-        register: function () {
+        register: function (id) {
             var model = new Backbone.Model();
+
+            if(id) {
+                model.set('id', id);
+            }
+
             require(['modules/roles/views/register'], function (View) {
                 app.mainRegion.show(new View({model: model}));
             });

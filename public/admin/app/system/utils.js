@@ -140,11 +140,12 @@ define(['toastr', 'idleTimer'], function (toastr) {
                 $('[data-route="' + hash + '"]').addClass('active');
             });
 
-            var ajaxProcess = $('.app-busy');
+            var loadingIndicator = $('.app-busy');
+            loadingIndicator.hide();
             $(document).ajaxStart(function () {
-                ajaxProcess.show();
+                loadingIndicator.show();
             }).ajaxStop(function () {
-                ajaxProcess.hide();
+                loadingIndicator.hide();
             });
         });
     }
