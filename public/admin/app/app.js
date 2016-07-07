@@ -47,7 +47,7 @@ define([
     utils.set(app);
     commands.set(app);
 
-     /**
+    /**
      * Menu principal
      */
     app.routesCollection = new RoutesCollection();
@@ -61,28 +61,29 @@ define([
 
         require(['system/init'], function (module) {
             module.start();
-        });
 
-        require(['modules/dashboard/init'], function (module) {
-            module.start();
-            if (module.hasOwnProperty('menuEntries') && module.menuEntries.length) {
-                //app.routesCollection.add(module.menuEntries);
-                _.each(module.menuEntries, function (entry) {
-                    app.routesCollection.add(entry);
-                });
-            }
-        });
+            var modulesLoaded = 0;
+            var modules = ['dashboard', 'roles'];
 
-        require(['modules/roles/init'], function (module) {
-            module.start();
-            // adicionando rotas do módulo
-            if (module.hasOwnProperty('menuEntries') && module.menuEntries.length) {
-                //app.routesCollection.add(module.menuEntries);
-                _.each(module.menuEntries, function (entry) {
-                        app.routesCollection.add(entry);
+            $.each(modules, function (i, moduleName) {
+
+                require(['modules/' + moduleName + '/init'], function (module) {
+                    module.start();
+                    // adicionando rotas do módulo
+                    if (module.hasOwnProperty('menuEntries') && module.menuEntries.length) {
+                        _.each(module.menuEntries, function (entry) {
+                            app.routesCollection.add(entry);
+                        });
+                    }
+
+                    if (modulesLoaded == (modules.length - 1)) {
+                        app.vent.trigger('modules:loaded');
+                    }
+
+                    modulesLoaded++;
+
                 });
-            }
-            app.vent.trigger('modules:loaded');
+            });
         });
     });
 

@@ -1,7 +1,7 @@
 /*global app, $, Marionette */
 define([
-    'tpl!modules/roles/templates/register.html',
-    'modules/roles/config/config',
+    'tpl!modules/users/templates/register.html',
+    'modules/users/config/config',
     'validate',
     'stickit'
 ], function (Template, config) {
@@ -31,7 +31,7 @@ define([
             if (this.model.get('id')) {
                 app.dataStore.ajax({
                     type: 'GET',
-                    url: app.config.getEndPoint('roles/' + this.model.get('id'))
+                    url: app.config.getEndPoint('users/' + this.model.get('id'))
                 }).done(function (result) {
                     this.model.set(result.data);
                     this.stickit();
@@ -40,17 +40,13 @@ define([
         },
 
         save: function (e) {
-
             e && e.preventDefault();
-            
-            var requestData = this.model.toJSON(),
-                endpoint = this.model.get('id') ? app.config.getEndPoint('roles/' + this.model.get('id')) : app.config.getEndPoint('roles'),
-                method = this.model.get('id') ? 'PUT' : 'POST';
+            var requestData = this.model.toJSON();
 
             var request = app.dataStore.ajax({
-                url: endpoint,
+                url: app.config.getEndPoint('users'),
                 data: requestData,
-                type: method
+                type: this.model.get('id') ? 'PUT' : 'POST'
             });
 
             request.done(function () {
