@@ -3,24 +3,24 @@
 
 /**
  *
- * Módulo (pacote) roles
+ * Módulo (pacote) users
  *
  */
 
 define([
     'marionette',
-    'modules/roles/controller',
-    'modules/roles/router'
+    'modules/users/controller',
+    'modules/users/router'
 ], function (Marionette, Controller, Router) {
 
     'use strict';
 
     /*
-     * Definição do módulo roles, adicionando initializer
+     * Definição do módulo users, adicionando initializer
      * e associando nosso Router para módulo
      *
      */
-    return app.module("roles", function (roles) {
+    return app.module("users", function (users) {
 
         /**
          * evitando que este módulo seja carregado automaticamente
@@ -33,8 +33,8 @@ define([
          */
         this.menuEntries = [
             {
-                title: 'roles',
-                route: 'roles',
+                title: 'users',
+                route: 'users',
                 iconClass: 'fa fa-star',
                 order: 2,
                 accessLevel: 1
@@ -45,7 +45,7 @@ define([
          *  Initializer do módulo
          */
         this.addInitializer(function () {
-            console.log('Module:roles -> initialized');
+            console.log('Module:users -> initialized');
             this.router = new Router({
                 controller: Controller
             });

@@ -9,9 +9,9 @@ define([
     return Marionette.AppRouter.extend({
 
         appRoutes: {
-            'roles': 'management',
-						'roles/create': 'register',
-            'roles/edit/:id': 'register'
+            'users': 'management',
+						'users/create': 'register',
+            'users/edit/:id': 'register'
         }
 
     });

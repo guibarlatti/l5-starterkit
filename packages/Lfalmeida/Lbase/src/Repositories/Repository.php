@@ -101,7 +101,7 @@ abstract class Repository implements RepositoryInterface
      *
      * @return mixed
      */
-    public function all($columns = array('*'))
+    public function all($columns = ['*'])
     {
         if (!empty($this->defaultOrderColumn)) {
             return $this->model->orderBy($this->defaultOrderColumn, $this->defaultOrderDirection)->get($columns);
@@ -118,19 +118,51 @@ abstract class Repository implements RepositoryInterface
     }
 
     /**
-     * @param int   $perPage
-     * @param array $columns
+     * @param int    $perPage
+     * @param array  $columns
+     *
+     * @param string $order
      *
      * @return mixed
      */
-    public function paginate($perPage = 15, $columns = array('*'))
+    public function paginate($perPage = 15, $columns = ['*'], $order = '')
     {
-        if (!empty($this->defaultOrderColumn)) {
-            return $this->model
-                ->orderBy($this->defaultOrderColumn, $this->defaultOrderDirection)
-                ->paginate($perPage, $columns);
+        $m = $this->model;
+        $sort = $this->parseOrderParam($order);
+        if($sort) {
+            $m->orderBy($sort['column'], $sort['direction']);
         }
-        return $this->model->paginate($perPage, $columns);
+        return $m->paginate($perPage, $columns);
+    }
+
+    /**
+     * @param $rawOrderString
+     *
+     * @return mixed
+     */
+    private function parseOrderParam($rawOrderString)
+    {
+        if(empty($rawOrderString)) {
+            if (!empty($this->defaultOrderColumn)) {
+                return [
+                    'column' => $this->defaultOrderColumn,
+                    'direction' => $this->defaultOrderDirection
+                ];
+            } else {
+                return false;
+            }
+        }
+
+        $order = [];
+        $order['direction'] = 'ASC';
+
+        if (strpos($rawOrderString, '-') !== false) {
+            $order['direction'] = 'DESC';
+        }
+
+        $order['column'] = str_replace(['-','+'],'',$rawOrderString);
+
+        return $order;
     }
 
     /**
@@ -168,7 +200,7 @@ abstract class Repository implements RepositoryInterface
      *
      * @return mixed
      */
-    public function find($id, $columns = array('*'))
+    public function find($id, $columns = ['*'])
     {
         return $this->model->find($id, $columns);
     }
@@ -221,7 +253,7 @@ abstract class Repository implements RepositoryInterface
      *
      * @return mixed
      */
-    public function findBy($attribute, $value, $columns = array('*'))
+    public function findBy($attribute, $value, $columns = ['*'])
     {
         return $this->model->where($attribute, '=', $value)->get($columns);
     }
@@ -235,7 +267,9 @@ abstract class Repository implements RepositoryInterface
     public function search(array $params)
     {
         $perPage = isset($params['pageSize']) ? $params['pageSize'] : 15;
-        return $this->model->search($params['search'])->paginate($perPage);
+        $m = $this->model->search($params['search']);
+        $m->paginate($perPage);
+        return $m;
     }
 
 }

@@ -16,7 +16,6 @@ define(['backbone.paginator', 'jquery'], function () {
             this.listenTo(app.vent, 'pagination:change', function (r) {
                 this.model.set(r.paging);
                 this.stickit();
-                console.log(this.model.toJSON());
             });
 
             this.listenTo(app.vent, this.eventRefreshList, function () {
@@ -26,10 +25,6 @@ define(['backbone.paginator', 'jquery'], function () {
 
             this.listenTo(app.vent, this.eventDeletedItem, function () {
                 this.itemsCollection.getPage(this.itemsCollection.state.currentPage);
-            });
-
-            this.listenTo(this.model, 'chage', function () {
-                console.log(this.model.toJSON());
             });
 
         },
@@ -55,7 +50,6 @@ define(['backbone.paginator', 'jquery'], function () {
                     pageSize: 'pageSize'
                 },
                 parseRecords: function (resp) {
-                    console.log(resp);
                     app.vent.trigger('pagination:change', resp);
                     return resp.data;
                 },

@@ -2,8 +2,8 @@
 /*global $, Marionette, jQuery, define, app, _, require*/
 
 define([
-    'tpl!modules/roles/templates/management.html',
-    'tpl!modules/roles/templates/itemTemplate.html',
+    'tpl!modules/users/templates/management.html',
+    'tpl!modules/users/templates/itemTemplate.html',
     'system/mixins/management',
     'stickit'
 ], function (htmlTemplate, htmlItemTemplate, ManagementMixin) {
@@ -13,14 +13,14 @@ define([
     var ManagementView = Marionette.ItemView.extend({
         template: htmlTemplate,
         itemTemplate: htmlItemTemplate,
-        endpoint: app.config.getEndPoint('roles'),
+        endpoint: app.config.getEndPoint('users'),
         itemsPerPage: 'auto',
         sortProperty: 'name',
-        viewRegisterPath: 'modules/roles/views/register',
-        entityName: 'roles',
-        moduleName: 'roles',
-        eventRefreshList: 'roles:refreshList',
-        eventDeletedItem: 'roles:deletedItem',
+        viewRegisterPath: 'modules/users/views/register',
+        entityName: 'users',
+        moduleName: 'users',
+        eventRefreshList: 'users:refreshList',
+        eventDeletedItem: 'users:deletedItem',
         modalCustomClass: ''
     });
 

@@ -86,7 +86,8 @@ class JwtAuthController extends Controller
 
     public function logout()
     {
-        return view('backend.home');
+        Auth::logout();
+        return redirect('/');
     }
 
 }

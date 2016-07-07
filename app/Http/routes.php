@@ -16,7 +16,6 @@ Route::group(['domain' => 'admin.' . env('APP_DOMAIN')], function () {
     Route::get('/login', 'Auth\JwtAuthController@showLogin');
     Route::get('/logout', 'Auth\JwtAuthController@logout');
 
-
 });
 
 /**
@@ -65,6 +64,7 @@ Route::group(['prefix' => 'api/v1', 'middleware' => ['cors']], $apiRoutes);
 /**
  * API V1 subdomain routes
  */
+
 Route::group(['domain' => 'api.' . env('APP_DOMAIN'), 'middleware' => ['cors']], function () use ($apiRoutes) {
     Route::group(['prefix' => 'v1'], $apiRoutes);
 });

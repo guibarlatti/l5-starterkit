@@ -902,6 +902,11 @@ body.login-page .login-footer {
     }
 }
 
+.table .btn {
+    margin-top: 0;
+    margin-bottom: 0;
+}
+
 .dataTables_wrapper .row {
     margin-bottom: 0.5em;
 }
