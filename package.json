@@ -6,10 +6,12 @@
   },
   "devDependencies": {
     "apidoc": "^0.16.1",
+    "generator-bluenote": "^0.0.3",
     "git-guppy": "~1.2.1",
     "gulp": "^3.9.1",
     "gulp-apidoc": "^0.2.4",
     "gulp-phpunit": "^0.15.2",
+    "gulp-prompt": "^0.2.0",
     "gulp-run": "^1.7.1"
   }
 }
