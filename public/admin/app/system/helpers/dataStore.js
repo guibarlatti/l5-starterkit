@@ -25,6 +25,7 @@ define(['jquery'],
                     'data': {},
                     'type': 'get',
                     'dataType': 'json',
+                    'crossDomain': true,
                     'cache': true,
                     'global': true, // this makes sure ajaxStart is triggered
                     'timeout': 20000,
@@ -40,7 +41,7 @@ define(['jquery'],
             if (token) {
                 //options.data.token = token;
                 options.headers = {
-                    'Authorization': 'Bearer ' + token
+                    'authorization': 'Bearer ' + token
                 };
             }
 

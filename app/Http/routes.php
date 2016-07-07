@@ -1,5 +1,4 @@
 <?php
-
 /**
  * Rotas do Admin Backend
  */
@@ -70,3 +69,5 @@ Route::group(['domain' => 'api.' . env('APP_DOMAIN'), 'middleware' => ['cors']],
     Route::group(['prefix' => 'v1'], $apiRoutes);
 });
 
+//, 'middleware' => ['cors']
+//, 'middleware' => ['cors']

@@ -15,6 +15,7 @@ class Kernel extends HttpKernel
      */
     protected $middleware = [
         \Illuminate\Foundation\Http\Middleware\CheckForMaintenanceMode::class,
+
     ];
 
     /**
@@ -33,8 +34,7 @@ class Kernel extends HttpKernel
         ],
 
         'api' => [
-            'throttle:60,1',
-//            'jwt.auth' => \Tymon\JWTAuth\Middleware\GetUserFromToken::class,
+//            'throttle:60,1',
         ],
         
     ];
@@ -47,6 +47,7 @@ class Kernel extends HttpKernel
      * @var array
      */
     protected $routeMiddleware = [
+        'cors' => \App\Http\Middleware\Cors::class,
         'auth' => Middleware\Authenticate::class,
         'auth.basic' => \Illuminate\Auth\Middleware\AuthenticateWithBasicAuth::class,
         'can' => \Illuminate\Foundation\Http\Middleware\Authorize::class,
@@ -60,5 +61,6 @@ class Kernel extends HttpKernel
         'token.ability' => \Lfalmeida\Lbase\Middleware\TokenEntrustAbility::class,
         'token.role' => \Lfalmeida\Lbase\Middleware\TokenEntrustRole::class,
         'token.premission' => \Lfalmeida\Lbase\Middleware\TokenEntrustPermission::class,
+
     ];
 }
