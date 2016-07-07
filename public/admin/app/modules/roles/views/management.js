@@ -17,7 +17,7 @@ define([
         itemsPerPage: 'auto',
         sortProperty: 'name',
         viewRegisterPath: 'modules/roles/views/register',
-        entityName: 'Cargo',
+        entityName: 'roles',
         moduleName: 'roles',
         eventRefreshList: 'roles:refreshList',
         eventDeletedItem: 'roles:deletedItem',
@@ -28,6 +28,3 @@ define([
 
     return ManagementView;
 });
-
-
-

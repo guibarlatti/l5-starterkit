@@ -40,13 +40,22 @@ define([
         },
 
         save: function (e) {
+
             e && e.preventDefault();
-            var requestData = this.model.toJSON();
+
+            var requestData = this.model.toJSON(),
+                endpoint =  app.config.getEndPoint('users'),
+                method = 'POST';
+
+            if(this.model.get('id')) {
+                method = 'PUT';
+                endpoint += '/' + this.model.get('id');
+            }
 
             var request = app.dataStore.ajax({
-                url: app.config.getEndPoint('users'),
+                url: endpoint,
                 data: requestData,
-                type: this.model.get('id') ? 'PUT' : 'POST'
+                type: method
             });
 
             request.done(function () {

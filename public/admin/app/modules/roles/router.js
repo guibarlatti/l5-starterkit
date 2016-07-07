@@ -10,7 +10,7 @@ define([
 
         appRoutes: {
             'roles': 'management',
-            'roles/create': 'register',
+						'roles/create': 'register',
             'roles/edit/:id': 'register'
         }
 

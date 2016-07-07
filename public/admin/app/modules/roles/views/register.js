@@ -42,10 +42,15 @@ define([
         save: function (e) {
 
             e && e.preventDefault();
-            
+
             var requestData = this.model.toJSON(),
-                endpoint = this.model.get('id') ? app.config.getEndPoint('roles/' + this.model.get('id')) : app.config.getEndPoint('roles'),
-                method = this.model.get('id') ? 'PUT' : 'POST';
+                endpoint =  app.config.getEndPoint('roles'),
+                method = 'POST';
+
+            if(this.model.get('id')) {
+                method = 'PUT';
+                endpoint += '/' + this.model.get('id');
+            }
 
             var request = app.dataStore.ajax({
                 url: endpoint,

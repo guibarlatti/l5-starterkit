@@ -33,7 +33,7 @@ define([
          */
         this.menuEntries = [
             {
-                title: 'Roles',
+                title: 'roles',
                 route: 'roles',
                 iconClass: 'fa fa-star',
                 order: 2,

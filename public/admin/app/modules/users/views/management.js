@@ -17,7 +17,7 @@ define([
         itemsPerPage: 'auto',
         sortProperty: 'name',
         viewRegisterPath: 'modules/users/views/register',
-        entityName: 'Cargo',
+        entityName: 'users',
         moduleName: 'users',
         eventRefreshList: 'users:refreshList',
         eventDeletedItem: 'users:deletedItem',

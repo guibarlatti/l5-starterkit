@@ -10,6 +10,7 @@ define([
 
         appRoutes: {
             'users': 'management',
+						'users/create': 'register',
             'users/edit/:id': 'register'
         }
 
