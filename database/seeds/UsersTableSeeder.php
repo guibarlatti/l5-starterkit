@@ -18,7 +18,13 @@ class UsersTableSeeder extends Seeder
 
         $faker = Faker\Factory::create('pt_BR');
 
-        for ($i = 0; $i <= 40; $i++) {
+        $entity = new App\Models\User();
+        $entity->name = 'Administrador';
+        $entity->email = 'adm@adm.com';
+        $entity->password = Hash::make('a1s2d3f4');
+        $entity->save();
+
+        for ($i = 0; $i <= 99; $i++) {
             $entity = new App\Models\User();
             $entity->name = sprintf('%s %s', $faker->firstName, $faker->lastName);
             $entity->email = $faker->email;
