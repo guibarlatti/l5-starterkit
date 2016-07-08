@@ -3,6 +3,7 @@ define([], function () {
     return {
         bindingsCadastro: {
             '#name': 'name',
+            '#displayName': 'displayName',
             '#description': 'description'
         },
         validation: {

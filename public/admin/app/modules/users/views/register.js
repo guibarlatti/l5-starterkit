@@ -63,6 +63,7 @@ define([
                     type: 'success',
                     text: 'Operação realizada com sucesso.'
                 });
+                window.location = '#users';
             });
         },
 

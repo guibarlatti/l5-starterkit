@@ -341,6 +341,7 @@ a:hover {
     line-height: 46px;
     display: block;
     white-space: nowrap;
+    font-size: 1.16em;
 }
 
 .app-container .content-container .side-menu .navbar-nav li a .icon {
@@ -352,7 +353,7 @@ a:hover {
 }
 
 .app-container .content-container .side-menu .navbar-nav li a .title {
-    width: 0px;
+    width: 0;
     white-space: nowrap;
     padding-left: 6px;
     display: none;
@@ -736,9 +737,14 @@ a:hover {
     border-bottom-right-radius: 3px;
 }
 
-.form-control {
+.form-control,.form-control:focus {
     border-radius: 1px;
     box-shadow: none;
+
+}
+
+.form-control:focus {
+    border-color: #444;
 }
 
 .bs-example-modal .modal {

@@ -3,7 +3,8 @@ define([], function () {
     return {
         bindingsCadastro: {
             '#name': 'name',
-            '#description': 'description'
+            '#email': 'email',
+            '#password': 'password'
         },
         validation: {
             errorPlacement: function (error, element) {
@@ -14,7 +15,10 @@ define([], function () {
                 'name': {
                     required: true
                 },
-                'description': {
+                'email': {
+                    required: true, email: true
+                },
+                'password': {
                     required: true
                 }
 
@@ -29,12 +33,21 @@ define([], function () {
                         });
                     }
                 },
-                'description': {
+                'email': {
                     required: function () {
                         app.utils.notify({
                             type: 'error',
                             title: '!',
-                            text: 'O campo Descrição  é obrigatório'
+                            text: 'O campo Email  é obrigatório'
+                        });
+                    }
+                },
+                'password': {
+                    required: function () {
+                        app.utils.notify({
+                            type: 'error',
+                            title: '!',
+                            text: 'O campo Senha é obrigatório'
                         });
                     }
                 }
