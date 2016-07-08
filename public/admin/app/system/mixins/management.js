@@ -38,23 +38,25 @@ define(['backbone.paginator', 'jquery'], function () {
 
             var Item = Backbone.Model.extend({});
             var itemTemplate = this.itemTemplate;
+            var sorting = this.model.get('sorting');
 
             var ItemsCollection = Backbone.PageableCollection.extend({
                 model: Item,
                 url: endpoint,
                 state: {
-                    pageSize: perPage
+                    pageSize: perPage,
+                    sortKey: null
                 },
                 queryParams: {
                     currentPage: 'page',
-                    pageSize: 'pageSize'
+                    pageSize: 'pageSize',
+                    sortKey: 'sort'
                 },
                 parseRecords: function (resp) {
                     app.vent.trigger('pagination:change', resp);
                     return resp.data;
                 },
                 parseState: function (resp, queryParams, state, options) {
-
                     return {
                         totalRecords: resp.paging.total,
                         totalPages: resp.paging.lastPage,
@@ -261,7 +263,7 @@ define(['backbone.paginator', 'jquery'], function () {
             });
         },
 
-        showModalCadastro: function (e) {
+        showModalRegister: function (e) {
 
             e.preventDefault();
 
@@ -356,15 +358,31 @@ define(['backbone.paginator', 'jquery'], function () {
             if (!this.itemsPerPage || this.itemsPerPage == 'auto') {
                 this.itemsPerPage = itemsPerPageAuto;
             }
-
             this.$('.table-wrapper').css({
-                'min-height': ($(window).height() - 330),
+                'min-height': ($(window).height() - 400)
             });
+        },
+
+        sortByColumn: function (e) {
+            e.preventDefault();
+            var $el = $(e.currentTarget);
+            var sorting = $el.data();
+            var inverseDirection = parseInt(parseInt(sorting.direction) * -1);
+            this.itemsCollection.setSorting(sorting.column, sorting.direction);
+            this.itemsCollection.getFirstPage().done(function () {
+                this.renderControls(this.itemsCollection.state.currentPage, this.itemsCollection.state.totalPages);
+                $('table').find('.sorting').removeClass('sorting');
+                $(e.currentTarget)
+                    .data('direction', inverseDirection)
+                    .attr('data-direction', inverseDirection)
+                    .addClass('sorting');
+            }.bind(this));
+
         },
 
         events: {
             'click .confirmDelete': 'confirmDelete',
-            'click .showModalCadastro': 'showModalCadastro',
+            'click .showModalRegister': 'showModalRegister',
             'click .nextPage': 'nextPage',
             'click .prevPage': 'prevPage',
             'click .pagination a:not(:last):not(:first)': 'goToPage',
@@ -372,7 +390,8 @@ define(['backbone.paginator', 'jquery'], function () {
             'keyup .search-box': 'searchBoxKeyup',
             'change .pageJump': 'pageJump',
             'submit .formPageJump': 'pageJumpFormSubmit',
-            'submit .formSearch': 'searchFormSubmit'
+            'submit .formSearch': 'searchFormSubmit',
+            'click .sort-column': 'sortByColumn'
         },
 
         bindings: {

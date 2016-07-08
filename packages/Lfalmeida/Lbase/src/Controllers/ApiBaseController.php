@@ -109,8 +109,9 @@ abstract class ApiBaseController extends Controller
         $fields = $request->input('fields') ? explode(',', $request->input('fields')) : ['*'];
         $pageSize = $request->input('pageSize') ? (int)$request->input('pageSize') : null;
         $sort = $request->input('sort') ? $request->input('sort') : null;
+        $order = $request->input('order') ? $request->input('order') : 'asc';
 
-        $pagination = $this->repository->paginate($pageSize, $fields, $sort);
+        $pagination = $this->repository->paginate($pageSize, $fields, $sort, $order);
 
         $pagination->appends($request->except(['page']));
 

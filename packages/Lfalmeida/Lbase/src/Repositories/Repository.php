@@ -117,53 +117,27 @@ abstract class Repository implements RepositoryInterface
         return $this->model->count();
     }
 
+
     /**
      * @param int    $perPage
      * @param array  $columns
-     *
+     * @param string $sort
      * @param string $order
      *
      * @return mixed
      */
-    public function paginate($perPage = 15, $columns = ['*'], $order = '')
+    public function paginate($perPage = 15, $columns = ['*'], $sort = '', $order = 'asc')
     {
         $m = $this->model;
-        $sort = $this->parseOrderParam($order);
+
         if($sort) {
-            $m->orderBy($sort['column'], $sort['direction']);
+            $m->orderBy($sort, $order);
+        } else if($this->defaultOrderColumn) {
+            $m->orderBy($this->defaultOrderColumn, $order);
         }
         return $m->paginate($perPage, $columns);
     }
 
-    /**
-     * @param $rawOrderString
-     *
-     * @return mixed
-     */
-    private function parseOrderParam($rawOrderString)
-    {
-        if(empty($rawOrderString)) {
-            if (!empty($this->defaultOrderColumn)) {
-                return [
-                    'column' => $this->defaultOrderColumn,
-                    'direction' => $this->defaultOrderDirection
-                ];
-            } else {
-                return false;
-            }
-        }
-
-        $order = [];
-        $order['direction'] = 'ASC';
-
-        if (strpos($rawOrderString, '-') !== false) {
-            $order['direction'] = 'DESC';
-        }
-
-        $order['column'] = str_replace(['-','+'],'',$rawOrderString);
-
-        return $order;
-    }
 
     /**
      * @param array $data

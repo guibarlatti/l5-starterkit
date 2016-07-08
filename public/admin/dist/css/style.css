@@ -606,6 +606,15 @@ a:hover {
     padding: 12.5px;
 }
 
+.card.compact .card-body {
+    padding: 10px 25px;
+}
+
+.card.compact .card-header .card-title {
+    padding: .5em 25px;
+    float: left;
+}
+
 .card .card-header .card-title {
     padding: 1.2em 25px;
     float: left;
@@ -1732,15 +1741,92 @@ body.login-page .login-footer {
     }
 }
 
-
 input.form-control.error {
     border-left: 4px solid #FA2A00;
 }
 
+.sort-column {
+    display: block;
+    width: calc(100% - 15px);
+    position: relative;
+    color: darkslategray;
+}
 
+.sort-column:hover, .sort-column:active, .sort-column:focus {
+    text-decoration: none;
+}
 
+.sort-column:hover {
+    color: #0a0a0a !important;
+}
 
+.sort-column.sorting {
+    padding-left: 20px;
+}
 
+.sorting.sort-column:before {
+    font: normal normal normal 14px/1 FontAwesome;
+    font-size: inherit;
+    text-rendering: auto;
+    -webkit-font-smoothing: antialiased;
+    position: absolute;
+    left: 0;
+    content: " ";
+    width: 15px;
+    height: 15px;
+    line-height: 18px;
+    display: inline-block;
+    vertical-align: middle;
+    color: #949494;
+}
+
+.sorting.sort-column[data-direction="1"]:before {
+    content: '\f160';
+}
+
+.sorting.sort-column[data-direction="-1"]:before {
+    content: '\f161';
+}
+
+/* Effect 1: Brackets */
+a.brackets-effect::before,
+a.brackets-effect::after {
+    display: inline-block;
+    opacity: 0;
+    -webkit-transition: -webkit-transform 0.3s, opacity 0.2s;
+    -moz-transition: -moz-transform 0.3s, opacity 0.2s;
+    transition: transform 0.3s, opacity 0.2s;
+}
+
+a.brackets-effect::before {
+    margin-right: 10px;
+    content: '[';
+    -webkit-transform: translateX(20px);
+    -moz-transform: translateX(20px);
+    transform: translateX(20px);
+}
+
+a.brackets-effect::after {
+    margin-left: 10px;
+    content: ']';
+    -webkit-transform: translateX(-20px);
+    -moz-transform: translateX(-20px);
+    transform: translateX(-20px);
+}
+
+a.brackets-effect:hover::before,
+a.brackets-effect:hover::after,
+a.brackets-effect:focus::before,
+a.brackets-effect:focus::after {
+    opacity: 1;
+    -webkit-transform: translateX(0px);
+    -moz-transform: translateX(0px);
+    transform: translateX(0px);
+}
+
+.formSearch {
+    margin-top: 8px;
+}
 
 .search input {
     outline: none
@@ -1767,8 +1853,8 @@ input.form-control.error {
 }
 
 .search input[type=search]:focus, .search input[type=search].active {
-    width: 300px;
-    max-width: 100%
+    width: 85%;
+    max-width: 200px;
 }
 
 .search input:-moz-placeholder {
