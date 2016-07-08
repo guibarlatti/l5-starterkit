@@ -368,16 +368,18 @@ define(['backbone.paginator', 'jquery'], function () {
             var $el = $(e.currentTarget);
             var sorting = $el.data();
             var inverseDirection = parseInt(parseInt(sorting.direction) * -1);
-            this.itemsCollection.setSorting(sorting.column, sorting.direction);
+
+            this.itemsCollection.setSorting(sorting.column, sorting.direction, {side: "client", full: false});
+
             this.itemsCollection.getFirstPage().done(function () {
                 this.renderControls(this.itemsCollection.state.currentPage, this.itemsCollection.state.totalPages);
+                this.itemsCollection.sort();
                 $('table').find('.sorting').removeClass('sorting');
                 $(e.currentTarget)
                     .data('direction', inverseDirection)
                     .attr('data-direction', inverseDirection)
                     .addClass('sorting');
             }.bind(this));
-
         },
 
         events: {
