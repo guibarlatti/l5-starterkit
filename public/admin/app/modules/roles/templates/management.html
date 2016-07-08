@@ -1,6 +1,6 @@
 <div class="row">
     <div class="col-xs-12 bs-example-modal">
-        <div class="card">
+        <div class="card compact">
             <div class="card-header">
                 <div class="card-title">
                     <div class="title"><i class="<%= app.utils.getIconRoute('roles') %>"></i> Gerenciamento de
@@ -11,11 +11,11 @@
             <div class="card-body">
 
                 <div class="row">
-                    <div class="col-md-4">
+                    <div class="col-sm-4">
                         <a href="#roles/create" class="btn btn-success"><i class="fa fa-plus"></i>
                             Cadastrar roles</a>
                     </div>
-                    <div class="col-md-8 text-right">
+                    <div class="col-sm-8 text-right">
                         <form action="#" class="formSearch" autocomplete="off">
                             <label class="search" for="search-box">
                                 <input name="search-box" id="search-box" class="search-box" type="search"
@@ -30,8 +30,22 @@
                     <table class="table table-hover table-striped table-condensed" id="table" style="">
                         <thead>
                         <tr>
-                            <th>#id</th>
-                            <th>Nome</th>
+                            <th>
+                                <a href="javascript:void(0)"
+                                   class="sort-column"
+                                   data-column="id"
+                                   data-direction="-1">
+                                    #id
+                                </a>
+                            </th>
+                            <th>
+                                <a href="javascript:void(0)"
+                                   class="sort-column sorting"
+                                   data-column="name"
+                                   data-direction="1">
+                                    Nome
+                                </a>
+                            </th>
                             <th class="text-center"></th>
                         </tr>
                         </thead>
