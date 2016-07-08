@@ -156,17 +156,14 @@ return [
         App\Providers\EventServiceProvider::class,
         App\Providers\RouteServiceProvider::class,
 
-        Lfalmeida\Lbase\Providers\LbaseServiceProvider::class,
-
         /**
-         * Cumtom Service Providers
+         * 
          */
+        Lfalmeida\Lbase\Providers\LbaseServiceProvider::class,
         Tymon\JWTAuth\Providers\JWTAuthServiceProvider::class,
-        JeroenG\Packager\PackagerServiceProvider::class,
-        Sofa\Eloquence\ServiceProvider::class,
         Zizaco\Entrust\EntrustServiceProvider::class,
         Barryvdh\Cors\ServiceProvider::class,
-//        Neomerx\CorsIlluminate\Providers\LaravelServiceProvider::class,
+
     ],
 
     /*
