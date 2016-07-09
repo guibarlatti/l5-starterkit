@@ -63,7 +63,7 @@ define([
             module.start();
 
             var modulesLoaded = 0;
-            var modules = ['dashboard', 'roles', 'users', 'permissions'];
+            var modules = ['dashboard', 'roles', 'users'];
 
             $.each(modules, function (i, moduleName) {
 

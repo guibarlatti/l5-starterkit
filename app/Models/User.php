@@ -16,7 +16,7 @@ class User extends BaseModel implements AuthenticatableContract, AuthorizableCon
     /**
      * Regras de validação deste model
      *
-     * @see https://github.com/jarektkaczyk/eloquence/wiki/Validable
+     * @see https://github.com/jarektkaczyk/eloquence
      * @var array
      */
     protected static $businessRules = [
@@ -43,5 +43,13 @@ class User extends BaseModel implements AuthenticatableContract, AuthorizableCon
         'password',
         'remember_token',
     ];
+
+    /**
+     * @return \Illuminate\Database\Eloquent\Relations\BelongsToMany
+     */
+    public function roles()
+    {
+        return $this->belongsToMany('Lfalmeida\Lbase\Models\Role');
+    }
 
 }
