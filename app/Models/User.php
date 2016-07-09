@@ -2,10 +2,17 @@
 
 namespace App\Models;
 
+use Illuminate\Auth\Authenticatable;
+use Illuminate\Auth\Passwords\CanResetPassword;
+use Illuminate\Contracts\Auth\Access\Authorizable as AuthorizableContract;
+use Illuminate\Contracts\Auth\Authenticatable as AuthenticatableContract;
 use Lfalmeida\Lbase\Models\BaseModel;
+use Zizaco\Entrust\Traits\EntrustUserTrait;
 
-class User extends BaseModel
+
+class User extends BaseModel implements AuthenticatableContract, AuthorizableContract
 {
+    use Authenticatable, CanResetPassword, EntrustUserTrait;
     /**
      * Regras de validação deste model
      *

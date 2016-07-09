@@ -46,21 +46,20 @@ gulp.task('phpunit', function () {
     });
 });
 
+
 gulp.task('bluenote', function () {
     process.chdir('public/admin/app/modules');
 
-    gulp.src('')
+    return gulp.src('')
         .pipe(prompt.prompt({
             type: 'input',
             name: 'moduleName',
             message: 'Como será o nome do módulo (lowerCamelCase) ?'
         }, function (r) {
-            // process.stdout.write(r);
-            var command = 'yo bluenote ' + r.moduleName +' --skip-install';
-            return run(command).exec();
+            run('yo bluenote ' + r.moduleName + ' --skip-install').exec();
+            return r;
         }));
 });
-
 
 /**
  *

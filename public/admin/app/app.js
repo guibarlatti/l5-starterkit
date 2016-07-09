@@ -63,7 +63,7 @@ define([
             module.start();
 
             var modulesLoaded = 0;
-            var modules = ['dashboard', 'roles', 'users'];
+            var modules = ['dashboard', 'roles', 'users', 'permissions'];
 
             $.each(modules, function (i, moduleName) {
 
@@ -75,11 +75,9 @@ define([
                             app.routesCollection.add(entry);
                         });
                     }
-
                     if (modulesLoaded == (modules.length - 1)) {
                         app.vent.trigger('modules:loaded');
                     }
-
                     modulesLoaded++;
 
                 });
