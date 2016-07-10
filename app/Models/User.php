@@ -6,6 +6,7 @@ use Illuminate\Auth\Authenticatable;
 use Illuminate\Auth\Passwords\CanResetPassword;
 use Illuminate\Contracts\Auth\Access\Authorizable as AuthorizableContract;
 use Illuminate\Contracts\Auth\Authenticatable as AuthenticatableContract;
+use Illuminate\Support\Facades\Hash;
 use Lfalmeida\Lbase\Models\BaseModel;
 use Zizaco\Entrust\Traits\EntrustUserTrait;
 
@@ -24,6 +25,7 @@ class User extends BaseModel implements AuthenticatableContract, AuthorizableCon
         'email' => ['required', 'email', 'unique:users'],
         'password' => ['required', 'min:6']
     ];
+
     /**
      * The attributes that are mass assignable.
      *
@@ -33,7 +35,9 @@ class User extends BaseModel implements AuthenticatableContract, AuthorizableCon
         'name',
         'email',
         'password',
+        'profilePicture'
     ];
+
     /**
      * The attributes that should be hidden for arrays.
      *
@@ -50,6 +54,12 @@ class User extends BaseModel implements AuthenticatableContract, AuthorizableCon
     public function roles()
     {
         return $this->belongsToMany('Lfalmeida\Lbase\Models\Role');
+    }
+
+
+    public function setPasswordAttribute($value)
+    {
+        $this->attributes['password'] = Hash::needsRehash($value) ? Hash::make($value) : $value;
     }
 
 }
