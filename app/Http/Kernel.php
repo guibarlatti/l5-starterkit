@@ -34,9 +34,9 @@ class Kernel extends HttpKernel
         ],
 
         'api' => [
-//            'throttle:60,1',
+            'throttle:100,1',
         ],
-        
+
     ];
 
     /**
@@ -47,7 +47,7 @@ class Kernel extends HttpKernel
      * @var array
      */
     protected $routeMiddleware = [
-        
+
         'auth' => Middleware\Authenticate::class,
         'auth.basic' => \Illuminate\Auth\Middleware\AuthenticateWithBasicAuth::class,
         'can' => \Illuminate\Foundation\Http\Middleware\Authorize::class,

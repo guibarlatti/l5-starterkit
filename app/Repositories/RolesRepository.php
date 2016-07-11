@@ -5,19 +5,22 @@ namespace App\Repositories;
 use Lfalmeida\Lbase\Repositories\Repository as BaseRepository;
 
 /**
- * Class EmployeesRepository
- * @package Modules\GuardaMirim\Repositories
+ * Class RolesRepository
+ *
+ * @package App\Repositories
  */
 class RolesRepository extends BaseRepository
 {
     /**
      * Define quais relações devem ser carregados ao instanciar um model
+     *
      * @var array
      */
     protected $relationships = [];
 
     /**
      * Define qual coluna deve ser usada na ordenação de resultados
+     *
      * @var string
      */
     protected $defaultOrderColumn = 'name';

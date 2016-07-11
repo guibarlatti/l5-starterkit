@@ -75,11 +75,9 @@ define([
                             app.routesCollection.add(entry);
                         });
                     }
-
                     if (modulesLoaded == (modules.length - 1)) {
                         app.vent.trigger('modules:loaded');
                     }
-
                     modulesLoaded++;
 
                 });

@@ -2,7 +2,10 @@
 namespace App\Http\Controllers\Api\V1;
 
 use App\Repositories\UsersRepository as Repository;
+use Illuminate\Http\Request;
 use Lfalmeida\Lbase\Controllers\ApiBaseController;
+use Lfalmeida\Lbase\Utils\Uploader;
+use Response;
 
 class UsersController extends ApiBaseController
 {
@@ -14,6 +17,43 @@ class UsersController extends ApiBaseController
     public function __construct(Repository $repository)
     {
         parent::__construct($repository);
+    }
+
+    /**
+     * Store a newly created resource in storage.
+     *
+     * @param  \Illuminate\Http\Request $request
+     *
+     * @return \Illuminate\Http\Response
+     * @throws \Exception
+     */
+    public function store(Request $request)
+    {
+        $data = $request->except(['profilePicture']);
+        $uploader = new Uploader($subfolder = 'users/profile/');
+        $inputFiles = $request->file('profilePicture');
+        $uploadedFiles = [];
+
+        try {
+
+            if ($inputFiles) {
+                $uploader->handle($inputFiles);
+                $uploadedFiles = $uploader->getFileList();
+                $data['profilePicture'] = isset($uploadedFiles[0]->url) ? $uploadedFiles[0]->url : null;
+            }
+
+            $response = $this->repository->create($data);
+
+        } catch (\Exception $e) {
+            if (isset($uploadedFiles[0]->filePath)) {
+                $uploader->removeFile($uploadedFiles[0]->filePath);
+            }
+            throw $e;
+        }
+
+        return Response::apiResponse([
+            'data' => $response
+        ]);
     }
 
     /**

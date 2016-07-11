@@ -2,16 +2,14 @@
 
 namespace App\Repositories;
 
-use Illuminate\Support\Facades\App;
-use Illuminate\Support\Facades\Response;
 use Lfalmeida\Lbase\Models\Role;
 use Lfalmeida\Lbase\Repositories\Repository as BaseRepository;
 use Mockery\CountValidator\Exception;
 
 /**
- * Class EmployeesRepository
+ * Class UsersRepository
  *
- * @package Modules\GuardaMirim\Repositories
+ * @package App\Repositories
  */
 class UsersRepository extends BaseRepository
 {
@@ -43,7 +41,7 @@ class UsersRepository extends BaseRepository
      * Atribui Roles para um usuário
      *
      * @param $userId int Identificador do usuário que receberá o cargo
-     * @param $roles mixed Pode ser um id de cargo ou um array de id's de cargo
+     * @param $roles  mixed Pode ser um id de cargo ou um array de id's de cargo
      *
      * @return mixed
      */
@@ -62,7 +60,7 @@ class UsersRepository extends BaseRepository
      * Remove um ou mais cargos de um usuário.
      *
      * @param $userId int Identificador do usuário que receberá o cargo
-     * @param $roles mixed Pode ser um id de cargo ou um array de id's de cargo
+     * @param $roles  mixed Pode ser um id de cargo ou um array de id's de cargo
      *
      * @return \App\Models\User
      * @throws \Exception

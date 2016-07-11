@@ -1,4 +1,6 @@
 <?php
+
+
 /**
  * Rotas do Admin Backend
  */
@@ -49,6 +51,7 @@ $apiRoutes = function () {
      */
     Route::group(['middleware' => ['token.role:admin'], 'namespace' => 'Api\V1'], function () {
         Route::resource('users', 'UsersController');
+        Route::resource('posts', 'PostsController');
         Route::resource('roles', 'RolesController');
         Route::resource('users.roles', 'UserRolesController');
         Route::resource('permissions', 'PermissionsController');
@@ -69,5 +72,3 @@ Route::group(['domain' => 'api.' . env('APP_DOMAIN'), 'middleware' => ['cors']],
     Route::group(['prefix' => 'v1'], $apiRoutes);
 });
 
-//, 'middleware' => ['cors']
-//, 'middleware' => ['cors']
