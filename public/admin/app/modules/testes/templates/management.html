@@ -1,0 +1,101 @@
+<div class="row">
+    <div class="col-xs-12 bs-example-modal">
+        <div class="card compact">
+            <div class="card-header">
+                <div class="card-title">
+                    <div class="title"><i class="<%= app.utils.getIconRoute('testes') %>"></i> Gerenciamento de
+                        testes
+                    </div>
+                </div>
+            </div>
+            <div class="card-body">
+
+                <div class="row">
+                    <div class="col-sm-4">
+                        <a href="#testes/create" class="btn btn-success"><i class="fa fa-plus"></i>
+                            Cadastrar testes</a>
+                    </div>
+                    <div class="col-sm-8 text-right">
+                        <form action="#" class="formSearch" autocomplete="off">
+                            <label class="search" for="search-box">
+                                <input name="search-box" id="search-box" class="search-box" type="search"
+                                       autocomplete="off"
+                                       placeholder="Busca"/>
+                            </label>
+                        </form>
+                    </div>
+                </div>
+
+                <hr>
+                <div class="table-wrapper">
+                    <table class="table table-hover table-striped table-condensed" id="table" style="">
+                        <thead>
+                        <tr>
+                          <th>
+                              <a href="javascript:void(0)"
+                                 class="sort-column"
+                                 data-column="id"
+                                 data-direction="-1">
+                                  #id
+                              </a>
+                          </th>
+                          <th>
+                              <a href="javascript:void(0)"
+                                 class="sort-column sorting"
+                                 data-column="name"
+                                 data-direction="1">
+                                  Nome
+                              </a>
+                          </th>
+                            <th class="text-center"></th>
+                        </tr>
+                        </thead>
+                        <tbody class="itemsTable"></tbody>
+                    </table>
+                </div>
+
+
+                <hr>
+                <div class="row">
+                    <div class="col-xs-3">
+                        <div class="toolbar">
+                            <form action="#" class="formPageJump">
+                                <label class="control-label" for="pageJump">pág.</label>
+                                <input type="number" name="pageJump" maxlength="4" id="pageJump"
+                                       class="pageJump"
+                                       style="width: 50px; text-align: center"
+                                       data-toggle="tooltip"
+                                       data-placement="top"
+                                       title="Informe o número da página para navegação direta."
+                                       min="1">
+                                <input type="submit" style="display: none">
+                            </form>
+                        </div>
+                    </div>
+
+                    <div class="col-xs-6 text-center">
+                        <ul class="pagination">
+                            <li class="prevContainer"><a href="#" class="prevPage">
+                                <i class="fa fa-angle-left"></i></a>
+                            </li>
+                            <li class="nextContainer"><a href="#" class="nextPage">
+                                <i class="fa fa-angle-right"></i></a>
+                            </li>
+                        </ul>
+                    </div>
+
+                    <div class="col-xs-3 text-right">
+                        <div style="color:#999;padding-top:18px;line-height: 16px">
+                            <small>pág. <span class="currentPage"></span> de</small>
+                            <small class="pagesCount"><span class="totalPages"></span></small>
+                            <br>
+                            <small><span class="totalItems"></span> <span>registros no total</span></small>
+                        </div>
+                    </div>
+                </div>
+
+
+            </div>
+        </div>
+    </div>
+</div>
